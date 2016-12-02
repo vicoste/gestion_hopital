@@ -1,6 +1,7 @@
 package launch;
 
 import controller.FicheMedical;
+import controller.Patient;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -26,7 +27,8 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         //launch(args);
-        FicheMedical f =new FicheMedical( "dedede",null, null);
+        Patient p = new Patient(null, "pierre", "paul", "15", Boolean.TRUE);
+        FicheMedical f =new FicheMedical( "dedede",p, null);
         
     }
 }

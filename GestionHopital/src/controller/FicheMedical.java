@@ -32,12 +32,11 @@ public class FicheMedical {
         this.listSymp=listSymp;
         etat = false;
         traitement = null;
-       
-        System.out.println();
-        //createNumDossier();
+        dateEntree = new Date();
         
+        createNumDossier();
         
-        
+     
         
                
     }
@@ -57,9 +56,87 @@ public class FicheMedical {
      
     private void createNumDossier() {
         
-        File f =new File("dossier.don");
         
         
+        String a = dateEntree.toString();
+        String sexe = new String();
+        String num = new String();
+        System.out.println(a);
+        String numJour = a.substring(8, 10);
+        System.out.println(numJour);
+        
+        String mois = a.substring(4, 7);
+        System.out.println(mois);
+        
+        switch(mois){
+            case "Jan":
+                mois="01";
+                break;
+                
+            case "Fev":
+                mois="02";
+                break;
+                                
+            case "Mar":
+                mois="03";
+                break; 
+                
+            case "Avr":
+                mois="04";
+                break; 
+                
+            case "May":
+                mois="05";
+                break;  
+                
+            case "Jun":
+                mois="06";
+                break;   
+                
+            case "Jul":
+                mois="07";
+                break;    
+                
+            case "Aug":
+                mois="08";
+                break;    
+                
+            case "Sep":
+                mois="09";
+                break;    
+                
+            case "Oct":
+                mois="10";
+                break;   
+                
+            case "Nov":
+                mois="11";
+                break;  
+                
+            case "Dec":
+                mois="12";
+                break;       
+                
+            default:
+                mois="13";
+ 
+        }
+        String an = a.substring(24, 28);
+        
+        if(patient.getSexe()){
+            sexe = "1";
+        }
+        else{
+            sexe = "0";
+        }
+        dateEntree.getTime();
+        
+        num= sexe.concat(numJour).concat(mois).concat(an).concat(patient.getNom().substring(0, 1).toUpperCase()).concat(patient.getPrenom().substring(0, 1).toUpperCase());
+        
+        
+        
+        
+        System.out.println("numdossier :"+num+dateEntree.getTime());
         
         
         

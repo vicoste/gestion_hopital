@@ -14,12 +14,14 @@ public class Patient {
     private String nom;
     private String prenom;
     private String age;
+    private Boolean sexe;       //rajout : pas present en ULM --> utilisé dans le numDssier 
 
-    public Patient(String numSecu, String nom, String prenom, String age) {
+    public Patient(String numSecu, String nom, String prenom, String age, Boolean sexe) {
         this.numSecu = numSecu;
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
+        this.sexe = sexe;
     }
     
     
@@ -79,4 +81,19 @@ public class Patient {
     public void setAge(String age) {
         this.age = age;
     }
+
+    /**
+     * @return the sexe
+     */
+    public Boolean getSexe() {
+        return sexe;
+    }
+
+    /**
+     * @param sexe the sexe to set
+     */
+    public void setSexe(Boolean sexe) {
+        this.sexe = sexe;
+    }
 }
+
