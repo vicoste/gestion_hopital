@@ -136,12 +136,11 @@ public class FicheMedical {
         
         
         
-        System.out.println("numdossier :"+num+dateEntree.getTime());
+        System.out.println("numdossier :"+num);
         
         
         
-        
-        
+         
         
     }
 

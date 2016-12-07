@@ -16,7 +16,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            AnchorPane root = (AnchorPane) FXMLLoader.load(getClass().getResource("/ihm/EcranLog.fxml"));
+            BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/EcranLog.fxml"));
             Scene scene = new Scene(root, 600, 400);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -26,9 +26,9 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        //launch(args);
-        Patient p = new Patient(null, "pierre", "paul", "15", Boolean.TRUE);
-        FicheMedical f =new FicheMedical( "dedede",p, null);
+        launch(args);
+        //Patient p = new Patient(null, "pierre", "paul", "15", Boolean.TRUE);
+        //FicheMedical f =new FicheMedical( "dedede",p, null);
         
     }
 }
