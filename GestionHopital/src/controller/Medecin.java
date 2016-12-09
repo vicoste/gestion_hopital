@@ -20,8 +20,6 @@ public class Medecin extends PersonnelHospitalier{
     
     
     public void analyse(Symptome a, Boolean machine){
-        if(machine)
-            
         
     }
 
