@@ -9,15 +9,8 @@ package controller;
  *
  * @author vicoste
  */
-public class ControleurAcceuil {
-        
-    private ControleurConnexion controler;
-
-    public ControleurAcceuil(ControleurConnexion controler) {
-        this.controler = controler;
-    }
-    
-    
+public class FXMLAcceuil {
+            
     
     public void clicAjouter(){
         

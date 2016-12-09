@@ -21,7 +21,7 @@
       </Label>
    </top>
    <center>
-      <Button mnemonicParsing="false" prefHeight="127.0" prefWidth="204.0" text="RENDEZ-VOUS" BorderPane.alignment="CENTER" />
+      <Button mnemonicParsing="false" prefHeight="127.0" prefWidth="204.0" text="RENDEZ-VOUS"  BorderPane.alignment="CENTER" />
    </center>
    <bottom>
       <Button mnemonicParsing="false" prefHeight="151.0" prefWidth="210.0" text="CREER FICHE MEDICALE" BorderPane.alignment="CENTER">

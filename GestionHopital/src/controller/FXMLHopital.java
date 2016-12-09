@@ -9,13 +9,7 @@ package controller;
  *
  * @author vicoste
  */
-public class ControleurMedecin {
-    
-    private ControleurConnexion controler;
-
-    public ControleurMedecin(ControleurConnexion controler) {
-        this.controler = controler;
-    }
+public class FXMLHopital {
     
     
     

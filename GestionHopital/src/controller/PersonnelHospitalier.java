@@ -11,15 +11,21 @@ import java.util.List;
  *
  * @author vicoste
  */
-public class Infirmier extends FabriquePersonnelHospitalier{
+abstract class PersonnelHospitalier extends Personnel{
+    private List<Symptome> listSymp2;
+    
 
-    public Infirmier(List<Symptome> listSymp2, ControleurMedecin controler) {
-        super(listSymp2, controler);
+    public PersonnelHospitalier(List<Symptome> listSymp2) {
+        this.listSymp2 = listSymp2;
+        
     }
-
-    @Override
-    public void analysePro(Symptome a) {
- 
+    
+    
+    
+    
+    public void analyse(Symptome a){
+        
     }
+    
     
 }

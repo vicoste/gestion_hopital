@@ -9,6 +9,6 @@ package controller;
  *
  * @author vicoste
  */
-public class TraitementInfirmier {
+public class Ordonnance {
     
 }

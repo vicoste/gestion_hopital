@@ -9,13 +9,6 @@ package controller;
  *
  * @author vicoste
  */
-public class AgentAccueil extends Personnel{
-    private ControleurAcceuil controler;
-
-    public AgentAccueil(ControleurAcceuil controler) {
-        this.controler = controler;
-    }
-    
-    
+public class FXMLOrdonnance {
     
 }

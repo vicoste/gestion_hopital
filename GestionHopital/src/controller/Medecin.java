@@ -11,14 +11,22 @@ import java.util.List;
  *
  * @author vicoste
  */
-public class Medecin extends FabriquePersonnelHospitalier{
+public class Medecin extends PersonnelHospitalier{
+    private String specialite;
 
-    public Medecin(List<Symptome> listSymp2, ControleurMedecin controler) {
-        super(listSymp2, controler);
+    public Medecin(List<Symptome> listSymp2 ) {
+        super(listSymp2);
     }
     
+    
+    public void analyse(Symptome a, Boolean machine){
+        if(machine)
+            
+        
+    }
+
     @Override
-    public void analysePro(Symptome a){
+    public void analyse(Symptome a) {
         
     }
     

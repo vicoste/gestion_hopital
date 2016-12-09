@@ -5,31 +5,10 @@
  */
 package controller;
 
-import java.util.List;
-
 /**
  *
  * @author vicoste
  */
-public class TraitementMedecin extends Traitement{
-
-    private List<Medicament> listMedic;
-    private FicheMedical fiche;
-
-    public TraitementMedecin(List<Medicament> listMedic, FicheMedical fiche) {
-        this.listMedic = listMedic;
-        this.fiche = fiche;
-    }
-    
-    
-    @Override
-    public void soigner(Medicament a) {
-        
-        fiche.setEtat(Boolean.TRUE);
-        
-    }
-
-  
-    
+public class TraitementMedecin {
     
 }

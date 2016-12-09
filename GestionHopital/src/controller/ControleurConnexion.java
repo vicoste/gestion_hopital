@@ -5,7 +5,9 @@
  */
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
@@ -14,17 +16,18 @@ import javafx.scene.control.TextField;
  * @author vicoste
  */
 public class ControleurConnexion {
-    private GestionHopital gestion;
+    
     
     @FXML
     private TextField login;
     @FXML
     private PasswordField mdp;
 
-
-    public ControleurConnexion(GestionHopital gestion) {
-        this.gestion = gestion;
+    @FXML
+    private void handleButtonAction(ActionEvent event) {
+        
     }
+    
     
     
     public void clicLogin(){
