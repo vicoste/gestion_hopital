@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
+   <head>
+       <title>Accès interdit</title>
+       <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	   <link rel="stylesheet" type="text/css" href="http://iutweb.u-clermont1.fr/errors/style.css" />
+	   
+</head>
+
+<body >
+
+<div id="wrapper" >
+
+	<div>
+		<img src='http://iutweb.u-clermont1.fr/errors/logo_IUT_new.jpg' alt="IUT" width="150px" height="106px" />
+	</div>
+
+	
+	<div class="logo">
+	<img src='http://iutweb.u-clermont1.fr/errors/logo_attention.png' alt="Attention" width="150px" height="125px"/>
+	</div>
+	
+	<h1>L'accès à la page demandée n'est pas autorisé</h1>
+
+	<br /><br />
+	<p>
+		Pour autoriser l'accès à internet vous pouvez (accessible seulement aux enseignants) : 
+	</p>
+
+	
+	<ul><li>ouvrir un créneau pour une durée donnée.</li>
+		<li>ajouter un site à la whitelist, ce site sera accessible <span class="important">quelque soit la valeur du créneau</span> (ouvert ou fermé) et <span class="important">quelque soit le site</span> (Aurillac, Clermont, LePuy).</li>
+	</ul>
+	
+	<br /><br />
+	
+
+	<p class="lienProxy">
+		<a href="https://iutweb.u-clermont1.fr/proxy">Autoriser</a>
+	</p>
+	
+
+</body>
+</html>
