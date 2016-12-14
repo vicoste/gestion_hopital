@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package modele;
 
 import java.util.List;
 
@@ -13,14 +13,16 @@ import java.util.List;
  */
 abstract class PersonnelHospitalier extends Personnel{
     private List<Symptome> listSymp2;
-    
 
-    public PersonnelHospitalier(List<Symptome> listSymp2) {
-        this.listSymp2 = listSymp2;
-        
+    public PersonnelHospitalier(String nom, String prenom, String identifiant, String mdp) {
+        super(nom, prenom, identifiant, mdp);
     }
     
     
+    public void consultation()
+    {
+        
+    }
     
     
     public void analyse(Symptome a){

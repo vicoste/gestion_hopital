@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EcranLogController">
    <top>
       <Label text="CHU" textAlignment="CENTER" textFill="#257fd3" BorderPane.alignment="CENTER">
          <opaqueInsets>
@@ -45,7 +45,7 @@
       </GridPane>
    </center>
    <bottom>
-      <Button mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="26.0" prefWidth="200.0" text="Connexion" BorderPane.alignment="CENTER">
+      <Button fx:id="boutton" mnemonicParsing="false" onAction="#connexion" prefHeight="26.0" prefWidth="200.0" text="Connexion" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="20.0" top="50.0" />
          </BorderPane.margin>

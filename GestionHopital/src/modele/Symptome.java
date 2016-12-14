@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package modele;
 
 /**
  *
  * @author vicoste
  */
-public class Medicament {
+public class Symptome {
     private String nom;
     private String description;
 
-    public Medicament(String nom, String description) {
+    public Symptome(String nom, String description) {
         this.nom = nom;
         this.description = description;
     }

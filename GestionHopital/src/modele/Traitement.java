@@ -3,12 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package modele;
+
+import java.util.List;
 
 /**
  *
  * @author vicoste
  */
-public class FXMLRendezVous {
+abstract class Traitement {
+
+    
+    
+    
+    
+    
+    abstract void soigner(Medicament a);
     
 }

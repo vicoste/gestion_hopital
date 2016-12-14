@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package modele;
 
 /**
  *
  * @author vicoste
  */
-public class FXMLOrdonnance {
+public class RendezVous {
     
 }

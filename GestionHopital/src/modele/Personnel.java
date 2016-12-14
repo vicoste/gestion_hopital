@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package modele;
 
 /**
  *
@@ -14,6 +14,13 @@ public class Personnel {
     private String prenom;
     private String identifiant;
     private String mdp;
+
+    public Personnel(String nom, String prenom, String identifiant, String mdp) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.identifiant = identifiant;
+        this.mdp = mdp;
+    }
     
     
     public Boolean seloguer(String id, String mdp){
@@ -21,9 +28,7 @@ public class Personnel {
    
     } 
     
-    public void prendreRDV(){
-        
-    }
+
 
     /**
      * @return the nom

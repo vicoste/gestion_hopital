@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package modele;
 
 import java.util.List;
 
@@ -14,9 +14,11 @@ import java.util.List;
 public class Medecin extends PersonnelHospitalier{
     private String specialite;
 
-    public Medecin(List<Symptome> listSymp2 ) {
-        super(listSymp2);
+    public Medecin(String nom, String prenom, String identifiant, String mdp) {
+        super(nom, prenom, identifiant, mdp);
     }
+
+    
     
     
     public void analyse(Symptome a, Boolean machine){
