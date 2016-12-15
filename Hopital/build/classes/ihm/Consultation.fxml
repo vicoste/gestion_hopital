@@ -1,13 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <!-- a la fin de la selection du symptome, le "+" ajoute le symptome a gauche et le "-" enleve le derniere symptome a ajouter.
     "confirmer" enregistre la liste créee
     -->
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1">
-    
-</AnchorPane>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <ListView prefHeight="359.0" prefWidth="255.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="25.0" left="25.0" />
+         </BorderPane.margin>
+      </ListView>
+   </left>
+   <top>
+      <Label text="CHU" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <BorderPane prefHeight="384.0" prefWidth="313.0" BorderPane.alignment="CENTER">
+         <left>
+            <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="42.0" text="-" BorderPane.alignment="TOP_LEFT">
+               <BorderPane.margin>
+                  <Insets left="150.0" />
+               </BorderPane.margin>
+            </Button>
+         </left>
+         <right>
+            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="44.0" text="+" BorderPane.alignment="TOP_RIGHT">
+               <BorderPane.margin>
+                  <Insets right="150.0" />
+               </BorderPane.margin>
+            </Button>
+         </right>
+         <top>
+            <ComboBox  prefHeight="37.0" prefWidth="135.0"  BorderPane.alignment="CENTER">
+              
+               <BorderPane.margin>
+                  <Insets bottom="15.0" top="100.0" />
+               </BorderPane.margin>
+            </ComboBox>
+         </top>
+         <bottom>
+            <Button mnemonicParsing="false" prefHeight="80.0" prefWidth="124.0" text="confirmer" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="50.0" />
+               </BorderPane.margin>
+            </Button>
+         </bottom>
+      </BorderPane>
+   </center>
+</BorderPane>

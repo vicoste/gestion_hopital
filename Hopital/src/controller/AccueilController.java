@@ -5,9 +5,18 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import launch.Main;
 
 /**
  * FXML Controller class
@@ -23,5 +32,28 @@ public class AccueilController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void handleButtonFM(ActionEvent event) throws IOException{
+        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/CreerFM.fxml"));
+            Scene scene = new Scene(root);
+            Stage st = new Stage();
+            st.initOwner(Main.getPrimaryStage());
+            st.initModality(Modality.WINDOW_MODAL);
+            st.setScene(scene);
+            st.show();
+            
+    }
+
+    @FXML
+    private void handleButtonRDV(ActionEvent event) throws IOException{
+         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/RDV.fxml"));
+            Scene scene = new Scene(root);
+            Stage st = new Stage();
+            st.initOwner(Main.getPrimaryStage());
+            st.initModality(Modality.WINDOW_MODAL);
+            st.setScene(scene);
+            st.show();
+    }
     
 }

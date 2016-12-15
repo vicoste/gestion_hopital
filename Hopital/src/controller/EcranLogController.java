@@ -40,8 +40,9 @@ public class EcranLogController implements Initializable {
     @FXML
     private PasswordField mdp;
     
-    private final String idt="medecin";
-    private final String mot="password";
+    private final String idt="";
+    private final String mot="";
+
     
     /**
      * Initializes the controller class.
@@ -49,6 +50,7 @@ public class EcranLogController implements Initializable {
      */
     
     public EcranLogController(){
+        
 
     }
     
@@ -68,6 +70,7 @@ public class EcranLogController implements Initializable {
             st.initModality(Modality.WINDOW_MODAL);
             st.setScene(scene);
             st.show();
+            Main.getStage().hide();            
           }
          else{
              showMessage(Alert.AlertType.ERROR, null, "Identifiant ou mot de passe incorrect. Veuillez recommencer");

@@ -8,7 +8,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilController">
    <top>
       <Label text="CHU" BorderPane.alignment="CENTER">
@@ -21,10 +20,10 @@
       </Label>
    </top>
    <center>
-      <Button mnemonicParsing="false" prefHeight="127.0" prefWidth="204.0" text="RENDEZ-VOUS"  BorderPane.alignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#handleButtonRDV" prefHeight="127.0" prefWidth="204.0" text="RENDEZ-VOUS" BorderPane.alignment="CENTER" />
    </center>
    <bottom>
-      <Button mnemonicParsing="false" prefHeight="151.0" prefWidth="210.0" text="CREER FICHE MEDICALE" BorderPane.alignment="CENTER">
+      <Button mnemonicParsing="false" onAction="#handleButtonFM" prefHeight="151.0" prefWidth="210.0" text="CREER FICHE MEDICALE" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" top="10.0" />
          </BorderPane.margin>
