@@ -12,6 +12,8 @@ package modele;
 public class Symptome {
     private String nom;
     private String description;
+    
+    
 
     public Symptome(String nom, String description) {
         this.nom = nom;
@@ -47,5 +49,11 @@ public class Symptome {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return nom; //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }

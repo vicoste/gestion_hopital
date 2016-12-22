@@ -42,7 +42,7 @@ public class EcranLogController implements Initializable {
     
     private final String idt="";
     private final String mot="";
-
+    private static Stage st = new Stage();
     
     /**
      * Initializes the controller class.
@@ -65,7 +65,6 @@ public class EcranLogController implements Initializable {
          if(userText.getText().equals(idt) & mdp.getText().equals(mot)){
             BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
             Scene scene = new Scene(root);
-            Stage st = new Stage();
             st.initOwner(Main.getPrimaryStage());
             st.initModality(Modality.WINDOW_MODAL);
             st.setScene(scene);
@@ -87,6 +86,10 @@ public class EcranLogController implements Initializable {
             laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
         }
         return laFenetre.showAndWait();
+    }
+        
+    public static Stage getStage() {
+        return st;
     }
  }
     

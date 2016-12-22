@@ -35,7 +35,7 @@ public class AccueilController implements Initializable {
 
     @FXML
     private void handleButtonFM(ActionEvent event) throws IOException{
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/CreerFM.fxml"));
+        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/RechercheFM.fxml"));
             Scene scene = new Scene(root);
             Stage st = new Stage();
             st.initOwner(Main.getPrimaryStage());

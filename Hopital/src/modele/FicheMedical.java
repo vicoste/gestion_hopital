@@ -17,7 +17,7 @@ import java.util.Locale;
  * @author vicoste
  */
 public class FicheMedical {
-    private int numDossier; 
+    private String numDossier; 
     private Date dateEntree;
     private String motif;
     private Boolean etat;
@@ -25,11 +25,11 @@ public class FicheMedical {
     private List<Symptome> listSymp;
     private Traitement traitement;
 
-    public FicheMedical(String motif, Patient p, List<Symptome> listSymp) {
+    public FicheMedical(String motif, Patient p, List<Symptome> listSymp){
         
-        this.motif=motif;
-        patient=p;
-        this.listSymp=listSymp;
+        this.motif = motif;
+        patient = p;
+        this.listSymp = listSymp;
         etat = false;
         traitement = null;
         dateEntree = new Date();
@@ -45,7 +45,7 @@ public class FicheMedical {
     /**
      * @return the numDossier
      */
-    public int getNumDossier() {
+    public String getNumDossier() {
         return numDossier;
     }
 
@@ -138,7 +138,7 @@ public class FicheMedical {
         
         System.out.println("numdossier :"+num);
         
-        
+        numDossier=num;
         
          
         
@@ -212,6 +212,11 @@ public class FicheMedical {
      */
     public void setSymptome(List<Symptome> symptome) {
         listSymp = symptome;
+    }
+
+    @Override
+    public String toString() {
+        return patient.getNom()+" "+patient.getPrenom()+" - "+numDossier; //To change body of generated methods, choose Tools | Templates.
     }
     
 }

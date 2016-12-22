@@ -13,10 +13,10 @@ public class Patient {
     private String numSecu;
     private String nom;
     private String prenom;
-    private String age;
-    private Boolean sexe;       //rajout : pas present en ULM --> utilisé dans le numDssier 
+    private int age;
+    private Boolean sexe;       //rajout : pas present en ULM --> utilisé dans le numDssier  0=homme 1=femme
 
-    public Patient(String numSecu, String nom, String prenom, String age, Boolean sexe) {
+    public Patient(String numSecu, String nom, String prenom, int age, Boolean sexe) {
         this.numSecu = numSecu;
         this.nom = nom;
         this.prenom = prenom;
@@ -71,14 +71,14 @@ public class Patient {
     /**
      * @return the age
      */
-    public String getAge() {
+    public int getAge() {
         return age;
     }
 
     /**
      * @param age the age to set
      */
-    public void setAge(String age) {
+    public void setAge(int age) {
         this.age = age;
     }
 

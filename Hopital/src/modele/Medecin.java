@@ -29,5 +29,11 @@ public class Medecin extends PersonnelHospitalier{
     public void analyse(Symptome a) {
         
     }
+
+    @Override
+    public String toString() {
+        return "Docteur "+getNom(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }
