@@ -68,12 +68,15 @@ public class RDVController implements Initializable {
         else {
             showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?");
             
-                
             
-            list.getSelectionModel().getSelectedItem();
+                
+                list.getSelectionModel().clearSelection();
+            }
+            
+            
              
         }
-    }
+    
     @FXML
     private void handleButtonModifier(ActionEvent event) throws IOException{
         if(list.getSelectionModel().getSelectedItem()==null) {

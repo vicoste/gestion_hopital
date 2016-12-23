@@ -7,6 +7,7 @@ package controller;
 
 import com.sun.javaws.ui.SplashScreen;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -66,15 +67,19 @@ public class SelectFMController implements Initializable {
             if(datePicker.getValue()==null) { 
                 showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une Date.");
             } else{
-                if(cbheure.getValue()==null) {
-                   showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une Heure.");
-               } else{
-                    if(cb.getValue()==null) {
-                        showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un Medecin.");
-                    } 
-                    else{
-                        Main.setListRDV(new RendezVous(list.getSelectionModel().getSelectedItem(),new Medecin("medec", "jak", "lol", "lol"),datePicker.getValue()));
-                        RDVController.getStage().close();
+                if(datePicker.getValue().compareTo(LocalDate.now())<0){
+                    showMessage(Alert.AlertType.ERROR, null, "Date invalide.");
+                } else{
+                    if(cbheure.getValue()==null) {
+                        showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une Heure.");
+                    } else{
+                        if(cb.getValue()==null) {
+                            showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un Medecin.");
+                        } 
+                        else{
+                            Main.setListRDV(new RendezVous(list.getSelectionModel().getSelectedItem(),cb.getValue(),datePicker.getValue()));
+                            RDVController.getStage().close();
+                        }
                     }
                 }
             }
@@ -83,7 +88,7 @@ public class SelectFMController implements Initializable {
 
     @FXML
     private void handleButtonAnnuler(ActionEvent event) {
-
+        RDVController.getStage().close();
     }
     
     private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
