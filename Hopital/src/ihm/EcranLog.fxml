@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EcranLogController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EcranLogController">
    <top>
       <Label text="CHU" textAlignment="CENTER" textFill="#257fd3" BorderPane.alignment="CENTER">
          <opaqueInsets>

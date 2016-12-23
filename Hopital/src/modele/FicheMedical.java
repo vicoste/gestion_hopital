@@ -61,12 +61,12 @@ public class FicheMedical {
         String a = dateEntree.toString();
         String sexe = new String();
         String num = new String();
-        System.out.println(a);
+        
         String numJour = a.substring(8, 10);
-        System.out.println(numJour);
+        
         
         String mois = a.substring(4, 7);
-        System.out.println(mois);
+        
         
         switch(mois){
             case "Jan":
@@ -136,7 +136,7 @@ public class FicheMedical {
         
         
         
-        System.out.println("numdossier :"+num);
+       
         
         numDossier=num;
         

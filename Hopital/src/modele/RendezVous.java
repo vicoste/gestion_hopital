@@ -5,6 +5,7 @@
  */
 package modele;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -15,9 +16,9 @@ public class RendezVous {
     
     private FicheMedical fiche;
     private Medecin medecin;
-    private Date date;
+    private LocalDate date;
 
-    public RendezVous(FicheMedical fiche, Medecin medecin, Date date) {
+    public RendezVous(FicheMedical fiche, Medecin medecin, LocalDate date) {
         this.fiche = fiche;
         this.medecin = medecin;
         this.date = date;
@@ -54,20 +55,20 @@ public class RendezVous {
     /**
      * @return the date
      */
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
     /**
      * @param date the date to set
      */
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
     @Override
     public String toString() {
-        return medecin+" - "+fiche+ " le "+date; //To change body of generated methods, choose Tools | Templates.
+        return date+" : "+fiche.getPatient().toString()+"        avec le "+medecin; //To change body of generated methods, choose Tools | Templates.
     }
     
 }

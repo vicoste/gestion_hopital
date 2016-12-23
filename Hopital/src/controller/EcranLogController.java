@@ -42,7 +42,7 @@ public class EcranLogController implements Initializable {
     
     private final String idt="";
     private final String mot="";
-    private static Stage st = new Stage();
+    private static Stage stage;
     
     /**
      * Initializes the controller class.
@@ -65,11 +65,13 @@ public class EcranLogController implements Initializable {
          if(userText.getText().equals(idt) & mdp.getText().equals(mot)){
             BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
             Scene scene = new Scene(root);
+            Stage st= new Stage();
             st.initOwner(Main.getPrimaryStage());
             st.initModality(Modality.WINDOW_MODAL);
             st.setScene(scene);
+            stage=st;
             st.show();
-            Main.getStage().hide();            
+            Main.getStage().close();            
           }
          else{
              showMessage(Alert.AlertType.ERROR, null, "Identifiant ou mot de passe incorrect. Veuillez recommencer");
@@ -89,7 +91,7 @@ public class EcranLogController implements Initializable {
     }
         
     public static Stage getStage() {
-        return st;
+        return stage;
     }
  }
     

@@ -95,5 +95,12 @@ public class Patient {
     public void setSexe(Boolean sexe) {
         this.sexe = sexe;
     }
+
+    @Override
+    public String toString() {
+       if(sexe) return "Mme "+nom;
+       else return "Mr "+nom;
+    }
+    
 }
 
