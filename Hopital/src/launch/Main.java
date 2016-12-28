@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Dictionary;
 import java.util.List;
-import modele.FicheMedical;
+import java.util.Scanner;
+import modele.FicheMedicale;
 import modele.Patient;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +33,7 @@ public class Main extends Application {
     private static Stage stage = new Stage();
     private static ObservableList<Symptome> listSymp = FXCollections.observableArrayList();
     private static ObservableList<RendezVous> listRDV = FXCollections.observableArrayList();
-    private static ObservableList<FicheMedical> listFM = FXCollections.observableArrayList();
+    private static ObservableList<FicheMedicale> listFM = FXCollections.observableArrayList();
     private static ObservableList<Medecin> listMed = FXCollections.observableArrayList();
    
     //FONCTION MAIN
@@ -40,8 +41,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         
+     
         CreateListFM();
-
+        
+       
         CreateListMedecin();
       
         try {            
@@ -76,13 +79,18 @@ public class Main extends Application {
         Patient c = new Patient("165464", "pierre", "letest", 18, Boolean.FALSE);
         Patient d = new Patient("165464", "pierre", "letest", 50, Boolean.TRUE );
         Patient f = new Patient("165464", "pierre", "letest", 20, Boolean.FALSE);
-        FicheMedical f1 = new FicheMedical("depuis 3 jour ne peux plus défequer", a, getSymptome());
-        FicheMedical f2 = new FicheMedical("depuis 3 jour ne peux plus défequer", a, getSymptome());
-        FicheMedical f3 = new FicheMedical("depuis 3 jour ne peux plus défequer", a, getSymptome());
-        FicheMedical f4 = new FicheMedical("depuis 3 jour ne peux plus défequer", a, getSymptome());
-        FicheMedical f5 = new FicheMedical("depuis 3 jour ne peux plus défequer", a, getSymptome());
+        FicheMedicale f1 = new FicheMedicale("depuis 3 jour ne peux plus défequer", a, getSymptome());
+        FicheMedicale f2 = new FicheMedicale("depuis 3 jour ne peux plus défequer", a, getSymptome());
+        FicheMedicale f3 = new FicheMedicale("depuis 3 jour ne peux plus défequer", a, getSymptome());
+        FicheMedicale f4 = new FicheMedicale("depuis 3 jour ne peux plus défequer", a, getSymptome());
+        FicheMedicale f5 = new FicheMedicale("depuis 3 jour ne peux plus défequer", a, getSymptome());
         
         listFM.addAll(f1,f2,f3,f4,f5);
+   
+ 
+       
+   
+        
     }
     
     private void CreateListSymp(){
@@ -116,7 +124,7 @@ public class Main extends Application {
         
     }
     
-    
+
     
     
     
@@ -139,7 +147,7 @@ public class Main extends Application {
         listRDV.add(r);
     }
     
-    public static ObservableList<FicheMedical> getListFM() {
+    public static ObservableList<FicheMedicale> getListFM() {
         return listFM;
     }
 

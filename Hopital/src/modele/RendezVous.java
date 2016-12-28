@@ -14,11 +14,11 @@ import java.util.Date;
  */
 public class RendezVous {
     
-    private FicheMedical fiche;
+    private FicheMedicale fiche;
     private Medecin medecin;
     private LocalDate date;
 
-    public RendezVous(FicheMedical fiche, Medecin medecin, LocalDate date) {
+    public RendezVous(FicheMedicale fiche, Medecin medecin, LocalDate date) {
         this.fiche = fiche;
         this.medecin = medecin;
         this.date = date;
@@ -27,14 +27,14 @@ public class RendezVous {
     /**
      * @return the fiche
      */
-    public FicheMedical getFiche() {
+    public FicheMedicale getFiche() {
         return fiche;
     }
 
     /**
      * @param fiche the fiche to set
      */
-    public void setFiche(FicheMedical fiche) {
+    public void setFiche(FicheMedicale fiche) {
         this.fiche = fiche;
     }
 

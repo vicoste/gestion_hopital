@@ -22,7 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import launch.Main;
-import modele.FicheMedical;
+import modele.FicheMedicale;
 import modele.Medecin;
 import modele.RendezVous;
 import modele.Symptome;
@@ -35,13 +35,13 @@ import modele.Symptome;
 public class SelectFMController implements Initializable {
     
     @FXML
-    private ListView<FicheMedical> list;
+    private ListView<FicheMedicale> list;
     
     @FXML
     private ComboBox<Medecin> cb;
     
     @FXML
-    private ComboBox<FicheMedical> cbheure;
+    private ComboBox<FicheMedicale> cbheure;
     
     @FXML
     private DatePicker datePicker;

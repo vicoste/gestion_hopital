@@ -25,7 +25,7 @@ import launch.Main;
  */
 public class AccueilController implements Initializable {
 
-    private static Stage stage;
+    
     /**
      * Initializes the controller class.
      */
@@ -36,14 +36,12 @@ public class AccueilController implements Initializable {
 
     @FXML
     private void handleButtonFM(ActionEvent event) throws IOException{
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/RechercheFM.fxml"));
+     
+       BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/FM.fxml"));
         Scene scene = new Scene(root);
-        Stage st = new Stage();
-        st.initOwner(Main.getPrimaryStage());
-        st.initModality(Modality.WINDOW_MODAL);
+        Stage st = EcranLogController.getStage();
         st.setScene(scene);
         st.show();
-        
             
     }
 
@@ -51,11 +49,8 @@ public class AccueilController implements Initializable {
     private void handleButtonRDV(ActionEvent event) throws IOException{
         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/RDV.fxml"));
         Scene scene = new Scene(root);
-        Stage st = new Stage();
-        st.initOwner(Main.getPrimaryStage());
-        st.initModality(Modality.WINDOW_MODAL);
-        st.setScene(scene);
-        stage=st;
+        Stage st = EcranLogController.getStage();
+        st.setScene(scene);        
         st.show();
     }
     
@@ -67,7 +62,5 @@ public class AccueilController implements Initializable {
         Main.getStage().show();
         EcranLogController.getStage().hide();
     }
-    public static Stage getStage() {
-        return stage;
-    }
+   
 }

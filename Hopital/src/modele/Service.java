@@ -14,10 +14,10 @@ import java.util.List;
 public class Service {
     private String nom;
     private String specialite;
-    private List<FicheMedical> listFichM;
+    private List<FicheMedicale> listFichM;
     private List<Personnel> listPers;
 
-    public Service(String nom, String specialite, List<FicheMedical> listFichM, List<Personnel> listPers) {
+    public Service(String nom, String specialite, List<FicheMedicale> listFichM, List<Personnel> listPers) {
         this.nom = nom;
         this.specialite = specialite;
         this.listFichM = listFichM;

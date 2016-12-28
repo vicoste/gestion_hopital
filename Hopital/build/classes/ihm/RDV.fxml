@@ -50,13 +50,21 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button onAction="#handleButtonLogout" mnemonicParsing="false" text="Deconnection" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
+            <Button mnemonicParsing="false" onAction="#handleButtonLogout" text="Deconnection" GridPane.columnIndex="2" GridPane.halignment="RIGHT">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
             </Button>
             <Label text="LISTE RDV" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#handleButtonRetour" text="Retour" GridPane.halignment="LEFT">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Button>
          </children>
+         <BorderPane.margin>
+            <Insets top="10.0" />
+         </BorderPane.margin>
       </GridPane>
    </top>
 </BorderPane>

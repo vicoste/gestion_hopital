@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -71,7 +72,8 @@ public class EcranLogController implements Initializable {
             st.setScene(scene);
             stage=st;
             st.show();
-            Main.getStage().close();            
+            Main.getStage().close();     
+            
           }
          else{
              showMessage(Alert.AlertType.ERROR, null, "Identifiant ou mot de passe incorrect. Veuillez recommencer");
@@ -89,7 +91,9 @@ public class EcranLogController implements Initializable {
         }
         return laFenetre.showAndWait();
     }
-        
+    
+     
+    
     public static Stage getStage() {
         return stage;
     }

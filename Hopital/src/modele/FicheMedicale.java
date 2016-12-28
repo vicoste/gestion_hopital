@@ -16,7 +16,7 @@ import java.util.Locale;
  *
  * @author vicoste
  */
-public class FicheMedical {
+public class FicheMedicale {
     private String numDossier; 
     private Date dateEntree;
     private String motif;
@@ -25,7 +25,7 @@ public class FicheMedical {
     private List<Symptome> listSymp;
     private Traitement traitement;
 
-    public FicheMedical(String motif, Patient p, List<Symptome> listSymp){
+    public FicheMedicale(String motif, Patient p, List<Symptome> listSymp){
         
         this.motif = motif;
         patient = p;

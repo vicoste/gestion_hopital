@@ -7,8 +7,6 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -24,40 +22,52 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import launch.Main;
-import modele.Medecin;
-import modele.RendezVous;
-import modele.Symptome;
+import modele.FicheMedicale;
 
 /**
  * FXML Controller class
  *
- * @author vicoste
+ * @author Virgile
  */
-public class RDVController implements Initializable {
+public class FMController implements Initializable {
 
     @FXML
-    private ListView<RendezVous> list;
-    
-    private static Stage stage;
+    private ListView<FicheMedicale> list;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        list.setItems(Main.getListRDV());
+        // TODO
     }    
+
     
+
     @FXML
-    private void handleButtonAjouter(ActionEvent event) throws IOException{
-        GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/ihm/SelectFM.fxml"));
+    private void handleButtonRetour(ActionEvent event) throws IOException{
+        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
         Scene scene = new Scene(root);
+        Stage st = EcranLogController.getStage();
+        st.setScene(scene);        
+        st.show();
+    }
+
+    
+
+  
+
+    
+     @FXML
+    private void handleButtonAjouter(ActionEvent event) throws IOException{
+        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/AddFM.fxml"));
+        Scene scene = new Scene(root, 400, 400);
         Stage st = new Stage();
         st.initOwner(EcranLogController.getStage());
         st.initModality(Modality.WINDOW_MODAL);
         st.setScene(scene);
         st.setResizable(false);
-        stage=st;
+        
         st.show();
     }
     @FXML
@@ -108,23 +118,4 @@ public class RDVController implements Initializable {
         }
         return laFenetre.showAndWait();
     }
-
-    @FXML
-    private void handleButtonRetour(ActionEvent event)throws IOException{
-        
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
-        Scene scene = new Scene(root);
-        Stage st = EcranLogController.getStage();
-        st.setScene(scene);        
-        st.show();
-       
-        
-    }
-    
-    
-    public static Stage getStage() {
-        return stage;
-    }
-    
 }
-        
