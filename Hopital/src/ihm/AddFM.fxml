@@ -21,8 +21,8 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Créer" GridPane.halignment="CENTER" />
-            <Button mnemonicParsing="false" text="Retour" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleButtonCreate" text="Créer" GridPane.halignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#handleButtonRetour" text="Retour" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
          </children>
          <padding>
             <Insets bottom="10.0" />
@@ -42,8 +42,9 @@
          <children>
             <GridPane>
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -51,18 +52,18 @@
               </rowConstraints>
                <children>
                   <ComboBox fx:id="cbPatient" promptText="Selectionnez un Patient" GridPane.halignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#handleButtonAddPatient" text="Ajouter un Patient" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#handleButtonAddSymp" text="Ajouter un Symptôme" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <ChoiceBox fx:id="selecSymp" prefWidth="150.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+                  <Button mnemonicParsing="false" onAction="#handleButtonAddPatient" text="Nouveau Patient" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
+                  <Button mnemonicParsing="false" onAction="#handleButtonAddSymp" text="Nouveau Symptôme" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <ComboBox fx:id="selecSymp" promptText="Selectionnez un Symptôme" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets bottom="5.0" />
+                        <Insets />
                      </GridPane.margin>
-                  </ChoiceBox>
-                  <Label text="Selectionnez des Symptômes" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+                  </ComboBox>
+                  <Button mnemonicParsing="false" onAction="#handleButtonOKSymp" text="OK" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets top="10.0" />
+                        <Insets left="5.0" />
                      </GridPane.margin>
-                  </Label>
+                  </Button>
                </children>
             </GridPane>
             <GridPane GridPane.rowIndex="2">
@@ -80,6 +81,11 @@
                         <Insets bottom="5.0" right="10.0" top="5.0" />
                      </GridPane.margin>
                   </TextArea>
+                  <Button mnemonicParsing="false" onAction="#handleButtonSupp" text="Supprimer" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Button>
                </children>
             </GridPane>
             <ListView fx:id="listSymp" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">

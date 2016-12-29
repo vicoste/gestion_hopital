@@ -1,20 +1,10 @@
 package launch;
 
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.nio.CharBuffer;
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Dictionary;
-import java.util.List;
-import java.util.Scanner;
 import modele.FicheMedicale;
 import modele.Patient;
 import java.util.logging.Level;
@@ -39,14 +29,16 @@ public class Main extends Application {
     private static ObservableList<RendezVous> listRDV = FXCollections.observableArrayList();
     private static ObservableList<FicheMedicale> listFM = FXCollections.observableArrayList();
     private static ObservableList<Medecin> listMed = FXCollections.observableArrayList();
-   
+    private static ObservableList<Patient> listPat = FXCollections.observableArrayList();
     //FONCTION MAIN
 
     @Override
     public void start(Stage primaryStage) {     
        
+        SerializerPatient();
         DeserializerPatient();
-        /*CreateListFM();        
+        CreateListSymp();
+        CreateListFM();        
         CreateListMedecin();
       
         try {            
@@ -56,7 +48,7 @@ public class Main extends Application {
             stage.show();
         } catch (IOException e) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
-        }*/
+        }
     }
 
     public static void main(String[] args) {      
@@ -67,12 +59,15 @@ public class Main extends Application {
     
      private void SerializerPatient(){
         final Patient patient = new Patient("numsécu","Dupond", "Jean", 18, false);
+        final Patient patient1 = new Patient("nuqdsdqsdcu","durand", "didier", 15, false);
         ObjectOutputStream oos = null;
 
         try {
             final FileOutputStream fichier = new FileOutputStream("src/data/patient.ser");
-            oos = new ObjectOutputStream(fichier);
+            oos = new ObjectOutputStream(fichier);            
             oos.writeObject(patient);
+            oos.writeObject(patient1);
+            
             oos.flush();
         } catch (final IOException e) {
             e.printStackTrace();
@@ -94,11 +89,22 @@ public class Main extends Application {
             final FileInputStream fichier = new FileInputStream("src/data/patient.ser");
             ois = new ObjectInputStream(fichier);
             final Patient patient = (Patient) ois.readObject();
+            
             System.out.println("Personne : ");
             System.out.println("nom : " + patient.getNom());
             System.out.println("prenom : " + patient.getPrenom());
             System.out.println("num secur : " + patient.getNumSecu());
             System.out.println("age : " + patient.getAge());
+            
+            final Patient patient1 = (Patient) ois.readObject();
+            
+            System.out.println("Personne : ");
+            System.out.println("nom : " + patient1.getNom());
+            System.out.println("prenom : " + patient1.getPrenom());
+            System.out.println("num secur : " + patient1.getNumSecu());
+            System.out.println("age : " + patient1.getAge());
+            
+            
         } catch (final java.io.IOException e) {
             e.printStackTrace();
         } catch (final ClassNotFoundException e) {
@@ -151,10 +157,7 @@ public class Main extends Application {
         Symptome brasCasse = new Symptome("Bras Cassé", "L'os du bras a rompu");
         Symptome jambeCasse = new Symptome("Jambe Cassé", "l'os de la jambe a rompu");
         
-        for(int i=0;i<20;i++){
-            Symptome troll = new Symptome("aie", "lol");
-            listSymp.add(troll);
-        }
+        
         
         listSymp.add(mauxDeTete);
         listSymp.add(malDeVentre);
@@ -185,6 +188,13 @@ public class Main extends Application {
     //GETTER ET SETTER
     
     
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
+    
+    public static Stage getStage(){
+        return stage;
+    } 
     public static ObservableList<Symptome> getSymptome(){
         return listSymp;
     }  
@@ -204,14 +214,17 @@ public class Main extends Application {
     public static ObservableList<Medecin> getListMed() {
         return listMed;
     }
-    
-     public static Stage getPrimaryStage() {
-        return primaryStage;
+
+    public static void setListPat(Patient p) {
+        listPat.add(p);
+    }
+
+    public static ObservableList<Patient> getListPat() {
+        return listPat;
     }
     
-    public static Stage getStage(){
-        return stage;
-    }
+    
+
     
     
 }   

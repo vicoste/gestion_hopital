@@ -34,6 +34,7 @@ public class FMController implements Initializable {
     @FXML
     private ListView<FicheMedicale> list;
 
+    private static Stage stage;
     /**
      * Initializes the controller class.
      */
@@ -67,7 +68,7 @@ public class FMController implements Initializable {
         st.initModality(Modality.WINDOW_MODAL);
         st.setScene(scene);
         st.setResizable(false);
-        
+        stage = st;
         st.show();
     }
     @FXML
@@ -118,4 +119,10 @@ public class FMController implements Initializable {
         }
         return laFenetre.showAndWait();
     }
+
+    public static Stage getStage() {
+        return stage;
+    }
+    
+    
 }
