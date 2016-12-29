@@ -47,7 +47,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </TextField>
-            <Slider fx:id="sexe" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Slider fx:id="age" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="50.0" />
                </GridPane.margin>
@@ -57,7 +57,7 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </TextField>
-            <Label fx:id="valeurSexe" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <Label fx:id="valeurAge" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>

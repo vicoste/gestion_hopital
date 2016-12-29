@@ -6,14 +6,23 @@
 package controller;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import launch.Main;
+import modele.Patient;
+import modele.RendezVous;
 
 /**
  * FXML Controller class
@@ -31,18 +40,26 @@ public class CreerPatientController implements Initializable {
     @FXML
     private TextField prenom;
     @FXML
-    private Slider sexe;
+    private Slider age;
     @FXML
     private TextField numSecu;
     @FXML
-    private Label valeurSexe;
+    private Label valeurAge;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        age.setMin(0); age.setMax(120);
+        age.valueProperty().addListener(new ChangeListener() {
+
+            @Override
+            public void changed(ObservableValue arg0, Object arg1, Object arg2) {
+                valeurAge.textProperty().setValue(String.valueOf((int) age.getValue()));
+
+            }
+        });
     }    
 
     @FXML
@@ -51,6 +68,45 @@ public class CreerPatientController implements Initializable {
 
     @FXML
     private void handleButtonValid(ActionEvent event) {
+        if(nom.getText().equals("")) {
+            showMessage(Alert.AlertType.ERROR, null, "Veuillez entrer un nom.");
+        } else{    
+            if(prenom.getText().equals("")) { 
+                showMessage(Alert.AlertType.ERROR, null, "Veuillez entrer un prenom.");
+            } else{
+                if(numSecu.getLength()!=15){
+                    showMessage(Alert.AlertType.ERROR, null, "n° secu invalide.");
+                } else{
+                    if(numSecu.getText(0, 1).equals("1") || numSecu.getText(0, 1).equals("0")){
+                        showMessage(Alert.AlertType.ERROR, null, "n° secu invalide.");
+                    }else{
+                        Patient p = new Patient(numSecu.getText(), nom.getText(), prenom.getText(), (int) age.getValue(), Boolean.TRUE);
+                        if(showMessage(Alert.AlertType.CONFIRMATION, null, "C'est données sont-elles exactes ?\n"
+                        + "Nom : "+p.getNom()+" \n"
+                        + "prenom : "+p.getPrenom()+"\n"
+                        + "age : "+p.getAge()+"\n"
+                        + "sexe : "+p.getSexe()+"\n"
+                        + "numéro sécu : "+p.getNumSecu()).get()==ButtonType.OK){
+                            FMController.getStage().close();
+                        }
+                            
+                    }                                 
+                } 
+            }
+        }
+    }
+    
+    private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
+        Alert laFenetre = new Alert(type);
+        laFenetre.setHeaderText(header);
+        laFenetre.setContentText(message);
+        if (lesBoutonsDifferents.length > 0) {
+            laFenetre.getButtonTypes().clear();
+            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
+        }
+        
+      
+        return laFenetre.showAndWait();
     }
     
 }
