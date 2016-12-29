@@ -1,9 +1,13 @@
 package launch;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.CharBuffer;
 import java.time.Instant;
 import java.util.ArrayList;
@@ -39,12 +43,10 @@ public class Main extends Application {
     //FONCTION MAIN
 
     @Override
-    public void start(Stage primaryStage) {
-        
-     
-        CreateListFM();
-        
+    public void start(Stage primaryStage) {     
        
+        DeserializerPatient();
+        /*CreateListFM();        
         CreateListMedecin();
       
         try {            
@@ -54,23 +56,71 @@ public class Main extends Application {
             stage.show();
         } catch (IOException e) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
-        }
+        }*/
     }
 
     public static void main(String[] args) {      
         launch(args);     
     }
     
-    public static Stage getPrimaryStage() {
-        return primaryStage;
-    }
+    //FONCTIONS SERILIZATION
     
-    public static Stage getStage(){
-        return stage;
+     private void SerializerPatient(){
+        final Patient patient = new Patient("numsécu","Dupond", "Jean", 18, false);
+        ObjectOutputStream oos = null;
+
+        try {
+            final FileOutputStream fichier = new FileOutputStream("src/data/patient.ser");
+            oos = new ObjectOutputStream(fichier);
+            oos.writeObject(patient);
+            oos.flush();
+        } catch (final IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (oos != null) {
+                    oos.flush();
+                    oos.close();
+                }
+            } catch (final IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
+     
+     private void DeserializerPatient(){
+         ObjectInputStream ois = null;
+         try {
+            final FileInputStream fichier = new FileInputStream("src/data/patient.ser");
+            ois = new ObjectInputStream(fichier);
+            final Patient patient = (Patient) ois.readObject();
+            System.out.println("Personne : ");
+            System.out.println("nom : " + patient.getNom());
+            System.out.println("prenom : " + patient.getPrenom());
+            System.out.println("num secur : " + patient.getNumSecu());
+            System.out.println("age : " + patient.getAge());
+        } catch (final java.io.IOException e) {
+            e.printStackTrace();
+        } catch (final ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (ois != null) {
+                    ois.close();
+                }
+            } catch (final IOException ex) {
+            ex.printStackTrace();
+            }
+        }
+     }
+     
+    
+   
     
     
     //FONCTION CREATION
+    
+   
     
     private void CreateListFM(){
         
@@ -155,6 +205,13 @@ public class Main extends Application {
         return listMed;
     }
     
+     public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
+    
+    public static Stage getStage(){
+        return stage;
+    }
     
     
 }   

@@ -5,11 +5,14 @@
  */
 package modele;
 
+import java.io.Serializable;
+
 /**
  *
  * @author vicoste
  */
-public class Patient {
+public class Patient implements Serializable{
+    
     private String numSecu;
     private String nom;
     private String prenom;
