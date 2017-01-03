@@ -44,24 +44,41 @@ public class CreerPatientController implements Initializable {
     @FXML
     private TextField numSecu;
     @FXML
-    private Label valeurAge;
+    private TextField valeurAge;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        
+        femme.setSelected(true); 
+        
         age.setMin(0); age.setMax(120);
+        age.setValue(40);
+        valeurAge.setText("40");
         age.valueProperty().addListener(new ChangeListener() {
-
             @Override
             public void changed(ObservableValue arg0, Object arg1, Object arg2) {
                 valeurAge.textProperty().setValue(String.valueOf((int) age.getValue()));
-
             }
         });
     }    
 
+    @FXML
+    private void actionFemme() {
+        homme.setSelected(false);
+    }
+    
+    @FXML
+    private void actionHomme() {
+        femme.setSelected(false);
+    }
+    @FXML
+    private void actionAge(){
+        //DEMANDER AU PROF COMMENT AJUSTER LA VALEUR DU SLIDER A CELLE DU TEXTFIELD
+    }
     @FXML
     private void handleButtonRetour(ActionEvent event) {
     }
@@ -87,6 +104,7 @@ public class CreerPatientController implements Initializable {
                         + "age : "+p.getAge()+"\n"
                         + "sexe : "+p.getSexe()+"\n"
                         + "numéro sécu : "+p.getNumSecu()).get()==ButtonType.OK){
+                            Main.setListPat(p);
                             FMController.getStage().close();
                         }
                             

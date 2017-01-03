@@ -35,8 +35,8 @@
             <Label text="AGE :" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <Label text="SEXE :" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Label text="NUM SECU :" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-            <RadioButton fx:id="homme" mnemonicParsing="false" text="HOMME" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <RadioButton fx:id="femme" mnemonicParsing="false" text="FEMME" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <RadioButton fx:id="homme" mnemonicParsing="false" onAction="#actionHomme" text="HOMME" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <RadioButton fx:id="femme" mnemonicParsing="false" onAction="#actionFemme" text="FEMME" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <TextField fx:id="nom" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets right="10.0" />
@@ -57,11 +57,11 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </TextField>
-            <Label fx:id="valeurAge" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+            <TextField fx:id="valeurAge" maxWidth="35.0" onAction="#actionAge" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets right="10.0" />
                </GridPane.margin>
-            </Label>
+            </TextField>
             <Button mnemonicParsing="false" onAction="#handleButtonRetour" text="Annuler" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
             <Button mnemonicParsing="false" onAction="#handleButtonValid" text="Valider" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
          </children>

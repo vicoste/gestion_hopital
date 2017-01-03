@@ -32,6 +32,7 @@ import javafx.stage.Modality;
 import launch.Main;
 import modele.Patient;
 import modele.Symptome;
+import org.omg.CORBA.MARSHAL;
 
 /**
  * FXML Controller class
@@ -42,7 +43,7 @@ public class AddFMController implements Initializable {
 
     
     @FXML
-    private ComboBox<String> cbPatient;
+    private ComboBox<Patient> cbPatient;
     @FXML
     private ComboBox<Symptome> selecSymp;
     @FXML
@@ -61,7 +62,7 @@ public class AddFMController implements Initializable {
         selecSymp.setItems(listeDansCB);
         
         
-        cbPatient.setItems(FXCollections.observableArrayList(        "Option 1",        "Option 2",        "Option 3"    ));
+        cbPatient.setItems(Main.getListPat());
         
     }    
 

@@ -33,7 +33,7 @@ public class Main extends Application {
     //FONCTION MAIN
 
     @Override
-    public void start(Stage primaryStage) {     
+    public void start(Stage primaryStage) {     //DEMANDER AU PROF COMMENT LANCER UNE SERIALISATION A LA FERMETURE DU PROG
        
         SerializerPatient();
         DeserializerPatient();
@@ -95,6 +95,7 @@ public class Main extends Application {
             System.out.println("prenom : " + patient.getPrenom());
             System.out.println("num secur : " + patient.getNumSecu());
             System.out.println("age : " + patient.getAge());
+             setListPat(patient);
             
             final Patient patient1 = (Patient) ois.readObject();
             
@@ -103,7 +104,7 @@ public class Main extends Application {
             System.out.println("prenom : " + patient1.getPrenom());
             System.out.println("num secur : " + patient1.getNumSecu());
             System.out.println("age : " + patient1.getAge());
-            
+             setListPat(patient1);
             
         } catch (final java.io.IOException e) {
             e.printStackTrace();
