@@ -81,12 +81,10 @@ public class CreerPatientController implements Initializable {
     private void actionHomme() {
         femme.setSelected(false);
     }
+    
     @FXML
-    private void actionAge(){
-        //DEMANDER AU PROF COMMENT AJUSTER LA VALEUR DU SLIDER A CELLE DU TEXTFIELD
-    }
-    @FXML
-    private void handleButtonRetour(ActionEvent event) {
+    private void handleButtonRetour(ActionEvent event) {        
+        FMController.getStage().close();
     }
 
     @FXML

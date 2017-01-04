@@ -8,9 +8,17 @@ package controller;
 import com.sun.javaws.ui.SplashScreen;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,6 +32,7 @@ import javafx.stage.Stage;
 import launch.Main;
 import modele.FicheMedicale;
 import modele.Medecin;
+import modele.Patient;
 import modele.RendezVous;
 import modele.Symptome;
 
@@ -56,7 +65,9 @@ public class SelectFMController implements Initializable {
         cb.setItems(Main.getListMed());
         cbheure.setItems(Main.getListFM());
         
-    }    
+    } 
+    
+    
 
     @FXML
     private void handleButtonConfirmer(ActionEvent event) {
@@ -101,4 +112,28 @@ public class SelectFMController implements Initializable {
         }
         return laFenetre.showAndWait();
     }
+
+    public void setCb(ComboBox<Medecin> cb) {
+        this.cb = cb;
+    }
+
+    public void setCbheure(ComboBox<FicheMedicale> cbheure) {
+        this.cbheure = cbheure;
+    }
+
+    public void setDatePicker(DatePicker datePicker) {
+        this.datePicker = datePicker;
+    }
+
+    public void setList(FicheMedicale p) {
+        ObservableList<FicheMedicale> l = FXCollections.observableArrayList();
+        l.add(p);
+        list.setItems(l);
+        
+           
+    }
+
+ 
+    
+    
 }

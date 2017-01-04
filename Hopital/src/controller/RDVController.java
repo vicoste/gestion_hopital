@@ -7,8 +7,6 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -24,9 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import launch.Main;
-import modele.Medecin;
 import modele.RendezVous;
-import modele.Symptome;
 
 /**
  * FXML Controller class
@@ -60,22 +56,20 @@ public class RDVController implements Initializable {
         stage=st;
         st.show();
     }
+    
     @FXML
     private void handleButtonSupprimer(ActionEvent event) throws IOException{
         if(list.getSelectionModel().getSelectedItem()==null) {
             showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un RDV. Veuillez recommencer");
         } 
         else {
-            showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?");
-            
-            
-                
-                list.getSelectionModel().clearSelection();
-            }
+            if(showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
+            Main.delListRDV(list.getSelectionModel().getSelectedItem());         
+        }
             
             
              
-        }
+    }
     
     @FXML
     private void handleButtonModifier(ActionEvent event) throws IOException{
@@ -84,7 +78,18 @@ public class RDVController implements Initializable {
         } 
         else {
         
-            //ACTION A CODER
+            GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/ihm/SelectFM.fxml"));
+            Scene scene = new Scene(root);
+            Stage st = new Stage();
+            st.initOwner(EcranLogController.getStage());
+            st.initModality(Modality.WINDOW_MODAL);
+            st.setScene(scene);
+            st.setResizable(false);
+            stage=st;
+            
+           //ACTION A CODER
+            
+            st.show();
              
         }
     }

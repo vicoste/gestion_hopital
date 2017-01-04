@@ -30,6 +30,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import launch.Main;
+import modele.FicheMedicale;
 import modele.Patient;
 import modele.Symptome;
 import org.omg.CORBA.MARSHAL;
@@ -68,14 +69,14 @@ public class AddFMController implements Initializable {
 
     @FXML
     private void handleButtonCreate(ActionEvent event) {
-        
-        System.out.println(ls);
+        FicheMedicale ficheMedicale = new FicheMedicale(taMotif.getText(),cbPatient.getValue(),ls);
+        Main.setListFM(ficheMedicale);
         FMController.getStage().hide();
     }
     
     @FXML
     private void handleButtonRetour(ActionEvent event) {
-        
+        FMController.getStage().hide();
     }
     
     @FXML

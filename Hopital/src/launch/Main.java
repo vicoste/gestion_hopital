@@ -32,6 +32,8 @@ public class Main extends Application {
     private static ObservableList<Patient> listPat = FXCollections.observableArrayList();
     //FONCTION MAIN
 
+   
+
     @Override
     public void start(Stage primaryStage) {     //DEMANDER AU PROF COMMENT LANCER UNE SERIALISATION A LA FERMETURE DU PROG
        
@@ -208,10 +210,20 @@ public class Main extends Application {
         listRDV.add(r);
     }
     
+    public static void delListRDV(RendezVous r){
+        
+        listRDV.remove(r);
+        
+    } 
+    
     public static ObservableList<FicheMedicale> getListFM() {
         return listFM;
     }
 
+    public static void setListFM(FicheMedicale fm) {
+        listFM.add(fm);
+    }
+    
     public static ObservableList<Medecin> getListMed() {
         return listMed;
     }
@@ -224,7 +236,9 @@ public class Main extends Application {
         return listPat;
     }
     
-    
+     public static void delListFM(FicheMedicale fm) {
+        listFM.remove(fm);
+    }
 
     
     

@@ -40,7 +40,7 @@ public class FMController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        list.setItems(Main.getListFM());
     }    
 
     
@@ -77,11 +77,11 @@ public class FMController implements Initializable {
             showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un RDV. Veuillez recommencer");
         } 
         else {
-            showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?");
-            
+            if (showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
+            Main.delListFM(list.getSelectionModel().getSelectedItem());
             
                 
-                list.getSelectionModel().clearSelection();
+                
             }
             
             
