@@ -24,6 +24,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import launch.Main;
+import modele.Personnel;
 
 /**
  * FXML Controller class
@@ -63,7 +64,8 @@ public class EcranLogController implements Initializable {
     
     @FXML
     public void connexion() throws IOException, Throwable{
-         if(userText.getText().equals(idt) & mdp.getText().equals(mot)){
+        for(Personnel p : Main.getListMed()){
+         if(userText.getText().equals(p.getIdentifiant()) & mdp.getText().equals(p.getMdp())){
             BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
             Scene scene = new Scene(root);
             Stage st= new Stage();
@@ -73,12 +75,13 @@ public class EcranLogController implements Initializable {
             stage=st;
             st.show();
             Main.getStage().close();     
-            
+            return;
           }
-         else{
-             showMessage(Alert.AlertType.ERROR, null, "Identifiant ou mot de passe incorrect. Veuillez recommencer");
-         }
+        }
+            showMessage(Alert.AlertType.ERROR, null, "Identifiant ou mot de passe incorrect. Veuillez recommencer");
          
+        
+        
     }
     
         private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){

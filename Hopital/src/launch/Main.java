@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 import modele.Medecin;
+import modele.Personnel;
 import modele.RendezVous;
 import modele.Symptome;
 
@@ -25,11 +26,13 @@ public class Main extends Application {
   
     private static Stage primaryStage;
     private static Stage stage = new Stage();
+    
     private static ObservableList<Symptome> listSymp = FXCollections.observableArrayList();
     private static ObservableList<RendezVous> listRDV = FXCollections.observableArrayList();
     private static ObservableList<FicheMedicale> listFM = FXCollections.observableArrayList();
     private static ObservableList<Medecin> listMed = FXCollections.observableArrayList();
     private static ObservableList<Patient> listPat = FXCollections.observableArrayList();
+    private static ObservableList<Personnel> listPers = FXCollections.observableArrayList();
     //FONCTION MAIN
 
    
@@ -240,7 +243,17 @@ public class Main extends Application {
         listFM.remove(fm);
     }
 
-    
+    public static void setPers(Personnel p) {
+        //EN COURS : DEFINIR SI LE PERSONNEL EST UN MEDECIN OU NON 
+    }
+
+    public static ObservableList<Personnel> getListPers() {
+        return listPers;
+    }
+
+    public static void delPers(Personnel p){
+        
+    }
     
 }   
     
