@@ -5,10 +5,13 @@
  */
 package controller;
 
+import static com.sun.javafx.image.impl.ByteArgb.accessor;
+import com.sun.javafx.scene.control.FormatterAccessor;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -16,10 +19,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.util.StringConverter;
+import javafx.util.converter.DoubleStringConverter;
+import javafx.util.converter.NumberStringConverter;
 import launch.Main;
 import modele.Patient;
 import modele.RendezVous;
@@ -52,18 +60,16 @@ public class CreerPatientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+       
         
         femme.setSelected(true); 
         
         age.setMin(0); age.setMax(120);
         age.setValue(40);
         valeurAge.setText("40");
-        age.valueProperty().addListener(new ChangeListener() {
-            @Override
-            public void changed(ObservableValue arg0, Object arg1, Object arg2) {
-                valeurAge.textProperty().setValue(String.valueOf((int) age.getValue()));
-            }
-        });
+        
+        valeurAge.textProperty().bindBidirectional(age.valueProperty(), new NumberStringConverter());
+        //valeurAge.setTextFormatter(new TextFormatter.Change());
     }    
 
     @FXML
@@ -85,6 +91,10 @@ public class CreerPatientController implements Initializable {
 
     @FXML
     private void handleButtonValid(ActionEvent event) {
+         
+        boolean sexe = false;
+        if(femme.equals(true)) sexe = true;
+            
         if(nom.getText().equals("")) {
             showMessage(Alert.AlertType.ERROR, null, "Veuillez entrer un nom.");
         } else{    
@@ -97,7 +107,9 @@ public class CreerPatientController implements Initializable {
                     if(numSecu.getText(0, 1).equals("1") || numSecu.getText(0, 1).equals("0")){
                         showMessage(Alert.AlertType.ERROR, null, "n° secu invalide.");
                     }else{
-                        Patient p = new Patient(numSecu.getText(), nom.getText(), prenom.getText(), (int) age.getValue(), Boolean.TRUE);
+                        
+                        Patient p = new Patient(numSecu.getText(), nom.getText(), prenom.getText(), (int) age.getValue(), sexe);                     
+                                              
                         if(showMessage(Alert.AlertType.CONFIRMATION, null, "C'est données sont-elles exactes ?\n"
                         + "Nom : "+p.getNom()+" \n"
                         + "prenom : "+p.getPrenom()+"\n"
@@ -106,8 +118,7 @@ public class CreerPatientController implements Initializable {
                         + "numéro sécu : "+p.getNumSecu()).get()==ButtonType.OK){
                             Main.setListPat(p);
                             FMController.getStage().close();
-                        }
-                            
+                        }                            
                     }                                 
                 } 
             }
