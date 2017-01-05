@@ -23,7 +23,7 @@ public class FicheMedicale {
     private Boolean etat;
     private Patient patient;
     private List<Symptome> listSymp;
-    private Traitement traitement;
+    
 
     public FicheMedicale(String motif, Patient p, List<Symptome> listSymp){
         
@@ -31,7 +31,7 @@ public class FicheMedicale {
         patient = p;
         this.listSymp = listSymp;
         etat = false;
-        traitement = null;
+        
         dateEntree = new Date();
         
         createNumDossier();

@@ -22,6 +22,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import launch.Main;
+import modele.FicheMedicale;
 import modele.Personnel;
 
 /**
@@ -98,6 +99,9 @@ public class EcranLogController implements Initializable {
     
     @FXML
     public void handleButtonPatient(){
+        for(FicheMedicale f : Main.getListFM()){
+            
+        }
         
     }
     
