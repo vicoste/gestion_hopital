@@ -101,11 +101,7 @@ public class AddFMController implements Initializable {
         
     }
 
-    @FXML
-    private void handleButtonAddSymp(ActionEvent event) {
-        
-    }
-    
+      
     @FXML
     private void handleButtonOKSymp(ActionEvent event){
         ls.add(selecSymp.getSelectionModel().getSelectedItem());

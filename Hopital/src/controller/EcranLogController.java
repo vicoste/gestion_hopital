@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,7 +21,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 import launch.Main;
 import modele.Personnel;
 
@@ -32,6 +30,9 @@ import modele.Personnel;
  * @author vicoste
  */
 public class EcranLogController implements Initializable {
+    
+    @FXML
+    private TextField numDossier; 
     
     @FXML 
     private Button boutton;
@@ -95,7 +96,10 @@ public class EcranLogController implements Initializable {
         return laFenetre.showAndWait();
     }
     
-     
+    @FXML
+    public void handleButtonPatient(){
+        
+    }
     
     public static Stage getStage() {
         return stage;

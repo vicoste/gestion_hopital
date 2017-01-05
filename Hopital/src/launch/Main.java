@@ -242,9 +242,15 @@ public class Main extends Application {
      public static void delListFM(FicheMedicale fm) {
         listFM.remove(fm);
     }
-
-    public static void setPers(Personnel p) {
-        //EN COURS : DEFINIR SI LE PERSONNEL EST UN MEDECIN OU NON 
+     
+    public static void setPersonnel(Personnel p) {
+        
+        if(p.equals(Medecin.class)){
+            listMed.add((Medecin)p);                   
+        }else{
+            listPers.add(p);
+        }
+        
     }
 
     public static ObservableList<Personnel> getListPers() {
@@ -252,7 +258,11 @@ public class Main extends Application {
     }
 
     public static void delPers(Personnel p){
-        
+        if(p.equals(Medecin.class)){
+            listMed.remove((Medecin)p);                   
+        }else{
+            listPers.remove(p);
+        }
     }
     
 }   

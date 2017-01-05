@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddFMController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddFMController">
    <top>
       <Label text="NOUVELLE FICHE MEDICALE" BorderPane.alignment="CENTER" />
    </top>
@@ -43,7 +43,6 @@
             <GridPane>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
               </columnConstraints>
               <rowConstraints>
@@ -52,11 +51,10 @@
               </rowConstraints>
                <children>
                   <ComboBox fx:id="cbPatient" promptText="Selectionnez un Patient" GridPane.halignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#handleButtonAddPatient" text="Nouveau Patient" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-                  <Button mnemonicParsing="false" onAction="#handleButtonAddSymp" text="Nouveau Symptôme" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" onAction="#handleButtonAddPatient" text="Nouveau Patient" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                   <ComboBox fx:id="selecSymp" promptText="Selectionnez un Symptôme" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
-                        <Insets />
+                        <Insets left="10.0" />
                      </GridPane.margin>
                   </ComboBox>
                   <Button mnemonicParsing="false" onAction="#handleButtonOKSymp" text="OK" GridPane.columnIndex="1" GridPane.rowIndex="1">

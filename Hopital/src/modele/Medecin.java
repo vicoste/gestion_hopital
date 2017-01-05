@@ -11,25 +11,13 @@ import java.util.List;
  *
  * @author vicoste
  */
-public class Medecin extends PersonnelHospitalier{
-    private String specialite;
-
+public class Medecin extends Personnel{
+    
     public Medecin(String nom, String prenom, String identifiant, String mdp) {
         super(nom, prenom, identifiant, mdp);
-    }
-
+    }  
     
     
-    
-    public void analyse(Symptome a, Boolean machine){
-        
-    }
-
-    @Override
-    public void analyse(Symptome a) {
-        
-    }
-
     @Override
     public String toString() {
         return "Docteur "+getNom(); //To change body of generated methods, choose Tools | Templates.
