@@ -32,7 +32,7 @@ import modele.RendezVous;
 public class RDVController implements Initializable {
 
     @FXML
-    private ListView<RendezVous> list;
+    private static ListView<RendezVous> list;
     
     private static Stage stage;
     /**
@@ -77,7 +77,7 @@ public class RDVController implements Initializable {
             showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une RDV. Veuillez recommencer");
         } 
         else {
-        
+          
             GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/ihm/SelectFM.fxml"));
             Scene scene = new Scene(root);
             Stage st = new Stage();
@@ -87,7 +87,7 @@ public class RDVController implements Initializable {
             st.setResizable(false);
             stage=st;
             
-           //ACTION A CODER
+            
             
             st.show();
              
@@ -130,6 +130,14 @@ public class RDVController implements Initializable {
     public static Stage getStage() {
         return stage;
     }
+
+    public static ListView<RendezVous> getList() {
+       
+        
+        return list;
+    }
+    
+    
     
 }
         

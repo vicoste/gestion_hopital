@@ -5,19 +5,12 @@
  */
 package controller;
 
-import com.sun.javaws.ui.SplashScreen;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.beans.InvalidationListener;
+import javafx.beans.value.ObservableObjectValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,14 +20,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import launch.Main;
 import modele.FicheMedicale;
 import modele.Medecin;
-import modele.Patient;
 import modele.RendezVous;
-import modele.Symptome;
 
 /**
  * FXML Controller class
@@ -55,6 +44,8 @@ public class SelectFMController implements Initializable {
     @FXML
     private DatePicker datePicker;
     
+    private ObservableList<FicheMedicale> bindFM = FXCollections.observableArrayList();
+    
     /**
      * Initializes the controller class.
      */
@@ -65,6 +56,8 @@ public class SelectFMController implements Initializable {
         cb.setItems(Main.getListMed());
         cbheure.setItems(Main.getListFM());
         
+        bindFM.add(RDVController.getList().getSelectionModel().getSelectedItem().getFiche());
+        list.set
     } 
     
     
@@ -133,7 +126,9 @@ public class SelectFMController implements Initializable {
            
     }
 
- 
+    
+   
+    
     
     
 }

@@ -175,7 +175,7 @@ public class Main extends Application {
         
    
         Medecin m1 = new Medecin("arthur", "rimbow", "baudelaire", "love");
-        Medecin m2 = new Medecin("georges", "sand", "baudelaire", "love");
+        Medecin m2 = new Medecin("georges", "sand", "", "");
         Medecin m3 = new Medecin("guillaume", "appolinaire", "baudelaire", "love");
         Medecin m4 = new Medecin("philipe", "etchebest", "baudelaire", "love");
         
