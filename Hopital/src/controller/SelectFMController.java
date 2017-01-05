@@ -19,6 +19,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import launch.Main;
 import modele.FicheMedicale;
@@ -36,6 +37,9 @@ public class SelectFMController implements Initializable {
     private ListView<FicheMedicale> list;
     
     @FXML
+    private Label ficheMedicModif;
+    
+    @FXML
     private ComboBox<Medecin> cb;
     
     @FXML
@@ -44,20 +48,29 @@ public class SelectFMController implements Initializable {
     @FXML
     private DatePicker datePicker;
     
-    private ObservableList<FicheMedicale> bindFM = FXCollections.observableArrayList();
-    
+   
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        list.setItems(Main.getListFM());
         cb.setItems(Main.getListMed());
         cbheure.setItems(Main.getListFM());
         
-        bindFM.add(RDVController.getList().getSelectionModel().getSelectedItem().getFiche());
-        list.set
+        if(RDVController.getRDV()==null){
+            ficheMedicModif.setVisible(false);
+            list.setItems(Main.getListFM());
+           
+        }else{
+            list.setVisible(false);
+            ficheMedicModif.setText(RDVController.getRDV().getFiche().toString());
+            cb.setValue(RDVController.getRDV().getMedecin());
+            datePicker.setValue(RDVController.getRDV().getDate());
+            
+        }
+        
+        
     } 
     
     

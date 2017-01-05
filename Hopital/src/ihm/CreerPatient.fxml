@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreerPatientController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreerPatientController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -36,7 +36,10 @@
             <Label text="SEXE :" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
             <Label text="NUM SECU :" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
             <RadioButton fx:id="homme" mnemonicParsing="false" onAction="#actionHomme" text="HOMME" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <RadioButton fx:id="femme" mnemonicParsing="false" onAction="#actionFemme" text="FEMME" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+            <RadioButton fx:id="femme" mnemonicParsing="false" onAction="#actionFemme" text="FEMME" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets right="15.0" />
+               </GridPane.margin></RadioButton>
             <TextField fx:id="nom" GridPane.columnIndex="1">
                <GridPane.margin>
                   <Insets right="10.0" />

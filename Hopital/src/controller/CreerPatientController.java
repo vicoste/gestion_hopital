@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -53,6 +54,7 @@ public class CreerPatientController implements Initializable {
     private TextField numSecu;
     @FXML
     private TextField valeurAge;
+    
 
     /**
      * Initializes the controller class.
@@ -60,17 +62,66 @@ public class CreerPatientController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-       
+            
         
         femme.setSelected(true); 
         
-        age.setMin(0); age.setMax(120);
+        age.setMin(0); age.setMax(120); age.setSnapToTicks(true); age.setMinorTickCount(1);
         age.setValue(40);
         valeurAge.setText("40");
         
         valeurAge.textProperty().bindBidirectional(age.valueProperty(), new NumberStringConverter());
-        //valeurAge.setTextFormatter(new TextFormatter.Change());
-    }    
+        valeurAge.setTextFormatter(new TextFormatter<>(t ->{
+        
+                if (t.isReplaced()) 
+                    if(t.getText().matches("[^0-9]"))
+                        t.setText(t.getControlText().substring(t.getRangeStart(), t.getRangeEnd()));
+                
+
+                if (t.isAdded()) {
+                    if (t.getControlText().contains(",")) {
+                        if (t.getText().matches("[^0-9]")) {
+                            t.setText("");
+                        }
+                    } else if (t.getText().matches("[^0-9,]")) {
+                        t.setText("");
+                    }
+                }
+
+                return t;}));
+        
+        
+        
+        
+        numSecu.setTextFormatter(new TextFormatter<>(t ->{
+            
+            if (t.isReplaced()) 
+                if(t.getText().matches("[^0-9]"))
+                        t.setText(t.getControlText().substring(t.getRangeStart(), t.getRangeEnd()));
+            
+            
+            if (t.isAdded()) {
+                        if (t.getControlText().contains(",")) {
+                            if (t.getText().matches("[^0-9]")) {
+                                t.setText("");
+                            }
+                        } else if (t.getText().matches("[^0-9,]")) {
+                            t.setText("");
+                        }
+                    
+                }
+
+                return t;}));
+        
+        
+        
+    }
+           
+        
+            
+        
+        
+        
 
     @FXML
     private void actionFemme() {
@@ -102,7 +153,7 @@ public class CreerPatientController implements Initializable {
                 if(numSecu.getLength()!=15){
                     showMessage(Alert.AlertType.ERROR, null, "n° secu invalide.");
                 } else{
-                    if(numSecu.getText(0, 1).equals("1") || numSecu.getText(0, 1).equals("0")){
+                    if(numSecu.getText().substring(0, 1).matches("[^0-1]")){
                         showMessage(Alert.AlertType.ERROR, null, "n° secu invalide.");
                     }else{
                         

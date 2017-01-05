@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,9 +33,10 @@ import modele.RendezVous;
 public class RDVController implements Initializable {
 
     @FXML
-    private static ListView<RendezVous> list;
+    private ListView<RendezVous> list;
     
     private static Stage stage;
+    private static RendezVous rv;
     /**
      * Initializes the controller class.
      */
@@ -87,7 +89,7 @@ public class RDVController implements Initializable {
             st.setResizable(false);
             stage=st;
             
-            
+            rv= list.getSelectionModel().getSelectedItem();
             
             st.show();
              
@@ -131,10 +133,9 @@ public class RDVController implements Initializable {
         return stage;
     }
 
-    public static ListView<RendezVous> getList() {
-       
+    public static RendezVous getRDV() {
         
-        return list;
+        return  rv ;
     }
     
     
