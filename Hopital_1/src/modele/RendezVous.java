@@ -6,8 +6,8 @@
 package modele;
 
 import java.time.LocalDate;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 /**
  *
@@ -15,45 +15,24 @@ import javafx.beans.property.StringProperty;
  */
 public class RendezVous {
     
-    private FicheMedicale fiche;
-    private LocalDate date;
+    private final ObjectProperty<FicheMedicale> ficheMedicale= new SimpleObjectProperty<>();
+        public FicheMedicale getFicheMedicale() {return ficheMedicale.get();}
+        public void setFicheMedicale(FicheMedicale ficheMedicale) {this.ficheMedicale.set(ficheMedicale);}
+        public ObjectProperty<FicheMedicale> FicheMedicaleProperty(){return ficheMedicale;}
+
+    private final ObjectProperty<LocalDate> date = new SimpleObjectProperty<>();
+    
+    
     
 
 
     
     
     public RendezVous(FicheMedicale fiche, LocalDate date) {
-        this.fiche = fiche;
+        setFicheMedicale(fiche);
         this.date = date;
     }
 
-    /**
-     * @return the fiche
-     */
-    public FicheMedicale getFiche() {
-        return fiche;
-    }
-
-    /**
-     * @param fiche the fiche to set
-     */
-    public void setFiche(FicheMedicale fiche) {
-        this.fiche = fiche;
-    }
-
-    /**
-     * @return the date
-     */
-    public LocalDate getDate() {
-        return date;
-    }
-
-    /**
-     * @param date the date to set
-     */
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
 
     @Override
     public String toString() {
