@@ -6,6 +6,7 @@
 package modele;
 
 import java.io.Serializable;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -14,6 +15,7 @@ import java.io.Serializable;
 public class Medicament implements Serializable{
     private String nom;
     private String description;
+    private ObservableList<Symptome> listeSymptome;
 
     public Medicament(String nom, String description) {
         this.nom = nom;

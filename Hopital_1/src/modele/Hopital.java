@@ -10,7 +10,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.beans.property.ListProperty;
@@ -31,17 +30,17 @@ public class Hopital {
         public  void setListePersonnel(ObservableList<Personnel> p){listePersonnel.set(p);}
         public  ListProperty<Personnel> listePersonnel(){return listePersonnel;}
         
-    private ObservableList<FicheMedicale> listeFiche=FXCollections.observableArrayList();
-    private ListProperty<FicheMedicale> listeFicheMedicale = new SimpleListProperty<>(listeFiche);
-        public ObservableList<FicheMedicale> getlisteFicheMedicale(){return listeFicheMedicale.get();}
-        public void setListeFicheMedicale(ObservableList<FicheMedicale> fm){listeFicheMedicale.set(fm);}
-        public ListProperty<FicheMedicale> listeFicheMedicale(){return listeFicheMedicale();} 
+    private ObservableList<FicheMedicale> listeFiche = FXCollections.observableArrayList();
+    private final ListProperty<FicheMedicale> listeFicheMedicale = new SimpleListProperty<>(listeFiche);
+        public ObservableList<FicheMedicale> getListeFicheMedicale(){return listeFicheMedicale.get();}
+        public void setListeFicheMedicale(ObservableList<FicheMedicale> rdv){listeFicheMedicale.set(rdv);}
+        public ListProperty<FicheMedicale> listeFicheMedicale(){return listeFicheMedicale;} 
     
     private ObservableList<Symptome> listeSymp=FXCollections.observableArrayList();
     private ListProperty<Symptome> listeSymptome = new SimpleListProperty<>(listeSymp);
         public ObservableList<Symptome> getListeSymptome(){return listeSymptome.get();}
         public void setListeSymptome(ObservableList<Symptome> s){listeSymptome.set(s);}
-        public ListProperty<Symptome> listeSymptome(){return listeSymptome();}
+        public ListProperty<Symptome> listeSymptome(){return listeSymptome;}
         
     private ObservableList<Medicament> listMedic=FXCollections.observableArrayList();
     private ListProperty<Medicament> listeMedicament = new SimpleListProperty<>(listMedic);
@@ -71,7 +70,7 @@ public class Hopital {
         listP.add(p);
         Medicament med = new Medicament("dolipprane", "anti-douleur");
         listMedic.add(med);
-        Symptome s = new Symptome("migraine", "mal de crane");
+        Symptome s = new Symptome("toux", "gorge irrité");
         listeSymp.add(s);
         FicheMedicale f = new FicheMedicale("douleur a la tete", p, listeSymp);
         listeFiche.add(f);

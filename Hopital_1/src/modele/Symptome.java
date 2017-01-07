@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
 public class Symptome implements Serializable{
     private String nom;
     private String description;
-    private ObservableList<Medicament> medicaments;
+    
     
 
     public Symptome(String nom, String description) {

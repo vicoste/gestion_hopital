@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccueilController">
    <top>
       <GridPane BorderPane.alignment="CENTER">
          <columnConstraints>
@@ -42,8 +42,14 @@
          <children>
             <Button mnemonicParsing="false" onAction="#handleButtonRDV" prefHeight="127.0" prefWidth="204.0" text="RENDEZ-VOUS" GridPane.halignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#handleButtonFM" prefHeight="125.0" prefWidth="198.0" text="FICHES MEDICALES" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-            <Button mnemonicParsing="false" onAction="#handleButtonPersonnel" prefHeight="92.0" prefWidth="232.0" text="NOUVEAUX PERSONNEL" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="ajoutPersonnel" mnemonicParsing="false" onAction="#Personnel" prefHeight="29.0" prefWidth="216.0" text="AJOUT PERSONNEL" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
             <Button mnemonicParsing="false" onAction="#handleButtonOrdonnance" prefHeight="106.0" prefWidth="172.0" text="ORDONNANCE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="ajoutSymptome" mnemonicParsing="false" onAction="#AjoutSymp" prefHeight="25.0" prefWidth="216.0" text="AJOUT SYMPTOME" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Button fx:id="ajoutMedicament" mnemonicParsing="false" onAction="#AjoutMedic" prefHeight="25.0" prefWidth="222.0" text="AJOUT MEDICAMENT" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+               <GridPane.margin>
+                  <Insets bottom="10.0" />
+               </GridPane.margin>
+            </Button>
          </children>
       </GridPane>
    </center>

@@ -1,27 +1,14 @@
 package launch;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.time.LocalDate;
-import modele.FicheMedicale;
-import modele.Patient;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 import modele.Hopital;
-import modele.Medecin;
-import modele.Personnel;
-import modele.RendezVous;
-import modele.Symptome;
 
 
 public class Main extends Application {

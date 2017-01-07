@@ -63,7 +63,7 @@ public class AddFMController implements Initializable {
     @FXML
     private void handleButtonCreate(ActionEvent event) {
         FicheMedicale ficheMedicale = new FicheMedicale(taMotif.getText(),cbPatient.getValue(),ls);
-        Main.getHopital().getlisteFicheMedicale().add(ficheMedicale);
+        Main.getHopital().getListeFicheMedicale().add(ficheMedicale);
         FMController.getStage().hide();
     }
     

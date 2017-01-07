@@ -24,6 +24,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import launch.Main;
 import modele.FicheMedicale;
+import modele.Hopital;
 import modele.Medecin;
 import modele.Personnel;
 import modele.RendezVous;

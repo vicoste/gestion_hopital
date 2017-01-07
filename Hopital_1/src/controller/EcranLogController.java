@@ -112,7 +112,7 @@ public class EcranLogController implements Initializable {
     
     @FXML
     public void handleButtonPatient(){
-        for(FicheMedicale f : Main.getHopital().getlisteFicheMedicale()){
+        for(FicheMedicale f : Main.getHopital().getListeFicheMedicale()){
             if(numDossier.getText().equals(f.getNumDossier())){
                 //entrer dans la vue de l'ordonnance du patient
             }

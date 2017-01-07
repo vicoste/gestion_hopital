@@ -9,27 +9,48 @@ package modele;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Observable;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
 /**
  *
  * @author vicoste
+ * La fiche Medicale d'un patient contient les informations qui seront necessaire au medecin
+ * Un patient peut avoir plusieur fiche medicale : par exemple il peut venir en 2017 a cause d'une grippe
+ *                                                                      puis en 2020 a cause d'une fracture
+ * Les fiches medicales sont enregistrées indefiniment (pour pouvoir ressortir les vieux dossier)
+ * leur état passe de 0 à 1 lorsque le patient est guerris, la Fiche medicale est donc traité et
+ * ne sera plus disponible pour prevoir un rendez-vous
  */
 public class FicheMedicale implements Serializable{
-    private String numDossier; 
-    private Date dateEntree;
-    private String motif;    
-    private Patient patient;
-    private Ordonnance ordonnance;    
-    private ArrayList<Symptome> listSymp = new ArrayList<>();    
-    private Boolean etat;
     
-    public FicheMedicale(String motif, Patient p, ObservableList<Symptome> listSymp){
+    private String numDossier; //le numero dossier est un numero unique qui identifie une fiche medicale.
+    
+    private Date dateEntree; //la date d'entrée est la date de creation de la fiche médicale
+        public Date getDateEntree() {return dateEntree;}
+        public void setDateEntree(Date dateEntree) {this.dateEntree = dateEntree;}
+    
+    private String motif; //le motif est la raison du patient pour etre admis dans l'hopital
+        public String getMotif() {return motif;}
+        public void setMotif(String motif) {this.motif = motif;}
+    
+    private Patient patient;//le patient qui demande a se faire soigner
+        public Patient getPatient() {return patient;}
+        public void setPatient(Patient patient) {this.patient = patient;}
         
+    private Ordonnance ordonnance;//l'ordonnance peux etre null, elle est disponible lorsque le medecin l'a validé    
+        public Ordonnance getOrdonnance() {return ordonnance;}
+        public void setOrdonnance(Ordonnance ordonnance) {this.ordonnance = ordonnance;}
+    
+    private ArrayList<Symptome> listSymp = new ArrayList<>();//liste des symptomes donc souffre le client
+        public ArrayList<Symptome> getListSymp() {return listSymp;}
+        public void setListSymp(ArrayList<Symptome> listSymp) {this.listSymp = listSymp;}
+    
+    private Boolean etat;// l'etat de la fiche signifie si le patient a été traité(true) ou non(false)
+        public Boolean getEtat() {return etat;}
+        public void setEtat(Boolean etat) {this.etat = etat;}
+    
+    public FicheMedicale(String motif, Patient p, ObservableList<Symptome> listSymp){        
         this.motif = motif;
         patient = p;        
         etat = false;
@@ -141,82 +162,10 @@ public class FicheMedicale implements Serializable{
         
     }
 
-    /**
-     * @return the dateEntree
-     */
-    public Date getDateEntree() {
-        return dateEntree;
-    }
-
-    /**
-     * @param dateEntree the dateEntree to set
-     */
-    public void setDateEntree(Date dateEntree) {
-        this.dateEntree = dateEntree;
-    }
-
-    /**
-     * @return the motif
-     */
-    public String getMotif() {
-        return motif;
-    }
-
-    /**
-     * @param motif the motif to set
-     */
-    public void setMotif(String motif) {
-        this.motif = motif;
-    }
-
-    /**
-     * @return the etat
-     */
-    public Boolean getEtat() {
-        return etat;
-    }
-
-    /**
-     * @param etat the etat to set
-     */
-    public void setEtat(Boolean etat) {
-        this.etat = etat;
-    }
-
-    /**
-     * @return the patient
-     */
-    public Patient getPatient() {
-        return patient;
-    }
-
-    /**
-     * @param patient the patient to set
-     */
-    public void setPatient(Patient patient) {
-        this.patient = patient;
-    }
-
-    /**
-     * @return the symptome
-     */
-    public  ArrayList<Symptome> getSymptome() {
-        return listSymp;
-    }
-
-    /**
-     * @param symptome the symptome to set
-     */
-    public void setSymptome( ArrayList<Symptome> symptome) {
-        listSymp = symptome;
-    }
-
+    
     @Override
     public String toString() {
         return patient.getNom()+" "+patient.getPrenom()+" - "+numDossier; //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public static void setListFM(){
-        
-    }
+
 }
