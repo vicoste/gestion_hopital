@@ -5,11 +5,13 @@
  */
 package modele;
 
+import java.io.Serializable;
+
 /**
  *
  * @author vicoste
  */
-public class Personnel {
+public class Personnel implements Serializable{
     private String nom;
     private String prenom;
     private String identifiant;
@@ -23,10 +25,7 @@ public class Personnel {
     }
     
     
-    public Boolean seloguer(String id, String mdp){
-        return identifiant.equals(id) && this.mdp.equals(mdp);
-   
-    } 
+  
     
 
 
@@ -85,5 +84,11 @@ public class Personnel {
     public void setMdp(String mdp) {
         this.mdp = mdp;
     }
+
+    @Override
+    public String toString() {
+        return getNom(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }

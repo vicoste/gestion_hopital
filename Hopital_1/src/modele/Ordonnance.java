@@ -5,13 +5,14 @@
  */
 package modele;
 
+import java.io.Serializable;
 import javafx.collections.ObservableList;
 
 /**
  *
  * @author vicoste
  */
-public class Ordonnance {
+public class Ordonnance implements Serializable{
     
     
     

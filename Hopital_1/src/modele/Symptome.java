@@ -5,13 +5,14 @@
  */
 package modele;
 
+import java.io.Serializable;
 import javafx.collections.ObservableList;
 
 /**
  *
  * @author vicoste
  */
-public class Symptome {
+public class Symptome implements Serializable{
     private String nom;
     private String description;
     private ObservableList<Medicament> medicaments;
@@ -54,7 +55,7 @@ public class Symptome {
 
     @Override
     public String toString() {
-        return nom; //To change body of generated methods, choose Tools | Templates.
+        return getNom(); //To change body of generated methods, choose Tools | Templates.
     }
 
     public ObservableList<Medicament> getMedicaments() {

@@ -5,33 +5,21 @@
  */
 package controller;
 
-import static com.sun.javafx.image.impl.ByteArgb.accessor;
-import com.sun.javafx.scene.control.FormatterAccessor;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.beans.binding.Bindings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Control;
-import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
-import javafx.util.StringConverter;
-import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.NumberStringConverter;
 import launch.Main;
 import modele.Patient;
-import modele.RendezVous;
 
 /**
  * FXML Controller class
@@ -73,25 +61,22 @@ public class CreerPatientController implements Initializable {
         valeurAge.textProperty().bindBidirectional(age.valueProperty(), new NumberStringConverter());
         valeurAge.setTextFormatter(new TextFormatter<>(t ->{
         
-                if (t.isReplaced()) 
-                    if(t.getText().matches("[^0-9]"))
-                        t.setText(t.getControlText().substring(t.getRangeStart(), t.getRangeEnd()));
+            if (t.isReplaced()) 
+                if(t.getText().matches("[^0-9]"))
+                    t.setText(t.getControlText().substring(t.getRangeStart(), t.getRangeEnd()));
                 
 
-                if (t.isAdded()) {
-                    if (t.getControlText().contains(",")) {
-                        if (t.getText().matches("[^0-9]")) {
-                            t.setText("");
-                        }
-                    } else if (t.getText().matches("[^0-9,]")) {
+            if (t.isAdded()) {
+                if (t.getControlText().contains(",")) {
+                    if (t.getText().matches("[^0-9]")) {
                         t.setText("");
                     }
+                } else if (t.getText().matches("[^0-9,]")) {
+                    t.setText("");
                 }
-
-                return t;}));
-        
-        
-        
+            }
+            return t;
+        }));
         
         numSecu.setTextFormatter(new TextFormatter<>(t ->{
             
@@ -101,28 +86,19 @@ public class CreerPatientController implements Initializable {
             
             
             if (t.isAdded()) {
-                        if (t.getControlText().contains(",")) {
-                            if (t.getText().matches("[^0-9]")) {
-                                t.setText("");
-                            }
-                        } else if (t.getText().matches("[^0-9,]")) {
-                            t.setText("");
-                        }
-                    
+                if (t.getControlText().contains(",")) {
+                    if (t.getText().matches("[^0-9]")) {
+                        t.setText("");
+                    }
+                } else if (t.getText().matches("[^0-9,]")) {
+                    t.setText("");
                 }
-
-                return t;}));
-        
-        
-        
+                    
+            }
+            return t;
+        })); 
     }
-           
-        
-            
-        
-        
-        
-
+          
     @FXML
     private void actionFemme() {
         homme.setSelected(false);
@@ -165,7 +141,7 @@ public class CreerPatientController implements Initializable {
                         + "age : "+p.getAge()+"\n"
                         + "sexe : "+p.getSexe()+"\n"
                         + "numéro sécu : "+p.getNumSecu()).get()==ButtonType.OK){
-                            Main.setListPat(p);
+                            Main.getHopital().getListePatient().add(p);
                             FMController.getStage().close();
                         }                            
                     }                                 
@@ -182,8 +158,7 @@ public class CreerPatientController implements Initializable {
             laFenetre.getButtonTypes().clear();
             laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
         }
-        
-      
+
         return laFenetre.showAndWait();
     }
     

@@ -9,9 +9,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +22,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import launch.Main;
-import modele.Medecin;
 import modele.RendezVous;
 
 /**
@@ -37,18 +33,18 @@ public class RDVController implements Initializable {
 
     @FXML
     private ListView<RendezVous> list;
-    
-    private ObjectProperty<ObservableList<RendezVous>> RDV = ;
+        
     private static Stage stage;
     private static RendezVous rv;
+    
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        //list.setItems(Medecin.getListRDV());
-        list.itemsProperty().bind(RDV);
+        list.itemsProperty().bind(Main.getHopital().listeRendezVous());
     }    
     
     @FXML
@@ -71,7 +67,7 @@ public class RDVController implements Initializable {
         } 
         else {
             if(showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
-            Main.delListRDV(list.getSelectionModel().getSelectedItem());         
+           // Main.delListRDV(list.getSelectionModel().getSelectedItem());         
         }
             
             
@@ -143,7 +139,7 @@ public class RDVController implements Initializable {
         return  rv ;
     }
     
-    
+   
     
 }
         

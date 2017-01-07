@@ -5,38 +5,34 @@
  */
 package modele;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
  * @author vicoste
  */
-public class RendezVous {
+public class RendezVous implements Serializable{
     
-    private final ObjectProperty<FicheMedicale> ficheMedicale= new SimpleObjectProperty<>();
-        public FicheMedicale getFicheMedicale() {return ficheMedicale.get();}
-        public void setFicheMedicale(FicheMedicale ficheMedicale) {this.ficheMedicale.set(ficheMedicale);}
-        public ObjectProperty<FicheMedicale> FicheMedicaleProperty(){return ficheMedicale;}
+    private FicheMedicale fiche;
+        public FicheMedicale getFiche() {return fiche;}
+        public void setFiche(FicheMedicale fiche) {this.fiche = fiche;}    
 
-    private final ObjectProperty<LocalDate> date = new SimpleObjectProperty<>();
-    
-    
-    
-
-
+    private LocalDate date;
+        public LocalDate getDate() {return date;}
+        public void setDate(LocalDate date) {this.date = date;}
     
     
     public RendezVous(FicheMedicale fiche, LocalDate date) {
-        setFicheMedicale(fiche);
+        //setFicheMedicale(fiche);
         this.date = date;
+        this.fiche = fiche;
     }
-
 
     @Override
     public String toString() {
-        return date+" : "+fiche.getPatient().toString(); //To change body of generated methods, choose Tools | Templates.
+        return getDate()+" : "+getFiche().getPatient().toString(); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

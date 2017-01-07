@@ -7,12 +7,9 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.Observable;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +19,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import launch.Main;
@@ -45,8 +41,8 @@ public class FMController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        list.setItems(Main.getListFM());
-       // list.itemsProperty().bind();
+       
+        list.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
     }    
 
     
@@ -84,7 +80,7 @@ public class FMController implements Initializable {
         } 
         else {
             if (showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
-            Main.delListFM(list.getSelectionModel().getSelectedItem());
+           // Main.delListFM(list.getSelectionModel().getSelectedItem());
             
                 
                 

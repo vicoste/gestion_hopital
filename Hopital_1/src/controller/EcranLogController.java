@@ -54,11 +54,6 @@ public class EcranLogController implements Initializable {
      * @throws java.io.IOException
      */
     
-    public EcranLogController(){
-        
-
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb){
 
@@ -67,20 +62,34 @@ public class EcranLogController implements Initializable {
     
     @FXML
     public void connexion() throws IOException, Throwable{
-        for(Personnel p : Main.getListMed()){
-         if(userText.getText().equals(p.getIdentifiant()) & mdp.getText().equals(p.getMdp())){
-            personnelConnecte = p;
-            BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
-            Scene scene = new Scene(root);
-            Stage st= new Stage();
-            st.initOwner(Main.getPrimaryStage());
-            st.initModality(Modality.WINDOW_MODAL);
-            st.setScene(scene);
-            stage=st;
-            st.show();
-            Main.getStage().close();     
-            return;
-          }
+        if(userText.getText().equals(idt) & mdp.getText().equals(mot)){
+                personnelConnecte = new Personnel("admin", "", "", "");
+                BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
+                Scene scene = new Scene(root);
+                Stage st= new Stage();
+                st.initOwner(Main.getPrimaryStage());
+                st.initModality(Modality.WINDOW_MODAL);
+                st.setScene(scene);
+                stage=st;
+                st.show();
+                Main.getStage().close();     
+                return;
+        }
+            
+        for(Personnel p : Main.getHopital().getListePersonnel()){
+             if(userText.getText().equals(p.getIdentifiant()) & mdp.getText().equals(p.getMdp())){
+                personnelConnecte = p;
+                BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
+                Scene scene = new Scene(root);
+                Stage st= new Stage();
+                st.initOwner(Main.getPrimaryStage());
+                st.initModality(Modality.WINDOW_MODAL);
+                st.setScene(scene);
+                stage=st;
+                st.show();
+                Main.getStage().close();     
+                return;
+            }
          
          
         }
@@ -103,7 +112,10 @@ public class EcranLogController implements Initializable {
     
     @FXML
     public void handleButtonPatient(){
-        for(FicheMedicale f : Main.getListFM()){
+        for(FicheMedicale f : Main.getHopital().getlisteFicheMedicale()){
+            if(numDossier.getText().equals(f.getNumDossier())){
+                //entrer dans la vue de l'ordonnance du patient
+            }
             
         }
         

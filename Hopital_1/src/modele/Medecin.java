@@ -5,6 +5,9 @@
  */
 package modele;
 
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
@@ -13,10 +16,16 @@ import javafx.collections.ObservableList;
  */
 public class Medecin extends Personnel{
     
-    private static ObservableList<RendezVous> listRDV;
+    private static ObservableList<RendezVous> listRDV = FXCollections.observableArrayList();
+    private final static ListProperty<RendezVous> rdvProperty = new SimpleListProperty<>(listRDV);
+        public static ObservableList<RendezVous> getListRDV(){return rdvProperty.get();}
+        public static void setListRDV(ObservableList<RendezVous> rdv){rdvProperty.set(rdv);}
+        public static ListProperty<RendezVous> listRDVProperty(){return rdvProperty;}
         
-    public Medecin(String nom, String prenom, String identifiant, String mdp) {
+        
+    public Medecin(String nom, String prenom, String identifiant, String mdp, ObservableList<RendezVous> rdv) {
         super(nom, prenom, identifiant, mdp);
+        setListRDV(rdv);
     }  
     
     
@@ -25,13 +34,7 @@ public class Medecin extends Personnel{
         return "Docteur "+getNom(); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public static ObservableList<RendezVous> getListRDV() {
-        return listRDV;
-    }
-
-    public static void  setListRDV(ObservableList<RendezVous> listRDV) {
-        Medecin.listRDV = listRDV;
-    }
+ 
     
       
 }

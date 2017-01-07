@@ -9,6 +9,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,6 +25,7 @@ import javafx.scene.control.ListView;
 import launch.Main;
 import modele.FicheMedicale;
 import modele.Medecin;
+import modele.Personnel;
 import modele.RendezVous;
 
 /**
@@ -47,27 +50,23 @@ public class SelectFMController implements Initializable {
     @FXML
     private DatePicker datePicker;
     
-   
+    private static final ObservableList<Medecin> listeMed=FXCollections.observableArrayList();
+    private static ListProperty<Medecin> listeMedecin = new SimpleListProperty<>(listeMed);
+        public static ObservableList<Medecin> getListeMedecin(){return listeMedecin.get();}
+        public static void setListeMedecin(ObservableList<Medecin> m){listeMedecin.set(m);}
+        public static ListProperty<Medecin> listeMedecin(){return listeMedecin;}
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        cb.setItems(Main.getListMed());
-        cbheure.setItems(Main.getListFM());
+        list.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
+        for(Personnel e : Main.getHopital().listePersonnel())if(e.equals(Medecin.class)) listeMed.add((Medecin)e);
+        cb.itemsProperty().bind(listeMedecin());
+        //cbheure.setItems(Main.getListFM());
         
-        if(RDVController.getRDV()==null){
-            ficheMedicModif.setVisible(false);
-            list.setItems(Main.getListFM());
-           
-        }else{
-            list.setVisible(false);
-            ficheMedicModif.setText(RDVController.getRDV().getFiche().toString());
-            cb.setValue(RDVController.getRDV().getMedecin());
-            datePicker.setValue(RDVController.getRDV().getDate());
-            
-        }
+        
         
         
     } 
@@ -118,25 +117,9 @@ public class SelectFMController implements Initializable {
         return laFenetre.showAndWait();
     }
 
-    public void setCb(ComboBox<Medecin> cb) {
-        this.cb = cb;
-    }
 
-    public void setCbheure(ComboBox<FicheMedicale> cbheure) {
-        this.cbheure = cbheure;
-    }
 
-    public void setDatePicker(DatePicker datePicker) {
-        this.datePicker = datePicker;
-    }
-
-    public void setList(FicheMedicale p) {
-        ObservableList<FicheMedicale> l = FXCollections.observableArrayList();
-        l.add(p);
-        list.setItems(l);
-        
-           
-    }
+   
 
     
    

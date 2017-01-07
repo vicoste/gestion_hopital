@@ -52,18 +52,18 @@ public class AddFMController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        listeDansCB.setAll(Main.getSymptome());
-        selecSymp.setItems(listeDansCB);
         
+        listeDansCB.addAll(Main.getHopital().listeSymptome());
+        selecSymp.setItems(listeDansCB);        
         
-        cbPatient.setItems(Main.getListPat());
+        cbPatient.itemsProperty().bind(Main.getHopital().listePatient());
         
     }    
 
     @FXML
     private void handleButtonCreate(ActionEvent event) {
         FicheMedicale ficheMedicale = new FicheMedicale(taMotif.getText(),cbPatient.getValue(),ls);
-        Main.setListFM(ficheMedicale);
+        Main.getHopital().getlisteFicheMedicale().add(ficheMedicale);
         FMController.getStage().hide();
     }
     

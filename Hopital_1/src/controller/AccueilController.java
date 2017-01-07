@@ -61,5 +61,14 @@ public class AccueilController implements Initializable {
         Main.getStage().show();
         EcranLogController.getStage().hide();
     }
+
+    @FXML
+    private void handleButtonPersonnel(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleButtonOrdonnance(ActionEvent event) {
+    }
    
+    
 }

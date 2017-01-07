@@ -6,31 +6,36 @@
 package modele;
 
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 /**
  *
  * @author vicoste
  */
-public class FicheMedicale {
+public class FicheMedicale implements Serializable{
     private String numDossier; 
     private Date dateEntree;
     private String motif;    
     private Patient patient;
     private Ordonnance ordonnance;    
-    private List<Symptome> listSymp;    
+    private ArrayList<Symptome> listSymp = new ArrayList<>();    
     private Boolean etat;
     
-    public FicheMedicale(String motif, Patient p, List<Symptome> listSymp){
+    public FicheMedicale(String motif, Patient p, ObservableList<Symptome> listSymp){
         
         this.motif = motif;
-        patient = p;
-        this.listSymp = listSymp;
+        patient = p;        
         etat = false;
         dateEntree = new Date();        
-        createNumDossier();              
+        createNumDossier();
+        for(Symptome s : listSymp)this.listSymp.add(s);
     }
     
 
@@ -195,14 +200,14 @@ public class FicheMedicale {
     /**
      * @return the symptome
      */
-    public List<Symptome> getSymptome() {
+    public  ArrayList<Symptome> getSymptome() {
         return listSymp;
     }
 
     /**
      * @param symptome the symptome to set
      */
-    public void setSymptome(List<Symptome> symptome) {
+    public void setSymptome( ArrayList<Symptome> symptome) {
         listSymp = symptome;
     }
 
