@@ -63,7 +63,7 @@ public class EcranLogController implements Initializable {
     @FXML
     public void connexion() throws IOException, Throwable{
         if(userText.getText().equals(idt) & mdp.getText().equals(mot)){
-                personnelConnecte = new Personnel("admin", "", "", "");
+                personnelConnecte = new Personnel("admin", "", "");
                 BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
                 Scene scene = new Scene(root);
                 Stage st= new Stage();
@@ -90,7 +90,6 @@ public class EcranLogController implements Initializable {
                 Main.getStage().close();     
                 return;
             }
-         
          
         }
             showMessage(Alert.AlertType.ERROR, null, "Identifiant ou mot de passe incorrect. Veuillez recommencer");

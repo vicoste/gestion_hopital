@@ -6,50 +6,24 @@
 package modele;
 
 import java.io.Serializable;
-import javafx.collections.ObservableList;
 
 /**
  *
  * @author vicoste
+ * le symptome dont souffre le patient il a un nom et une description
  */
 public class Symptome implements Serializable{
-    private String nom;
-    private String description;
+   
+    private String nom;//exemple : migraine
+        public String getNom() {return nom;}
+        public void setNom(String nom) {this.nom = nom;}
     
-    
-
+    private String description;//exemple : type de céphalée (mal de tête) chronique fréquente, invalidante, caractérisée par des maux de tête et des nausées.
+        public String getDescription() {return description;}
+        public void setDescription(String description) {this.description = description;}
+        
     public Symptome(String nom, String description) {
         this.nom = nom;
-        this.description = description;
-    }
-    
-    
-
-    /**
-     * @return the nom
-     */
-    public String getNom() {
-        return nom;
-    }
-
-    /**
-     * @param nom the nom to set
-     */
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    /**
-     * @return the description
-     */
-    public String getDescription() {
-        return description;
-    }
-
-    /**
-     * @param description the description to set
-     */
-    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -57,15 +31,5 @@ public class Symptome implements Serializable{
     public String toString() {
         return getNom(); //To change body of generated methods, choose Tools | Templates.
     }
-
-    public ObservableList<Medicament> getMedicaments() {
-        return medicaments;
-    }
-
-    public void setMedicaments(ObservableList<Medicament> medicaments) {
-        this.medicaments = medicaments;
-    }
-    
-    
     
 }

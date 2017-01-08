@@ -25,7 +25,8 @@ import javafx.collections.ObservableList;
 public class FicheMedicale implements Serializable{
     
     private String numDossier; //le numero dossier est un numero unique qui identifie une fiche medicale.
-    
+        public String getNumDossier() {return numDossier;}//il n'y a pas de setter car le numDossier est créé une fois et definitivement a la création de la fiche médicale
+        
     private Date dateEntree; //la date d'entrée est la date de creation de la fiche médicale
         public Date getDateEntree() {return dateEntree;}
         public void setDateEntree(Date dateEntree) {this.dateEntree = dateEntree;}
@@ -54,37 +55,27 @@ public class FicheMedicale implements Serializable{
         this.motif = motif;
         patient = p;        
         etat = false;
-        dateEntree = new Date();        
+        dateEntree = new Date();
+        /*
+        createNumDossier() sert a creer le numero de dossier unique, c'est pour ça que la fonction est private
+        est qu'elle est uniquement appelée à la création de la fiche médicale
+        */
         createNumDossier();
+        /*this.listSymp est une arrayList car l'ObservableList n'est pas serializable
+            je n'utilise que des ObservableList dans ce programme donc j'ai recours a un "for each" 
+        afin de remplir mon ArrayList avec une ObservableList
+        */
         for(Symptome s : listSymp)this.listSymp.add(s);
     }
     
-
-    /**
-     * @return the numDossier
-     */
-    public String getNumDossier() {
-        return numDossier;
-    }
-
-    /**
-     * le numDossier ne peux pas etre modifié, il est généré une fois 
-     * 
-     */
-     
+    
     private void createNumDossier() {
-        
-        
         
         String a = dateEntree.toString();
         String sexe = new String();
-        String num = new String();
-        
-        String numJour = a.substring(8, 10);
-        
-        
+        String num = new String();        
+        String numJour = a.substring(8, 10);  
         String mois = a.substring(4, 7);
-        
         
         switch(mois){
             case "Jan":
@@ -150,22 +141,12 @@ public class FicheMedicale implements Serializable{
         dateEntree.getTime();
         
         num= sexe.concat(numJour).concat(mois).concat(an).concat(patient.getNom().substring(0, 1).toUpperCase()).concat(patient.getPrenom().substring(0, 1).toUpperCase());
-        
-        
-        
-        
-       
-        
         numDossier=num;
-        
-         
-        
     }
 
-    
     @Override
     public String toString() {
-        return patient.getNom()+" "+patient.getPrenom()+" - "+numDossier; //To change body of generated methods, choose Tools | Templates.
+        return patient.getNom()+" "+patient.getPrenom()+" - "+numDossier; //
     }
 
 }

@@ -13,18 +13,22 @@ import javafx.collections.ObservableList;
 /**
  *
  * @author vicoste
+ * Un Medecin est un Personnel qui a plus de pouvoir, en effet le medecin peux soigné des malade alors qu'un 
+ * secrétaire ne pourra que les enregistrer
+ * le medecin dispose d'une liste de rendezVous qui lui est propre, cellle des patient qu'il doit traité
+ * 
  */
 public class Medecin extends Personnel{
     
-    private static ObservableList<RendezVous> listRDV = FXCollections.observableArrayList();
+    private static ObservableList<RendezVous> listRDV = FXCollections.observableArrayList();//sa liste de rendez-vous
     private final static ListProperty<RendezVous> rdvProperty = new SimpleListProperty<>(listRDV);
         public static ObservableList<RendezVous> getListRDV(){return rdvProperty.get();}
         public static void setListRDV(ObservableList<RendezVous> rdv){rdvProperty.set(rdv);}
         public static ListProperty<RendezVous> listRDVProperty(){return rdvProperty;}
         
         
-    public Medecin(String nom, String prenom, String identifiant, String mdp, ObservableList<RendezVous> rdv) {
-        super(nom, prenom, identifiant, mdp);
+    public Medecin(String nom, String prenom, String mdp, ObservableList<RendezVous> rdv) {
+        super(nom, prenom, mdp);
         setListRDV(rdv);
     }  
     

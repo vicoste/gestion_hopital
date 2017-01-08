@@ -7,11 +7,11 @@ package modele;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  *
  * @author vicoste
+ * Un rendezVous est 
  */
 public class RendezVous implements Serializable{
     
@@ -22,10 +22,14 @@ public class RendezVous implements Serializable{
     private LocalDate date;
         public LocalDate getDate() {return date;}
         public void setDate(LocalDate date) {this.date = date;}
+        
+    private Heure heure;
+        public Heure getHeure() {return heure;}
+        public void setHeure(Heure heure) {this.heure = heure;}
     
     
-    public RendezVous(FicheMedicale fiche, LocalDate date) {
-        //setFicheMedicale(fiche);
+    public RendezVous(FicheMedicale fiche, LocalDate date, Heure heure) {
+        this.heure = heure;
         this.date = date;
         this.fiche = fiche;
     }
