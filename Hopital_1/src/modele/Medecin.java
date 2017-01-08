@@ -26,16 +26,16 @@ public class Medecin extends Personnel{
         public static void setListRDV(ObservableList<RendezVous> rdv){rdvProperty.set(rdv);}
         public static ListProperty<RendezVous> listRDVProperty(){return rdvProperty;}
         
-        
-    public Medecin(String nom, String prenom, String mdp, ObservableList<RendezVous> rdv) {
+    /* a sa creation, le medecin n'a pas encore de rendezVous*/    
+    public Medecin(String nom, String prenom, String mdp) {
         super(nom, prenom, mdp);
-        setListRDV(rdv);
+        ;
     }  
     
     
     @Override
     public String toString() {
-        return "Docteur "+getNom(); //To change body of generated methods, choose Tools | Templates.
+        return "Docteur "+getNom(); 
     }
 
  

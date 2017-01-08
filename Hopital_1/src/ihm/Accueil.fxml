@@ -43,7 +43,7 @@
             <Button mnemonicParsing="false" onAction="#handleButtonRDV" prefHeight="127.0" prefWidth="204.0" text="RENDEZ-VOUS" GridPane.halignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#handleButtonFM" prefHeight="125.0" prefWidth="198.0" text="FICHES MEDICALES" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <Button fx:id="ajoutPersonnel" mnemonicParsing="false" onAction="#Personnel" prefHeight="29.0" prefWidth="216.0" text="AJOUT PERSONNEL" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-            <Button mnemonicParsing="false" onAction="#handleButtonOrdonnance" prefHeight="106.0" prefWidth="172.0" text="ORDONNANCE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="vueOrdonnance" mnemonicParsing="false" onAction="#handleButtonOrdonnance" prefHeight="106.0" prefWidth="172.0" text="ORDONNANCE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Button fx:id="ajoutSymptome" mnemonicParsing="false" onAction="#AjoutSymp" prefHeight="25.0" prefWidth="216.0" text="AJOUT SYMPTOME" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="ajoutMedicament" mnemonicParsing="false" onAction="#AjoutMedic" prefHeight="25.0" prefWidth="222.0" text="AJOUT MEDICAMENT" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <GridPane.margin>

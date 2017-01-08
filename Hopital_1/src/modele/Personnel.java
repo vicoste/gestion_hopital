@@ -6,6 +6,7 @@
 package modele;
 
 import java.io.Serializable;
+import launch.Main;
 
 /**
  *
@@ -44,18 +45,33 @@ public class Personnel implements Serializable{
     }
    
     private void createID(){
-        String n; //traite le nom
-        String p;//traite le prenom        
+        String n=getNom(); //traite le nom
+        String p=getPrenom();//traite le prenom        
+        String res; //resultat
+        int i= 0;
         
-        p=getPrenom().substring(0,2);
-        n=getNom().substring(0, 6);
+        if(getPrenom().length()>=2){
+            p=getPrenom().substring(0,2);
+        }
+        if(getNom().length()>=6){
+            n=getNom().substring(0, 6);
+        }
         
-        identifiant = p+n; 
+        res = p+n; 
+        res = res.toLowerCase();
+        
+        while(!verifID(res)) {i++; res = res+i;}
+        identifiant=res;
+    }
+    
+    private boolean verifID(String p){
+        for(Personnel x : Main.getHopital().getListePersonnel()) if(p.equals(x.getIdentifiant())) return false;
+        return true;
     }
     
     @Override
     public String toString() {
-        return getNom(); //To change body of generated methods, choose Tools | Templates.
+        return getNom()+" "+getPrenom(); //To change body of generated methods, choose Tools | Templates.
     }
     
     

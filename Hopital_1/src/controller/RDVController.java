@@ -67,7 +67,7 @@ public class RDVController implements Initializable {
         } 
         else {
             if(showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
-           // Main.delListRDV(list.getSelectionModel().getSelectedItem());         
+             Main.getHopital().getListeRendezVous().remove(list.getSelectionModel().getSelectedItem());         
         }
             
             
