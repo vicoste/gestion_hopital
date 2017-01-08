@@ -42,8 +42,7 @@ public class AccueilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        if(EcranLogController.getPersonnelConnecte().getNom()=="admin"){
-            
+        if(EcranLogController.getPersonnelConnecte().getNom()=="admin"){            
         }else{
             vueOrdonnance.setVisible(false);
             ajoutPersonnel.setVisible(false);

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -43,13 +44,21 @@
             <Button mnemonicParsing="false" onAction="#handleButtonRDV" prefHeight="127.0" prefWidth="204.0" text="RENDEZ-VOUS" GridPane.halignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#handleButtonFM" prefHeight="125.0" prefWidth="198.0" text="FICHES MEDICALES" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <Button fx:id="ajoutPersonnel" mnemonicParsing="false" onAction="#Personnel" prefHeight="29.0" prefWidth="216.0" text="AJOUT PERSONNEL" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
-            <Button fx:id="vueOrdonnance" mnemonicParsing="false" onAction="#handleButtonOrdonnance" prefHeight="106.0" prefWidth="172.0" text="ORDONNANCE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="vueOrdonnance" mnemonicParsing="false" onAction="#handleButtonOrdonnance" prefHeight="28.0" prefWidth="134.0" text="voir l'ordonnance" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets top="50.0" />
+               </GridPane.margin></Button>
             <Button fx:id="ajoutSymptome" mnemonicParsing="false" onAction="#AjoutSymp" prefHeight="25.0" prefWidth="216.0" text="AJOUT SYMPTOME" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Button fx:id="ajoutMedicament" mnemonicParsing="false" onAction="#AjoutMedic" prefHeight="25.0" prefWidth="222.0" text="AJOUT MEDICAMENT" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
                <GridPane.margin>
                   <Insets bottom="10.0" />
                </GridPane.margin>
             </Button>
+            <ComboBox prefWidth="150.0" promptText="Selection Patient" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets bottom="50.0" />
+               </GridPane.margin>
+            </ComboBox>
          </children>
       </GridPane>
    </center>
