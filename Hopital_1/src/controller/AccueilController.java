@@ -49,7 +49,7 @@ public class AccueilController implements Initializable {
             ajoutPersonnel.setVisible(false);
             ajoutSymptome.setVisible(false);
             ajoutMedicament.setVisible(false);
-            if(EcranLogController.getPersonnelConnecte().equals(Medecin.class)){
+            if(EcranLogController.getPersonnelConnecte().isMedecin()){
                 vueOrdonnance.setVisible(true);
             }
         }
@@ -114,7 +114,7 @@ public class AccueilController implements Initializable {
 
     @FXML
     private void AjoutMedic(ActionEvent event) throws IOException {
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/GestionMedicament.fxml"));
+        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/GestionMedicaments.fxml"));
         Scene scene = new Scene(root);
         Stage st = EcranLogController.getStage();
         st.setScene(scene);        

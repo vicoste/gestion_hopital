@@ -6,6 +6,7 @@
 package modele;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javafx.collections.ObservableList;
 
 /**
@@ -24,13 +25,15 @@ public class Medicament implements Serializable{
         public String getDescription() {return description;}
         public void setDescription(String description) {this.description = description;}
     
-    private ObservableList<Symptome> listeSymptome;//ceci est la liste des symptomes qui seront soignés par le medicament
-        public ObservableList<Symptome> getListeSymptome() {return listeSymptome;}
-        public void setListeSymptome(ObservableList<Symptome> listeSymptome) {this.listeSymptome = listeSymptome;}
+    private ArrayList<Symptome> listeSymptome;//ceci est la liste des symptomes qui seront soignés par le medicament
+        public ArrayList<Symptome> getListeSymptome() {return listeSymptome;}
+        public void setListeSymptome(ArrayList<Symptome> listeSymptome) {this.listeSymptome = listeSymptome;}
     
-    public Medicament(String nom, String description) {
+    public Medicament(String nom, String description, ObservableList<Symptome> l) {
         this.nom = nom;
         this.description = description;
+        for(Symptome s : l)listeSymptome.add(s);
+        
     }
     
     @Override

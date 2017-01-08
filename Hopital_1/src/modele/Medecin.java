@@ -31,6 +31,11 @@ public class Medecin extends Personnel{
         super(nom, prenom, mdp);
         ;
     }  
+
+    @Override
+    public boolean isMedecin() {
+        return true; 
+    }
     
     
     @Override
