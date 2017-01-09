@@ -6,6 +6,7 @@
 package modele;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -27,6 +28,22 @@ public class Symptome implements Serializable{
         this.description = description;
     }
 
+   
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null)return false;        
+        if (getClass() != obj.getClass())return false;
+        
+        final Symptome other = (Symptome) obj;
+        if (!Objects.equals(this.nom, other.nom))return false;
+        return true;
+    }
+
+   
+
+    
     @Override
     public String toString() {
         return getNom(); //To change body of generated methods, choose Tools | Templates.

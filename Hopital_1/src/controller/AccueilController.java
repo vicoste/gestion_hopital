@@ -14,10 +14,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import launch.Main;
-import modele.Medecin;
+import modele.FicheMedicale;
+import modele.Patient;
 
 /**
  * FXML Controller class
@@ -34,7 +36,12 @@ public class AccueilController implements Initializable {
     private Button ajoutMedicament;
     @FXML
     private Button vueOrdonnance;
+    @FXML
+    private ComboBox<FicheMedicale> selectionPatient;
 
+    private static FicheMedicale p;
+        public static FicheMedicale getPatient() {return p;}
+        
     
     /**
      * Initializes the controller class.
@@ -42,6 +49,7 @@ public class AccueilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        selectionPatient.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
         if(EcranLogController.getPersonnelConnecte().getNom()=="admin"){            
         }else{
             vueOrdonnance.setVisible(false);
@@ -52,6 +60,7 @@ public class AccueilController implements Initializable {
                 vueOrdonnance.setVisible(true);
             }
         }
+        
     }    
 
     @FXML
@@ -86,6 +95,7 @@ public class AccueilController implements Initializable {
 
     @FXML
     private void handleButtonOrdonnance(ActionEvent event) throws IOException {
+        p = selectionPatient.getSelectionModel().getSelectedItem();
         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Ordonnance.fxml"));
         Scene scene = new Scene(root);
         Stage st = EcranLogController.getStage();
@@ -95,6 +105,7 @@ public class AccueilController implements Initializable {
 
     @FXML
     private void Personnel(ActionEvent event) throws IOException {
+        
         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/GestionPersonnel.fxml"));
         Scene scene = new Scene(root);
         Stage st = EcranLogController.getStage();

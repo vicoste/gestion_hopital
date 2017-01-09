@@ -132,7 +132,7 @@ public class GestionMedicamentsController implements Initializable {
     private void ajout(ActionEvent event) {
         if(nom.getText().equals("")|| description.getText().equals("")|| symptomeSoigne.getSelectionModel().getSelectedItems().equals(null)){showMessage(Alert.AlertType.ERROR, null, "Données invalides");return;}
         
-        Medicament m =new Medicament(nom.getText(), description.getText(), symptomeSoigne.getSelectionModel().getSelectedItems());
+        Medicament m =new Medicament(nom.getText(), description.getText(), symptomeSoigne.getItems());
         Main.getHopital().getListeMedicament().add(m);
         nom.setText(""); description.setText("");listeSymp.addAll(listeSympSoin);listeSympSoin.clear();
     }

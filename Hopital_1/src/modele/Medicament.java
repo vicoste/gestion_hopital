@@ -30,10 +30,17 @@ public class Medicament implements Serializable{
         public void setListeSymptome(ArrayList<Symptome> listeSymptome) {this.listeSymptome = listeSymptome;}
     
     public Medicament(String nom, String description, ObservableList<Symptome> l) {
+        ArrayList<Symptome> listeSymptomeaaz = new ArrayList<>();
         this.nom = nom;
         this.description = description;
-        for(Symptome s : l)listeSymptome.add(s);
-        
+        for(Symptome s : l) listeSymptomeaaz.add(s);
+        listeSymptome=listeSymptomeaaz;
+    }
+    
+    public boolean soigne(Symptome s){
+        //return listeSymptome.stream().anyMatch((p) -> (p.equals(s)));
+        for(Symptome p : listeSymptome) if(p.equals(s)) return true;
+        return false;
     }
     
     @Override
