@@ -24,10 +24,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import launch.Main;
 import modele.FicheMedicale;
-import modele.Hopital;
+import modele.Heure;
 import modele.Medecin;
 import modele.Personnel;
-import modele.RendezVous;
 
 /**
  * FXML Controller class
@@ -46,7 +45,7 @@ public class SelectFMController implements Initializable {
     private ComboBox<Medecin> cb;
     
     @FXML
-    private ComboBox<FicheMedicale> cbheure;
+    private ComboBox<Heure> cbheure;
     
     @FXML
     private DatePicker datePicker;
@@ -56,17 +55,29 @@ public class SelectFMController implements Initializable {
         public static ObservableList<Medecin> getListeMedecin(){return listeMedecin.get();}
         public static void setListeMedecin(ObservableList<Medecin> m){listeMedecin.set(m);}
         public static ListProperty<Medecin> listeMedecin(){return listeMedecin;}
-    /**
+    
+        
+     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        ficheMedicModif.setVisible(false);
+        
+        if(RDVController.getRDV()!=null){
         
         list.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
-        for(Personnel e : Main.getHopital().listePersonnel())if(e.equals(Medecin.class)) listeMed.add((Medecin)e);
-        cb.itemsProperty().bind(listeMedecin());
-        //cbheure.setItems(Main.getListFM());
         
+        for(Personnel e : Main.getHopital().listePersonnel())if(e.isMedecin()) listeMed.add((Medecin)e);
+        
+        cb.itemsProperty().bind(listeMedecin());
+        
+        //cbheure.setSelectionModel();
+        } else {
+            list.setVisible(false);
+            ficheMedicModif.setText(RDVController.getRDV().toString());
+            
+        }
         
         
         

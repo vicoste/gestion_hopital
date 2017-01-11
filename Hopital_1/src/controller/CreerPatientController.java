@@ -54,7 +54,7 @@ public class CreerPatientController implements Initializable {
         
         femme.setSelected(true); 
         
-        age.setMin(0); age.setMax(120); age.setSnapToTicks(true); age.setMinorTickCount(1);
+        age.setMin(0); age.setMax(120); age.setBlockIncrement(1); age.setMinorTickCount(1);
         age.setValue(40);
         valeurAge.setText("40");
         
@@ -67,13 +67,15 @@ public class CreerPatientController implements Initializable {
                 
 
             if (t.isAdded()) {
-                if (t.getControlText().contains(",")) {
-                    if (t.getText().matches("[^0-9]")) {
+                if(t.getRangeEnd()<3){
+                    if (t.getControlText().contains(",")) {
+                        if (t.getText().matches("[^0-9]")) {
+                            t.setText("");
+                        }
+                    } else if (t.getText().matches("[^0-9,]")) {
                         t.setText("");
                     }
-                } else if (t.getText().matches("[^0-9,]")) {
-                    t.setText("");
-                }
+                } else t.setText("");
             }
             return t;
         }));

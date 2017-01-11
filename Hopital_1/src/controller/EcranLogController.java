@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -43,12 +44,17 @@ public class EcranLogController implements Initializable {
     
     @FXML
     private PasswordField mdp;
-    
+   
+    private static Stage stage;  
+        public static Stage getStage() {return stage;}
+        
+    private static Personnel personnelConnecte;
+        public static Personnel getPersonnelConnecte() {return personnelConnecte;}
+     
     private final String idt="";
     private final String mot="";
-    private static Stage stage;
-    private static Personnel personnelConnecte;
-    
+    @FXML
+    private Label erreurNum;
     /**
      * Initializes the controller class.
      * @throws java.io.IOException
@@ -110,23 +116,28 @@ public class EcranLogController implements Initializable {
     }
     
     @FXML
-    public void handleButtonPatient(){
+    public void handleButtonPatient() throws IOException{
         for(FicheMedicale f : Main.getHopital().getListeFicheMedicale()){
             if(numDossier.getText().equals(f.getNumDossier())){
-                //entrer dans la vue de l'ordonnance du patient
+                OrdonnanceController.setFicheMedicale(f);
+                if(f.getOrdonnance() != null){
+                BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Ordonnance.fxml"));
+                Scene scene = new Scene(root);
+                Stage st = EcranLogController.getStage();
+                st.setScene(scene);        
+                st.show();}
+                else{
+                    showMessage(Alert.AlertType.ERROR, null, f+" n'a pas d'ordonnance a disposition");
+                }
+            } else{
+                erreurNum.setVisible(true);
             }
             
         }
         
     }
     
-    public static Stage getStage() {
-        return stage;
-    }
-
-    public static Personnel getPersonnelConnecte() {
-        return personnelConnecte;
-    }
+   
     
     
  }

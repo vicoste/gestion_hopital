@@ -61,23 +61,21 @@ public class Hopital {
         public ListProperty<Patient> listePatient(){return listePatient;}
     
         
-    /*
+  
+        
+        
+        
+        
+        
+        
+        
+        
+        /*
         Cette fonction est appelée a la fermeture du programme, elle permet de rendre toutes les
         listes du programme persistantes
         */
     public void serializerListes() {
-        /*Patient p = new Patient("secu", "nom", "prenom", 0, Boolean.TRUE);
-        listP.add(p);
-        Medicament med = new Medicament("dolipprane", "anti-douleur");
-        listMedic.add(med);
-        Symptome s = new Symptome("toux", "gorge irrité");
-        listeSymp.add(s);
-        FicheMedicale f = new FicheMedicale("douleur a la tete", p, listeSymp);
-        listeFiche.add(f);
-        RendezVous r = new RendezVous(f, LocalDate.now());
-        listRDV.add(r);
-        Personnel m = new Medecin("nom", "prenom", "lol", "lol", listRDV);
-        listePers.add(m);*/
+   
         serializerPatient();
         serializerMedicament();
         serializerSymptome();

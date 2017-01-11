@@ -46,12 +46,17 @@ public class OrdonnanceController implements Initializable {
         public ObservableList<Medicament> getListeMedicament(){return listeMedicament.get();}
         public void setListeMedicament(ObservableList<Medicament> med){listeMedicament.set(med);}
         public ListProperty<Medicament> listeMedicament(){return listeMedicament;}
+        
+    private static FicheMedicale f;
+        public static FicheMedicale getFicheMedicale() {return f;}
+        public static void setFicheMedicale(FicheMedicale f) {OrdonnanceController.f = f;}
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        FicheMedicale f = AccueilController.getPatient();
+        
         int i =0;
         ArrayList<Symptome> aux =new ArrayList<>();
         

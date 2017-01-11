@@ -35,9 +35,11 @@ public class RDVController implements Initializable {
     private ListView<RendezVous> list;
         
     private static Stage stage;
+        public static Stage getStage() {return stage;}
+        
     private static RendezVous rv;
-    
-    
+        public static RendezVous getRDV() {return  rv ;}
+        
     /**
      * Initializes the controller class.
      */
@@ -90,7 +92,7 @@ public class RDVController implements Initializable {
             st.setResizable(false);
             stage=st;
             
-            rv= list.getSelectionModel().getSelectedItem();
+            rv = list.getSelectionModel().getSelectedItem();
             
             st.show();
              
@@ -130,14 +132,7 @@ public class RDVController implements Initializable {
     }
     
     
-    public static Stage getStage() {
-        return stage;
-    }
-
-    public static RendezVous getRDV() {
-        
-        return  rv ;
-    }
+   
     
    
     

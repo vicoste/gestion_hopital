@@ -7,19 +7,21 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import launch.Main;
 import modele.FicheMedicale;
-import modele.Patient;
 
 /**
  * FXML Controller class
@@ -38,10 +40,6 @@ public class AccueilController implements Initializable {
     private Button vueOrdonnance;
     @FXML
     private ComboBox<FicheMedicale> selectionPatient;
-
-    private static FicheMedicale p;
-        public static FicheMedicale getPatient() {return p;}
-        
     
     /**
      * Initializes the controller class.
@@ -95,12 +93,17 @@ public class AccueilController implements Initializable {
 
     @FXML
     private void handleButtonOrdonnance(ActionEvent event) throws IOException {
-        p = selectionPatient.getSelectionModel().getSelectedItem();
+        FicheMedicale p =selectionPatient.getSelectionModel().getSelectedItem();
+        OrdonnanceController.setFicheMedicale(p);
+        if(p.getOrdonnance() != null){
         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Ordonnance.fxml"));
         Scene scene = new Scene(root);
         Stage st = EcranLogController.getStage();
         st.setScene(scene);        
-        st.show();
+        st.show();}
+        else{
+            showMessage(Alert.AlertType.ERROR, null, p+" n'a pas d'ordonnance a disposition");
+        }
     }
 
     @FXML
@@ -131,5 +134,15 @@ public class AccueilController implements Initializable {
         st.show();
     }
    
+    private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
+        Alert laFenetre = new Alert(type);
+        laFenetre.setHeaderText(header);
+        laFenetre.setContentText(message);
+        if (lesBoutonsDifferents.length > 0) {
+            laFenetre.getButtonTypes().clear();
+            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
+        }
+        return laFenetre.showAndWait();
+    }
     
 }

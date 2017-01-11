@@ -6,11 +6,8 @@
 package modele;
 
 import java.io.Serializable;
-import java.util.Dictionary;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**

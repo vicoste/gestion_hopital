@@ -6,13 +6,9 @@
 package modele;
 
 
-import com.sun.org.apache.xerces.internal.xs.ItemPSVI;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
@@ -47,11 +43,6 @@ public class FicheMedicale implements Serializable{
         public Ordonnance getOrdonnance() {return ordonnance;}
         public void setOrdonnance(Ordonnance ordonnance) {this.ordonnance = ordonnance;}
     
-   /* private ObservableList<Symptome> listeSymp=FXCollections.observableArrayList();
-        private ListProperty<Symptome> listeSymptome = new SimpleListProperty<>(listeSymp);
-        public ObservableList<Symptome> getListeSymptome(){return listeSymptome.get();}
-        public void setListeSymptome(ObservableList<Symptome> s){listeSymptome.set(s);}
-        public ListProperty<Symptome> listeSymptome(){return listeSymptome;}*/
     private ArrayList<Symptome> listSymp = new ArrayList<>();
         public ArrayList<Symptome> getListSymp() {return listSymp;}
         public void setListSymp(ArrayList<Symptome> listSymp) {this.listSymp = listSymp;}
@@ -72,7 +63,7 @@ public class FicheMedicale implements Serializable{
         est qu'elle est uniquement appelée à la création de la fiche médicale
         */
         createNumDossier();
-        /*this.listSymp est une arrayList car l'ObservableList n'est pas serializable
+        /*listSymp est une arrayList car l'ObservableList n'est pas serializable
             je n'utilise que des ObservableList dans ce programme donc j'ai recours a un "for each" 
         afin de remplir mon ArrayList avec une ObservableList
         */

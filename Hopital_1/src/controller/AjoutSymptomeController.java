@@ -28,7 +28,7 @@ import org.omg.CORBA.MARSHAL;
 /**
  * FXML Controller class
  *
- * @author Merle Laure
+ * @author Coste Virgile
  */
 public class AjoutSymptomeController implements Initializable {
 
