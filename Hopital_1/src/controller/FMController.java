@@ -55,11 +55,6 @@ public class FMController implements Initializable {
         st.setScene(scene);        
         st.show();
     }
-
-    
-
-  
-
     
      @FXML
     private void handleButtonAjouter(ActionEvent event) throws IOException{
@@ -76,11 +71,11 @@ public class FMController implements Initializable {
     @FXML
     private void handleButtonSupprimer(ActionEvent event) throws IOException{
         if(list.getSelectionModel().getSelectedItem()==null) {
-            showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un RDV. Veuillez recommencer");
+            showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une fiche médicale. Veuillez recommencer");
         } 
         else {
             if (showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
-           // Main.delListFM(list.getSelectionModel().getSelectedItem());
+            Main.getHopital().getListeFicheMedicale().remove(list.getSelectionModel().getSelectedItem());
             
                 
                 
@@ -111,7 +106,13 @@ public class FMController implements Initializable {
        
     }
     
-    private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
+
+
+    public static Stage getStage() {
+        return stage;
+    }
+    
+       private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
         Alert laFenetre = new Alert(type);
         laFenetre.setHeaderText(header);
         laFenetre.setContentText(message);
@@ -121,11 +122,5 @@ public class FMController implements Initializable {
         }
         return laFenetre.showAndWait();
     }
-
-    public static Stage getStage() {
-        return stage;
-    }
-    
-   
     
 }

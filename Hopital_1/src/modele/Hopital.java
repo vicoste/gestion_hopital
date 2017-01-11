@@ -60,15 +60,7 @@ public class Hopital {
         public void setlistePatient(ObservableList<Patient> patient){listePatient.set(patient);}
         public ListProperty<Patient> listePatient(){return listePatient;}
     
-        
-  
-        
-        
-        
-        
-        
-        
-        
+
         
         /*
         Cette fonction est appelée a la fermeture du programme, elle permet de rendre toutes les
@@ -209,33 +201,19 @@ public class Hopital {
      
      
     private void serializerMedicament(){         
-        ObjectOutputStream oos = null;
-        try {
-            final FileOutputStream fichier = new FileOutputStream("src/data/medicament.ser");            
-            oos = new ObjectOutputStream(fichier);            
-            oos.writeObject(new ArrayList<>(listMedic)); 
-            oos.flush();
-            
+       
+        try(FileOutputStream fichier = new FileOutputStream("src/data/medicament.ser")) {                       
+            ObjectOutputStream oos = new ObjectOutputStream(fichier);            
+            oos.writeObject(new ArrayList<>(listMedic));          
+        
         } catch (final IOException e) {
-            e.printStackTrace();
-            
-        } finally {
-            try {
-                if (oos != null) {
-                    oos.flush();
-                    oos.close();
-                }
-                
-            } catch (final IOException ex) {
-                ex.printStackTrace();
-            }
+            e.printStackTrace();           
         }
     }
     private void deserializerMedicament(){
-        ObjectInputStream ois = null;
-         try {
-            final FileInputStream fichier = new FileInputStream("src/data/medicament.ser");
-            ois = new ObjectInputStream(fichier);            
+        
+         try(FileInputStream fichier = new FileInputStream("src/data/medicament.ser")) {            
+            ObjectInputStream ois = new ObjectInputStream(fichier);            
             List<Medicament> list = (List<Medicament>) ois.readObject();            
             listMedic.addAll(list);
             System.out.println(listMedic);                
@@ -244,17 +222,8 @@ public class Hopital {
             e.printStackTrace();
             
         } catch (final ClassNotFoundException e) {
-            e.printStackTrace();
-            
-        } finally {
-            try {
-                if (ois != null) {
-                    ois.close();
-                }
-                
-            } catch (final IOException ex) {
-            ex.printStackTrace();
-            }
+            e.printStackTrace();            
+        
         }
     }
      

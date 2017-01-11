@@ -107,17 +107,7 @@ public class RDVController implements Initializable {
         EcranLogController.getStage().hide();
        
     }
-    
-    private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
-        Alert laFenetre = new Alert(type);
-        laFenetre.setHeaderText(header);
-        laFenetre.setContentText(message);
-        if (lesBoutonsDifferents.length > 0) {
-            laFenetre.getButtonTypes().clear();
-            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
-        }
-        return laFenetre.showAndWait();
-    }
+
 
     @FXML
     private void handleButtonRetour(ActionEvent event)throws IOException{
@@ -131,7 +121,17 @@ public class RDVController implements Initializable {
         
     }
     
-    
+        
+    private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
+        Alert laFenetre = new Alert(type);
+        laFenetre.setHeaderText(header);
+        laFenetre.setContentText(message);
+        if (lesBoutonsDifferents.length > 0) {
+            laFenetre.getButtonTypes().clear();
+            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
+        }
+        return laFenetre.showAndWait();
+    }
    
     
    

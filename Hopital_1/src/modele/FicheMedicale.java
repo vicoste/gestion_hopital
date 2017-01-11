@@ -52,8 +52,7 @@ public class FicheMedicale implements Serializable{
         public void setEtat(Boolean etat) {this.etat = etat;}
     
     public FicheMedicale(String motif, Patient p, ObservableList<Symptome> liste){        
-        
-        
+ 
         this.motif = motif;
         patient = p;        
         etat = false;

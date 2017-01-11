@@ -38,7 +38,7 @@ public class Medicament implements Serializable{
     }
     
     public boolean soigne(Symptome s){
-        //return listeSymptome.stream().anyMatch((p) -> (p.equals(s)));
+        
         for(Symptome p : listeSymptome) if(p.equals(s)) return true;
         return false;
     }

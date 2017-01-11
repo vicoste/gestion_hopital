@@ -49,9 +49,7 @@ public class CreerPatientController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-            
-        
+
         femme.setSelected(true); 
         
         age.setMin(0); age.setMax(120); age.setBlockIncrement(1); age.setMinorTickCount(1);

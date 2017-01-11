@@ -64,7 +64,7 @@ public class SelectFMController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         ficheMedicModif.setVisible(false);
         
-        if(RDVController.getRDV()!=null){
+   
         
         list.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
         
@@ -73,12 +73,7 @@ public class SelectFMController implements Initializable {
         cb.itemsProperty().bind(listeMedecin());
         
         //cbheure.setSelectionModel();
-        } else {
-            list.setVisible(false);
-            ficheMedicModif.setText(RDVController.getRDV().toString());
-            
-        }
-        
+       
         
         
     } 
