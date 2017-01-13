@@ -5,6 +5,7 @@
  */
 package controller;
 
+import launch.ControllerUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -39,6 +40,7 @@ public class AjoutSymptomeController implements Initializable {
     @FXML
     private TextArea description;
 
+    ControllerUtils a = new ControllerUtils();
     /**
      * Initializes the controller class.
      */
@@ -58,18 +60,18 @@ public class AjoutSymptomeController implements Initializable {
 
     @FXML
     private void deconnection(ActionEvent event) throws IOException {
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/EcranLog.fxml"));
-        Scene scene = new Scene(root);
-        Main.getStage().setScene(scene);
-        Main.getStage().show();
-        EcranLogController.getStage().hide();
+        a.deconnection();
        
     }
 
     @FXML
     private void ajouter(ActionEvent event) {
         
-        if(nom.getText().equals("")){showMessage(Alert.AlertType.ERROR, null, "Données invalides");return;}
+        if(nom.getText().equals("")){
+        
+            a.showMessage(Alert.AlertType.ERROR, null, "Données invalides");
+            return;
+        }
         
         Symptome s = new Symptome(nom.getText(), description.getText());
         Main.getHopital().getListeSymptome().add(s);
@@ -77,14 +79,4 @@ public class AjoutSymptomeController implements Initializable {
         
     }
    
-    private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
-        Alert laFenetre = new Alert(type);
-        laFenetre.setHeaderText(header);
-        laFenetre.setContentText(message);
-        if (lesBoutonsDifferents.length > 0) {
-            laFenetre.getButtonTypes().clear();
-            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
-        }
-        return laFenetre.showAndWait();
-    }
 }

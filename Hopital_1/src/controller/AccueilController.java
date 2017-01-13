@@ -5,6 +5,7 @@
  */
 package controller;
 
+import launch.ControllerUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -40,6 +41,8 @@ public class AccueilController implements Initializable {
     private Button vueOrdonnance;
     @FXML
     private ComboBox<FicheMedicale> selectionPatient;
+    
+    ControllerUtils a = new ControllerUtils();
     
     /**
      * Initializes the controller class.
@@ -83,11 +86,7 @@ public class AccueilController implements Initializable {
     
     @FXML
     private void handleButtonLogout(ActionEvent event) throws IOException{
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/EcranLog.fxml"));
-        Scene scene = new Scene(root);
-        Main.getStage().setScene(scene);
-        Main.getStage().show();
-        EcranLogController.getStage().hide();
+       a.deconnection();
     }
 
 
@@ -95,6 +94,7 @@ public class AccueilController implements Initializable {
     private void handleButtonOrdonnance(ActionEvent event) throws IOException {
         FicheMedicale p =selectionPatient.getSelectionModel().getSelectedItem();
         OrdonnanceController.setFicheMedicale(p);
+        
         if(p.getOrdonnance() != null){
         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Ordonnance.fxml"));
         Scene scene = new Scene(root);
@@ -102,7 +102,7 @@ public class AccueilController implements Initializable {
         st.setScene(scene);        
         st.show();}
         else{
-            showMessage(Alert.AlertType.ERROR, null, p+" n'a pas d'ordonnance a disposition");
+            a.showMessage(Alert.AlertType.ERROR, null, p+" n'a pas d'ordonnance a disposition");
         }
     }
 
@@ -134,15 +134,7 @@ public class AccueilController implements Initializable {
         st.show();
     }
    
-    private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
-        Alert laFenetre = new Alert(type);
-        laFenetre.setHeaderText(header);
-        laFenetre.setContentText(message);
-        if (lesBoutonsDifferents.length > 0) {
-            laFenetre.getButtonTypes().clear();
-            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
-        }
-        return laFenetre.showAndWait();
-    }
+
+    
     
 }

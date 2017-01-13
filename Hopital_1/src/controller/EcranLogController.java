@@ -5,6 +5,7 @@
  */
 package controller;
 
+import launch.ControllerUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -45,22 +46,20 @@ public class EcranLogController implements Initializable {
     @FXML
     private PasswordField mdp;
 
-    private static Stage stage;
-
-    public static Stage getStage() {
-        return stage;
-    }
-
-    private static Personnel personnelConnecte;
-
-    public static Personnel getPersonnelConnecte() {
-        return personnelConnecte;
-    }
-
-    private final String idt = "";
-    private final String mot = "";
     @FXML
     private Label erreurNum;
+    
+    private static Stage stage;
+        public static Stage getStage() {return stage;}
+
+    private static Personnel personnelConnecte;
+        public static Personnel getPersonnelConnecte() {return personnelConnecte;}
+
+    ControllerUtils a = new ControllerUtils();
+    
+    private final String idt = "";
+    private final String mot = "";
+    
 
     /**
      * Initializes the controller class.
@@ -104,7 +103,7 @@ public class EcranLogController implements Initializable {
             }
 
         }
-        showMessage(Alert.AlertType.ERROR, null, "Identifiant ou mot de passe incorrect. Veuillez recommencer");
+        a.showMessage(Alert.AlertType.ERROR, null, "Identifiant ou mot de passe incorrect. Veuillez recommencer");
 
     }
 
@@ -120,7 +119,7 @@ public class EcranLogController implements Initializable {
                     st.setScene(scene);
                     st.show();
                 } else {
-                    showMessage(Alert.AlertType.ERROR, null, f + " n'a pas d'ordonnance a disposition");
+                    a.showMessage(Alert.AlertType.ERROR, null, f + " n'a pas d'ordonnance a disposition");
                 }
             } else {
                 erreurNum.setVisible(true);
@@ -129,16 +128,4 @@ public class EcranLogController implements Initializable {
         }
 
     }
-
-    private Optional<ButtonType> showMessage(Alert.AlertType type, String header, String message, ButtonType... lesBoutonsDifferents) {
-        Alert laFenetre = new Alert(type);
-        laFenetre.setHeaderText(header);
-        laFenetre.setContentText(message);
-        if (lesBoutonsDifferents.length > 0) {
-            laFenetre.getButtonTypes().clear();
-            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
-        }
-        return laFenetre.showAndWait();
-    }
-
 }

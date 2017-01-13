@@ -5,6 +5,7 @@
  */
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -16,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ListView;
+import launch.ControllerUtils;
 import launch.Main;
 import modele.Medicament;
 import modele.FicheMedicale;
@@ -50,6 +52,8 @@ public class OrdonnanceController implements Initializable {
     private static FicheMedicale f;
         public static FicheMedicale getFicheMedicale() {return f;}
         public static void setFicheMedicale(FicheMedicale f) {OrdonnanceController.f = f;}
+        
+    ControllerUtils a = new ControllerUtils();
     
     /**
      * Initializes the controller class.
@@ -84,7 +88,8 @@ public class OrdonnanceController implements Initializable {
         
 
     @FXML
-    private void handleButtonLogout(ActionEvent event) {
+    private void handleButtonLogout(ActionEvent event)throws IOException{
+        a.deconnection();
     }
 
     @FXML

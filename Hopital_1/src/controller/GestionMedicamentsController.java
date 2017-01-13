@@ -5,6 +5,7 @@
  */
 package controller;
 
+import launch.ControllerUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -48,6 +49,8 @@ public class GestionMedicamentsController implements Initializable {
     private ListView<Symptome> symptomeSoigne;
     @FXML
     private ListView<Symptome> listSymptome;
+    
+    ControllerUtils a = new ControllerUtils();
 
     private ObservableList<Symptome> listeSymp=FXCollections.observableArrayList();
     private ListProperty<Symptome> listeSymptome = new SimpleListProperty<>(listeSymp);
@@ -118,10 +121,10 @@ public class GestionMedicamentsController implements Initializable {
     @FXML
     private void suppression(ActionEvent event) {
         if(list.getSelectionModel().getSelectedItem()==null) {
-            showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une Medicament. Veuillez recommencer");
+            a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une Medicament. Veuillez recommencer");
         } 
         else {
-            if(showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
+            if(a.showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
             Main.getHopital().getListeMedicament().remove(list.getSelectionModel().getSelectedItem());
         }
         
@@ -129,22 +132,17 @@ public class GestionMedicamentsController implements Initializable {
 
     @FXML
     private void ajout(ActionEvent event) {
-        if(nom.getText().equals("")|| description.getText().equals("")|| symptomeSoigne.getSelectionModel().getSelectedItems().equals(null)){showMessage(Alert.AlertType.ERROR, null, "Données invalides");return;}
+        if(nom.getText().equals("")
+                || description.getText().equals("")
+                || symptomeSoigne.getSelectionModel().getSelectedItems().equals(null)){
+            
+            a.showMessage(Alert.AlertType.ERROR, null, "Données invalides");
+            return;
+        }
         
         Medicament m =new Medicament(nom.getText(), description.getText(), symptomeSoigne.getItems());
         Main.getHopital().getListeMedicament().add(m);
         nom.setText(""); description.setText("");listeSymp.addAll(listeSympSoin);listeSympSoin.clear();
-    }
-    
-        private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
-        Alert laFenetre = new Alert(type);
-        laFenetre.setHeaderText(header);
-        laFenetre.setContentText(message);
-        if (lesBoutonsDifferents.length > 0) {
-            laFenetre.getButtonTypes().clear();
-            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
-        }
-        return laFenetre.showAndWait();
     }
     
 }

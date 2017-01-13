@@ -5,6 +5,7 @@
  */
 package controller;
 
+import launch.ControllerUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -35,7 +36,11 @@ public class FMController implements Initializable {
     private ListView<FicheMedicale> list;
     
     private static Stage stage;
+        public static Stage getStage() {return stage;}
+        
     private static ObservableValue<FicheMedicale> listFM;
+    
+    ControllerUtils a = new ControllerUtils();
     /**
      * Initializes the controller class.
      */
@@ -64,31 +69,27 @@ public class FMController implements Initializable {
         st.initOwner(EcranLogController.getStage());
         st.initModality(Modality.WINDOW_MODAL);
         st.setScene(scene);
-        st.setResizable(false);
-        stage = st;
+        st.setResizable(false);        
         st.show();
+        stage = st;
     }
+    
     @FXML
     private void handleButtonSupprimer(ActionEvent event) throws IOException{
         if(list.getSelectionModel().getSelectedItem()==null) {
-            showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une fiche médicale. Veuillez recommencer");
+            a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une fiche médicale. Veuillez recommencer");
         } 
         else {
-            if (showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
+            if (a.showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
             Main.getHopital().getListeFicheMedicale().remove(list.getSelectionModel().getSelectedItem());
-            
-                
-                
-            }
-            
-            
-             
-        }
+   
+        }  
+    }
     
     @FXML
     private void handleButtonModifier(ActionEvent event) throws IOException{
         if(list.getSelectionModel().getSelectedItem()==null) {
-            showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une RDV. Veuillez recommencer");
+            a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une RDV. Veuillez recommencer");
         } 
         else {
         
@@ -98,29 +99,13 @@ public class FMController implements Initializable {
     }
     @FXML
     private void handleButtonLogout(ActionEvent event) throws IOException{
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/EcranLog.fxml"));
-        Scene scene = new Scene(root);
-        Main.getStage().setScene(scene);
-        Main.getStage().show();
-        EcranLogController.getStage().hide();
+        a.deconnection();
        
     }
     
 
 
-    public static Stage getStage() {
-        return stage;
-    }
-    
-       private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
-        Alert laFenetre = new Alert(type);
-        laFenetre.setHeaderText(header);
-        laFenetre.setContentText(message);
-        if (lesBoutonsDifferents.length > 0) {
-            laFenetre.getButtonTypes().clear();
-            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
-        }
-        return laFenetre.showAndWait();
-    }
+
+ 
     
 }

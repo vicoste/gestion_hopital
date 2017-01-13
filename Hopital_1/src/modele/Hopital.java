@@ -25,37 +25,37 @@ import javafx.collections.ObservableList;
 public class Hopital {
     
     private final ObservableList<Personnel> listePers=FXCollections.observableArrayList();
-    private ListProperty<Personnel> listePersonnel = new SimpleListProperty<>(listePers);
+    private final ListProperty<Personnel> listePersonnel = new SimpleListProperty<>(listePers);
         public  ObservableList<Personnel> getListePersonnel(){return listePersonnel.get();}
         public  void setListePersonnel(ObservableList<Personnel> p){listePersonnel.set(p);}
         public  ListProperty<Personnel> listePersonnel(){return listePersonnel;}
         
-    private ObservableList<FicheMedicale> listeFiche = FXCollections.observableArrayList();
+    private final ObservableList<FicheMedicale> listeFiche = FXCollections.observableArrayList();
     private final ListProperty<FicheMedicale> listeFicheMedicale = new SimpleListProperty<>(listeFiche);
         public ObservableList<FicheMedicale> getListeFicheMedicale(){return listeFicheMedicale.get();}
         public void setListeFicheMedicale(ObservableList<FicheMedicale> rdv){listeFicheMedicale.set(rdv);}
         public ListProperty<FicheMedicale> listeFicheMedicale(){return listeFicheMedicale;} 
     
-    private ObservableList<Symptome> listeSymp=FXCollections.observableArrayList();
-    private ListProperty<Symptome> listeSymptome = new SimpleListProperty<>(listeSymp);
+    private final ObservableList<Symptome> listeSymp=FXCollections.observableArrayList();
+    private final ListProperty<Symptome> listeSymptome = new SimpleListProperty<>(listeSymp);
         public ObservableList<Symptome> getListeSymptome(){return listeSymptome.get();}
         public void setListeSymptome(ObservableList<Symptome> s){listeSymptome.set(s);}
         public ListProperty<Symptome> listeSymptome(){return listeSymptome;}
         
-    private ObservableList<Medicament> listMedic=FXCollections.observableArrayList();
-    private ListProperty<Medicament> listeMedicament = new SimpleListProperty<>(listMedic);
+    private final ObservableList<Medicament> listMedic=FXCollections.observableArrayList();
+    private final ListProperty<Medicament> listeMedicament = new SimpleListProperty<>(listMedic);
         public ObservableList<Medicament> getListeMedicament(){return listeMedicament.get();}
         public void setListeMedicament(ObservableList<Medicament> med){listeMedicament.set(med);}
         public ListProperty<Medicament> listeMedicament(){return listeMedicament;}
         
-    private ObservableList<RendezVous> listRDV = FXCollections.observableArrayList();
+    private final ObservableList<RendezVous> listRDV = FXCollections.observableArrayList();
     private final ListProperty<RendezVous> listeRendezVous = new SimpleListProperty<>(listRDV);
         public ObservableList<RendezVous> getListeRendezVous(){return listeRendezVous.get();}
         public void setListeRendezVous(ObservableList<RendezVous> rdv){listeRendezVous.set(rdv);}
         public ListProperty<RendezVous> listeRendezVous(){return listeRendezVous;}
         
-    private ObservableList<Patient> listP = FXCollections.observableArrayList();
-    private ListProperty<Patient> listePatient = new SimpleListProperty<>(listP);
+    private final ObservableList<Patient> listP = FXCollections.observableArrayList();
+    private final ListProperty<Patient> listePatient = new SimpleListProperty<>(listP);
         public ObservableList<Patient> getListePatient(){return listePatient.get();}
         public void setlistePatient(ObservableList<Patient> patient){listePatient.set(patient);}
         public ListProperty<Patient> listePatient(){return listePatient;}
