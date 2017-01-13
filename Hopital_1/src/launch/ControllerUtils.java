@@ -38,12 +38,14 @@ public class ControllerUtils {
     public Stage gridPaneLoad(Stage initOwner, String chemin, boolean resize)throws IOException{
                
         GridPane root = (GridPane) FXMLLoader.load(getClass().getResource(chemin));
-        Scene scene = new Scene(root, 400, 400);//ATTENTION A LA TAILLE
+        Scene scene = new Scene(root);//ATTENTION A LA TAILLE
         Stage st = new Stage();
         st.initOwner(initOwner);
         st.initModality(Modality.WINDOW_MODAL);
         st.setScene(scene);
         st.setResizable(resize);
+        st.show();
+        
         return st;
     }
     
@@ -55,7 +57,7 @@ public class ControllerUtils {
     public Stage borderPaneLoad(Stage initOwner, String chemin, boolean resize)throws IOException{
         
         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource(chemin));
-        Scene scene = new Scene(root, 400, 400);//ATTENTION A LA TAILLE
+        Scene scene = new Scene(root);//ATTENTION A LA TAILLE
         Stage st = new Stage();
         st.initOwner(initOwner);
         st.initModality(Modality.WINDOW_MODAL);
