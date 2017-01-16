@@ -5,6 +5,7 @@
  */
 package controller;
 
+import launch.ControllerUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -41,6 +42,8 @@ public class AccueilController implements Initializable {
     @FXML
     private ComboBox<FicheMedicale> selectionPatient;
     
+    ControllerUtils a = new ControllerUtils();
+    
     /**
      * Initializes the controller class.
      */
@@ -74,75 +77,73 @@ public class AccueilController implements Initializable {
 
     @FXML
     private void handleButtonRDV(ActionEvent event) throws IOException{
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/RDV.fxml"));
+        
+        /*BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/RDV.fxml"));
         Scene scene = new Scene(root);
         Stage st = EcranLogController.getStage();
         st.setScene(scene);        
-        st.show();
+        st.show();*/
+        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/RDV.fxml");
+        
+        
     }
     
     @FXML
     private void handleButtonLogout(ActionEvent event) throws IOException{
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/EcranLog.fxml"));
-        Scene scene = new Scene(root);
-        Main.getStage().setScene(scene);
-        Main.getStage().show();
-        EcranLogController.getStage().hide();
+       a.deconnection();
     }
 
 
     @FXML
     private void handleButtonOrdonnance(ActionEvent event) throws IOException {
-        FicheMedicale p =selectionPatient.getSelectionModel().getSelectedItem();
+       
+        FicheMedicale p = selectionPatient.getSelectionModel().getSelectedItem();
         OrdonnanceController.setFicheMedicale(p);
+        
         if(p.getOrdonnance() != null){
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Ordonnance.fxml"));
-        Scene scene = new Scene(root);
-        Stage st = EcranLogController.getStage();
-        st.setScene(scene);        
-        st.show();}
-        else{
-            showMessage(Alert.AlertType.ERROR, null, p+" n'a pas d'ordonnance a disposition");
+            /*BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Ordonnance.fxml"));
+            Scene scene = new Scene(root);
+            Stage st = EcranLogController.getStage();
+            st.setScene(scene);        
+            st.show();*/
+            a.borderPaneLoad(EcranLogController.getStage(), "/ihm/Ordonnance.fxml");
+        } else{
+            a.showMessage(Alert.AlertType.ERROR, null, p+" n'a pas d'ordonnance a disposition");
         }
     }
 
     @FXML
     private void Personnel(ActionEvent event) throws IOException {
         
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/GestionPersonnel.fxml"));
+        /*BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/GestionPersonnel.fxml"));
         Scene scene = new Scene(root);
         Stage st = EcranLogController.getStage();
         st.setScene(scene);        
-        st.show();
+        st.show();*/
+        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/GestionPersonnel.fxml");
     }
 
     @FXML
-    private void AjoutSymp(ActionEvent event) throws IOException {
+    private void AjoutSymp(ActionEvent event) throws IOException {/*
         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/AjoutSymptome.fxml"));
         Scene scene = new Scene(root);
         Stage st = EcranLogController.getStage();
         st.setScene(scene);        
-        st.show();
+        st.show();*/
+        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/AjoutSymptome.fxml");
     }
 
     @FXML
     private void AjoutMedic(ActionEvent event) throws IOException {
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/GestionMedicaments.fxml"));
+        /*BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/GestionMedicaments.fxml"));
         Scene scene = new Scene(root);
         Stage st = EcranLogController.getStage();
         st.setScene(scene);        
-        st.show();
+        st.show();*/
+        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/GestionMedicaments.fxml");
     }
    
-    private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
-        Alert laFenetre = new Alert(type);
-        laFenetre.setHeaderText(header);
-        laFenetre.setContentText(message);
-        if (lesBoutonsDifferents.length > 0) {
-            laFenetre.getButtonTypes().clear();
-            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
-        }
-        return laFenetre.showAndWait();
-    }
+
+    
     
 }

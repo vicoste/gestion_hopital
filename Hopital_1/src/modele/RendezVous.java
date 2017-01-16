@@ -32,6 +32,7 @@ public class RendezVous implements Serializable{
         this.heure = heure;
         this.date = date;
         this.fiche = fiche;
+        
     }
 
     @Override

@@ -70,12 +70,12 @@ public class Personnel implements Serializable{
     }
     
     public boolean isMedecin(){
-    return false;
+        return false;
     }
     
     @Override
     public String toString() {
-        return getNom()+" "+getPrenom(); //To change body of generated methods, choose Tools | Templates.
+        return getPrenom()+" "+getNom(); //To change body of generated methods, choose Tools | Templates.
     }
     
     

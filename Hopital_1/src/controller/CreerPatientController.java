@@ -5,6 +5,7 @@
  */
 package controller;
 
+import launch.ControllerUtils;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -43,6 +44,7 @@ public class CreerPatientController implements Initializable {
     @FXML
     private TextField valeurAge;
     
+    ControllerUtils a = new ControllerUtils();
 
     /**
      * Initializes the controller class.
@@ -121,21 +123,21 @@ public class CreerPatientController implements Initializable {
         if(femme.equals(true)) sexe = true;
             
         if(nom.getText().equals("")) {
-            showMessage(Alert.AlertType.ERROR, null, "Veuillez entrer un nom.");
+            a.showMessage(Alert.AlertType.ERROR, null, "Veuillez entrer un nom.");
         } else{    
             if(prenom.getText().equals("")) { 
-                showMessage(Alert.AlertType.ERROR, null, "Veuillez entrer un prenom.");
+                a.showMessage(Alert.AlertType.ERROR, null, "Veuillez entrer un prenom.");
             } else{
                 if(numSecu.getLength()!=15){
-                    showMessage(Alert.AlertType.ERROR, null, "n° secu invalide.");
+                    a.showMessage(Alert.AlertType.ERROR, null, "n° secu invalide.");
                 } else{
                     if(numSecu.getText().substring(0, 1).matches("[^0-1]")){
-                        showMessage(Alert.AlertType.ERROR, null, "n° secu invalide.");
+                        a.showMessage(Alert.AlertType.ERROR, null, "n° secu invalide.");
                     }else{
                         
                         Patient p = new Patient(numSecu.getText(), nom.getText(), prenom.getText(), (int) age.getValue(), sexe);                     
                                               
-                        if(showMessage(Alert.AlertType.CONFIRMATION, null, "C'est données sont-elles exactes ?\n"
+                        if(a.showMessage(Alert.AlertType.CONFIRMATION, null, "C'est données sont-elles exactes ?\n"
                         + "Nom : "+p.getNom()+" \n"
                         + "prenom : "+p.getPrenom()+"\n"
                         + "age : "+p.getAge()+"\n"
@@ -149,17 +151,4 @@ public class CreerPatientController implements Initializable {
             }
         }
     }
-    
-    private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
-        Alert laFenetre = new Alert(type);
-        laFenetre.setHeaderText(header);
-        laFenetre.setContentText(message);
-        if (lesBoutonsDifferents.length > 0) {
-            laFenetre.getButtonTypes().clear();
-            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
-        }
-
-        return laFenetre.showAndWait();
-    }
-    
 }

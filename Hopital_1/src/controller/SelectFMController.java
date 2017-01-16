@@ -22,6 +22,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import launch.ControllerUtils;
 import launch.Main;
 import modele.FicheMedicale;
 import modele.Heure;
@@ -55,6 +56,8 @@ public class SelectFMController implements Initializable {
         public static ObservableList<Medecin> getListeMedecin(){return listeMedecin.get();}
         public static void setListeMedecin(ObservableList<Medecin> m){listeMedecin.set(m);}
         public static ListProperty<Medecin> listeMedecin(){return listeMedecin;}
+        
+    ControllerUtils a = new ControllerUtils();
     
         
      /**
@@ -62,9 +65,11 @@ public class SelectFMController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ficheMedicModif.setVisible(false);
         
-   
+        ObservableList<Heure> oh = FXCollections.observableArrayList();
+        for (Heure h : Heure.values()) oh.add(h);
+        
+        ficheMedicModif.setVisible(false);
         
         list.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
         
@@ -72,31 +77,30 @@ public class SelectFMController implements Initializable {
         
         cb.itemsProperty().bind(listeMedecin());
         
-        //cbheure.setSelectionModel();
+        cbheure.setItems(oh);
        
         
         
     } 
-    
     
 
     @FXML
     private void handleButtonConfirmer(ActionEvent event) {
 
         if(list.getSelectionModel().getSelectedItem()==null) {
-            showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une Fiche Medicale.");
+            a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une Fiche Medicale.");
         } else{    
             if(datePicker.getValue()==null) { 
-                showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une Date.");
+                a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une Date.");
             } else{
                 if(datePicker.getValue().compareTo(LocalDate.now())<0){
-                    showMessage(Alert.AlertType.ERROR, null, "Date invalide.");
+                    a.showMessage(Alert.AlertType.ERROR, null, "Date invalide.");
                 } else{
                     if(cbheure.getValue()==null) {
-                        showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une Heure.");
+                        a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une Heure.");
                     } else{
                         if(cb.getValue()==null) {
-                            showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un Medecin.");
+                            a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un Medecin.");
                         } 
                         else{
                           //  Main.setListRDV(new RendezVous(list.getSelectionModel().getSelectedItem(),cb.getValue(),datePicker.getValue()));
@@ -112,25 +116,4 @@ public class SelectFMController implements Initializable {
     private void handleButtonAnnuler(ActionEvent event) {
         RDVController.getStage().close();
     }
-    
-    private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
-        Alert laFenetre = new Alert(type);
-        laFenetre.setHeaderText(header);
-        laFenetre.setContentText(message);
-        if (lesBoutonsDifferents.length > 0) {
-            laFenetre.getButtonTypes().clear();
-            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
-        }
-        return laFenetre.showAndWait();
-    }
-
-
-
-   
-
-    
-   
-    
-    
-    
 }

@@ -22,7 +22,7 @@ public class Main extends Application {
     private static Hopital hopital = new Hopital();
         public static Hopital getHopital() {return hopital;}
 
-    
+    private ControllerUtils a = new ControllerUtils();
 
     //FONCTION MAIN
 
@@ -32,10 +32,12 @@ public class Main extends Application {
         hopital.deserializerListes();
         
         try {            
-            BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/EcranLog.fxml"));
+            /*BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/EcranLog.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.show();
+            stage.show();*/
+            a.borderPaneLoad(stage,"/ihm/EcranLog.fxml");
+            
         } catch (IOException e) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, e);
         }

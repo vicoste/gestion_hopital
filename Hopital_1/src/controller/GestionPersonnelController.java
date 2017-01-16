@@ -5,6 +5,7 @@
  */
 package controller;
 
+import launch.ControllerUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -43,6 +44,7 @@ public class GestionPersonnelController implements Initializable {
     @FXML
     private TextField prenom;
 
+    ControllerUtils a = new ControllerUtils();
     /**
      * Initializes the controller class.
      */
@@ -62,21 +64,16 @@ public class GestionPersonnelController implements Initializable {
 
     @FXML
     private void deconnection(ActionEvent event) throws IOException {
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/EcranLog.fxml"));
-        Scene scene = new Scene(root);
-        Main.getStage().setScene(scene);
-        Main.getStage().show();
-        EcranLogController.getStage().hide();
-       
+        a.deconnection();
     }
 
     @FXML
     private void suppression(ActionEvent event) {
         if(list.getSelectionModel().getSelectedItem()==null) {
-            showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un RDV. Veuillez recommencer");
+            a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un RDV. Veuillez recommencer");
         } 
         else {
-            if(showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
+            if(a.showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
             Main.getHopital().getListePersonnel().remove(list.getSelectionModel().getSelectedItem());
         }
         
@@ -85,7 +82,13 @@ public class GestionPersonnelController implements Initializable {
     @FXML
     private void ajout(ActionEvent event) {
         Personnel p;
-        if(nom.getText().equals("") || prenom.getText().equals("") || mdp.getText().equals("") ) {showMessage(Alert.AlertType.ERROR, null, "Données invalides");return;}
+        if(nom.getText().equals("") 
+                || prenom.getText().equals("") 
+                || mdp.getText().equals("")) {
+            
+            a.showMessage(Alert.AlertType.ERROR, null, "Données invalides");
+            return;
+        }
         
         if(checkBox.isSelected())p = new Medecin(nom.getText(), prenom.getText(), mdp.getText());
         else p = new Personnel(nom.getText(), prenom.getText(), mdp.getText());
@@ -93,15 +96,5 @@ public class GestionPersonnelController implements Initializable {
         Main.getHopital().getListePersonnel().add(p);
         nom.setText("");prenom.setText("");mdp.setText("");checkBox.setSelected(false);
     }
-    
-    private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
-        Alert laFenetre = new Alert(type);
-        laFenetre.setHeaderText(header);
-        laFenetre.setContentText(message);
-        if (lesBoutonsDifferents.length > 0) {
-            laFenetre.getButtonTypes().clear();
-            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
-        }
-        return laFenetre.showAndWait();
-    }
+
 }

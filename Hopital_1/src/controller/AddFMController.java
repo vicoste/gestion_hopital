@@ -5,6 +5,7 @@
  */
 package controller;
 
+import launch.ControllerUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -47,6 +48,8 @@ public class AddFMController implements Initializable {
 
     private ObservableList<Symptome> ls = FXCollections.observableArrayList();
     private ObservableList<Symptome> listeDansCB = FXCollections.observableArrayList();
+    
+    ControllerUtils a = new ControllerUtils();
     /**
      * Initializes the controller class.
      */
@@ -75,10 +78,10 @@ public class AddFMController implements Initializable {
     @FXML
     private void handleButtonSupp(ActionEvent event) {
         if(listSymp.getSelectionModel().getSelectedItem()==null) {
-            showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un Symptôme.");
+            a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un Symptôme.");
         } 
         else {
-            showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?");            
+            a.showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?");            
             selecSymp.getItems().add(listSymp.getSelectionModel().getSelectedItem());
             ls.remove(listSymp.getSelectionModel().getSelectedIndex()); 
         }
@@ -103,16 +106,5 @@ public class AddFMController implements Initializable {
         selecSymp.getSelectionModel().clearSelection();
     }
     
-    
-     private Optional<ButtonType> showMessage(Alert.AlertType type,String header,String message,ButtonType... lesBoutonsDifferents){
-        Alert laFenetre = new Alert(type);
-        laFenetre.setHeaderText(header);
-        laFenetre.setContentText(message);
-        if (lesBoutonsDifferents.length > 0) {
-            laFenetre.getButtonTypes().clear();
-            laFenetre.getButtonTypes().addAll(lesBoutonsDifferents);
-        }
-        return laFenetre.showAndWait();
-    }
     
 }
