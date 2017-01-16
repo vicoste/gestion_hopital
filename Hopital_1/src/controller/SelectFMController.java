@@ -65,9 +65,11 @@ public class SelectFMController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ficheMedicModif.setVisible(false);
         
-   
+        ObservableList<Heure> oh = FXCollections.observableArrayList();
+        for (Heure h : Heure.values()) oh.add(h);
+        
+        ficheMedicModif.setVisible(false);
         
         list.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
         
@@ -75,7 +77,7 @@ public class SelectFMController implements Initializable {
         
         cb.itemsProperty().bind(listeMedecin());
         
-        //cbheure.setSelectionModel();
+        cbheure.setItems(oh);
        
         
         
