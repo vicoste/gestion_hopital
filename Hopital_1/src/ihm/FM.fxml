@@ -29,7 +29,6 @@
          <children>
             <Button mnemonicParsing="false" onAction="#handleButtonAjouter" text="Ajouter" GridPane.halignment="CENTER" />
             <Button mnemonicParsing="false" onAction="#handleButtonSupprimer" text="Supprimer" GridPane.columnIndex="2" GridPane.halignment="CENTER" />
-            <Button mnemonicParsing="false" onAction="#handleButtonModifier" text="Modifier" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
          </children>
          <opaqueInsets>
             <Insets />

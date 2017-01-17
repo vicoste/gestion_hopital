@@ -10,9 +10,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,6 +26,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import launch.Main;
 import modele.FicheMedicale;
@@ -45,10 +51,16 @@ public class AddFMController implements Initializable {
     private TextArea taMotif;
     @FXML
     private ListView<Symptome> listSymp;
-
+    @FXML
+    private TextField champRecherche;
+    
     private ObservableList<Symptome> ls = FXCollections.observableArrayList();
     private ObservableList<Symptome> listeDansCB = FXCollections.observableArrayList();
     
+    private ObservableList<Patient> listP = FXCollections.observableArrayList();
+    private ObservableList<Patient> lpat = FXCollections.observableArrayList();
+    private final ListProperty<Patient> listePatient = new SimpleListProperty<>(lpat);
+
     ControllerUtils a = new ControllerUtils();
     /**
      * Initializes the controller class.
@@ -57,11 +69,40 @@ public class AddFMController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         listeDansCB.addAll(Main.getHopital().listeSymptome());
-        selecSymp.setItems(listeDansCB);        
+        selecSymp.setItems(listeDansCB);       
+                
+        listP = Main.getHopital().getListePatient();
         
-        cbPatient.itemsProperty().bind(Main.getHopital().listePatient());
+        cbPatient.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            
+            @Override
+            public void handle(MouseEvent event) {
+                
+                lpat.clear();
+                
+                for(Patient p : listP){
+                    if(p.getNom().toLowerCase().contains(champRecherche.getText().toLowerCase())){
+                        lpat.add(p);
+                      
+                    }
+                }
+                System.out.println(lpat);
+                    
+                    
+            }
+        });
+        
+        cbPatient.itemsProperty().bind(listePatient);
         
     }    
+   
+
+
+    public AddFMController() {
+
+    }
+    
+    
 
     @FXML
     private void handleButtonCreate(ActionEvent event) {

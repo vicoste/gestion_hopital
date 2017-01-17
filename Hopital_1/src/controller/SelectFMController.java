@@ -7,6 +7,7 @@ package controller;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.ListProperty;
@@ -28,6 +29,7 @@ import modele.FicheMedicale;
 import modele.Heure;
 import modele.Medecin;
 import modele.Personnel;
+import modele.RendezVous;
 
 /**
  * FXML Controller class
@@ -51,11 +53,6 @@ public class SelectFMController implements Initializable {
     @FXML
     private DatePicker datePicker;
     
-    private static final ObservableList<Medecin> listeMed=FXCollections.observableArrayList();
-    private static ListProperty<Medecin> listeMedecin = new SimpleListProperty<>(listeMed);
-        public static ObservableList<Medecin> getListeMedecin(){return listeMedecin.get();}
-        public static void setListeMedecin(ObservableList<Medecin> m){listeMedecin.set(m);}
-        public static ListProperty<Medecin> listeMedecin(){return listeMedecin;}
         
     ControllerUtils a = new ControllerUtils();
     
@@ -73,9 +70,9 @@ public class SelectFMController implements Initializable {
         
         list.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
         
-        for(Personnel e : Main.getHopital().listePersonnel())if(e.isMedecin()) listeMed.add((Medecin)e);
-        
-        cb.itemsProperty().bind(listeMedecin());
+        ObservableList<Medecin> lm = FXCollections.observableArrayList();
+        for(Personnel e : Main.getHopital().listePersonnel())if(e.isMedecin()) lm.add((Medecin)e);        
+        cb.setItems(lm);
         
         cbheure.setItems(oh);
        
@@ -103,7 +100,10 @@ public class SelectFMController implements Initializable {
                             a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un Medecin.");
                         } 
                         else{
-                          //  Main.setListRDV(new RendezVous(list.getSelectionModel().getSelectedItem(),cb.getValue(),datePicker.getValue()));
+                            RendezVous rdv = new RendezVous(list.getSelectionModel().getSelectedItem(), datePicker.getValue(), cbheure.getValue());
+                            Main.getHopital().getListeRendezVous().add(rdv);
+
+                            cb.getValue().getListRDV().add(rdv);
                             RDVController.getStage().close();
                         }
                     }

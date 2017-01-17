@@ -86,17 +86,7 @@ public class FMController implements Initializable {
         }  
     }
     
-    @FXML
-    private void handleButtonModifier(ActionEvent event) throws IOException{
-        if(list.getSelectionModel().getSelectedItem()==null) {
-            a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une RDV. Veuillez recommencer");
-        } 
-        else {
-        
-            //ACTION A CODER
-             
-        }
-    }
+
     @FXML
     private void handleButtonLogout(ActionEvent event) throws IOException{
         a.deconnection();

@@ -76,14 +76,15 @@ public class EcranLogController implements Initializable {
     public void connexion() throws IOException, Throwable {
         if (userText.getText().equals(idt) & mdp.getText().equals(mot)) {
             personnelConnecte = new Personnel("admin", "", "");
-            BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
+            /*BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
             Scene scene = new Scene(root);
             Stage st = new Stage();
             st.initOwner(Main.getPrimaryStage());
             st.initModality(Modality.WINDOW_MODAL);
             st.setScene(scene);
             stage = st;
-            st.show();
+            st.show();*/
+            stage = a.borderPaneLoad(new Stage(), "/ihm/Accueil.fxml", "/ihm/application.css");
             Main.getStage().close();
             return;
         }

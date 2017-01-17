@@ -30,7 +30,7 @@
       </GridPane>
    </bottom>
    <center>
-      <GridPane fx:id="gjgyjhg" BorderPane.alignment="CENTER">
+      <GridPane BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -50,7 +50,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox fx:id="cbPatient" promptText="Selectionnez un Patient" GridPane.halignment="CENTER" />
+                  <ComboBox fx:id="cbPatient" promptText="Selectionnez un Patient" GridPane.halignment="CENTER">
+                     <GridPane.margin>
+                        <Insets top="40.0" />
+                     </GridPane.margin></ComboBox>
                   <Button mnemonicParsing="false" onAction="#handleButtonAddPatient" text="Nouveau Patient" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                   <ComboBox fx:id="selecSymp" promptText="Selectionnez un Symptôme" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
@@ -62,6 +65,11 @@
                         <Insets left="5.0" />
                      </GridPane.margin>
                   </Button>
+                  <TextField fx:id="champRecherche" promptText="Entrez le nom du patient">
+                     <GridPane.margin>
+                        <Insets bottom="25.0" left="20.0" right="20.0" />
+                     </GridPane.margin>
+                  </TextField>
                </children>
             </GridPane>
             <GridPane GridPane.rowIndex="2">

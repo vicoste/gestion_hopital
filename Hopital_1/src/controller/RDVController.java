@@ -55,7 +55,7 @@ public class RDVController implements Initializable {
     
     @FXML
     private void handleButtonAjouter(ActionEvent event) throws IOException{
-        GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/ihm/SelectFM.fxml"));
+        /*GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/ihm/SelectFM.fxml"));
         Scene scene = new Scene(root);
         Stage st = new Stage();
         st.initOwner(EcranLogController.getStage());
@@ -63,7 +63,8 @@ public class RDVController implements Initializable {
         st.setScene(scene);
         st.setResizable(false);
         stage=st;
-        st.show();
+        st.show();*/
+        stage = a.gridPaneLoad(EcranLogController.getStage(), new Stage(), "/ihm/SelectFM.fxml", "/ihm/application.css", false);
     }
     
     @FXML
