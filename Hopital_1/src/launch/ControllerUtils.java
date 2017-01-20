@@ -56,10 +56,11 @@ public class ControllerUtils {
 
       
     
-    public Stage gridPaneLoad(Stage papa, String chemin, String cssFile)throws IOException{
-                GridPane root = (GridPane) FXMLLoader.load(getClass().getResource(chemin));
+    public Stage gridPaneLoad(Stage papa, String chemin)throws IOException{
+        
+        GridPane root = (GridPane) FXMLLoader.load(getClass().getResource(chemin));
         Scene scene = new Scene(root);//ATTENTION A LA TAILLE
-        scene.getStylesheets().add(getClass().getResource(cssFile).toExternalForm());
+        
         Stage st = papa;
         st.setScene(scene);
         st.show();
@@ -70,13 +71,13 @@ public class ControllerUtils {
     }
 
 
-    public Stage borderPaneLoad(Stage initOwner, Stage papa, String chemin, String cssFile, boolean resize)throws IOException{
+    public Stage borderPaneLoad(Stage initOwner, Stage papa, String chemin, boolean resize)throws IOException{
 
         
         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource(chemin));
         Scene scene = new Scene(root);//ATTENTION A LA TAILLE
 
-        scene.getStylesheets().add(getClass().getResource(cssFile).toExternalForm());
+
         Stage st = papa;
 
         st.initOwner(initOwner);
@@ -90,10 +91,10 @@ public class ControllerUtils {
     }
     
 
-    public Stage borderPaneLoad(Stage papa, String chemin, String cssFile) throws IOException{
+    public Stage borderPaneLoad(Stage papa, String chemin) throws IOException{
         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource(chemin));
         Scene scene = new Scene(root);//ATTENTION A LA TAILLE
-        scene.getStylesheets().add(getClass().getResource(cssFile).toExternalForm());
+
         Stage st = papa;
         st.setScene(scene);
         st.show();

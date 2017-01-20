@@ -8,12 +8,14 @@ package controller;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -42,10 +44,7 @@ public class SelectFMController implements Initializable {
     private ListView<FicheMedicale> list;
     
     @FXML
-    private Label ficheMedicModif;
-    
-    @FXML
-    private ComboBox<Medecin> cb;
+    private ComboBox<Personnel> cb;
     
     @FXML
     private ComboBox<Heure> cbheure;
@@ -55,6 +54,15 @@ public class SelectFMController implements Initializable {
     
         
     ControllerUtils a = new ControllerUtils();
+    
+
+
+        
+
+    ListProperty<Personnel> listeproperty = new SimpleListProperty<>(Main.getHopital().getListePersonnel().filtered((t) -> {return t.isMedecin();}));
+        public  ObservableList<Personnel> getListePersonnel(){return listeproperty.get();}
+        public  void setListePersonnel(ObservableList<Personnel> p){listeproperty.set(p);}
+        public  ListProperty<Personnel> listePersonnel(){return listeproperty;}
     
         
      /**
@@ -66,15 +74,19 @@ public class SelectFMController implements Initializable {
         ObservableList<Heure> oh = FXCollections.observableArrayList();
         for (Heure h : Heure.values()) oh.add(h);
         
-        ficheMedicModif.setVisible(false);
+        
         
         list.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
         
-        ObservableList<Medecin> lm = FXCollections.observableArrayList();
-        for(Personnel e : Main.getHopital().listePersonnel())if(e.isMedecin()) lm.add((Medecin)e);        
-        cb.setItems(lm);
-        
         cbheure.setItems(oh);
+             
+        
+        
+        
+        cb.itemsProperty().bind(listeproperty);
+        
+        
+        
        
         
         
@@ -102,8 +114,21 @@ public class SelectFMController implements Initializable {
                         else{
                             RendezVous rdv = new RendezVous(list.getSelectionModel().getSelectedItem(), datePicker.getValue(), cbheure.getValue());
                             Main.getHopital().getListeRendezVous().add(rdv);
-
-                            cb.getValue().getListRDV().add(rdv);
+                            System.out.println(rdv);
+                            Medecin m = (Medecin) cb.getValue();
+                            for(Personnel p : Main.getHopital().getListePersonnel()){
+                                if(m.equals(p)){
+                                    System.out.println(p);
+                                    Medecin med= (Medecin) p ;
+                                    System.out.println(med);
+                                    med.getListeRdv().add(rdv);
+                                    System.out.println(med.getListeRdv());
+                                    
+                                    
+                                }
+                            }
+                            m.getListeRdv().add(rdv);
+                            
                             RDVController.getStage().close();
                         }
                     }

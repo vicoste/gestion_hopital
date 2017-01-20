@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.71" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RDVController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.RDVController">
    <center>
       <ListView fx:id="list" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
@@ -55,7 +55,10 @@
                   <Insets right="10.0" />
                </GridPane.margin>
             </Button>
-            <Label text="LISTE RDV" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Label text="Rendez-Vous" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+               <font>
+                  <Font size="18.0" />
+               </font></Label>
             <Button mnemonicParsing="false" onAction="#handleButtonRetour" text="Retour" GridPane.halignment="LEFT">
                <GridPane.margin>
                   <Insets left="10.0" />

@@ -63,15 +63,8 @@ public class FMController implements Initializable {
     
      @FXML
     private void handleButtonAjouter(ActionEvent event) throws IOException{
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/AddFM.fxml"));
-        Scene scene = new Scene(root, 400, 400);
-        Stage st = new Stage();
-        st.initOwner(EcranLogController.getStage());
-        st.initModality(Modality.WINDOW_MODAL);
-        st.setScene(scene);
-        st.setResizable(false);        
-        st.show();
-        stage = st;
+
+        stage = a.borderPaneLoad(EcranLogController.getStage(), new Stage(),"/ihm/AddFM.fxml",false);
     }
     
     @FXML

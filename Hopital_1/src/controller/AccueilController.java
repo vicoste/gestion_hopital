@@ -74,7 +74,7 @@ public class AccueilController implements Initializable {
                 list.setVisible(true);
                 vueOrdonnance.setVisible(true);
                 
-                System.out.println(m.getListRDV());
+               // System.out.println(m.getListRDV());
                 
                 
             }
@@ -90,7 +90,7 @@ public class AccueilController implements Initializable {
         Stage st = EcranLogController.getStage();
         st.setScene(scene);
         st.show();*/
-       a.borderPaneLoad(EcranLogController.getStage(), "/ihm/FM.fxml", "/ihm/application.css");
+       a.borderPaneLoad(EcranLogController.getStage(), "/ihm/FM.fxml");
             
     }
 
@@ -102,7 +102,7 @@ public class AccueilController implements Initializable {
         Stage st = EcranLogController.getStage();
         st.setScene(scene);        
         st.show();*/
-        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/RDV.fxml","/ihm/application.css");
+        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/RDV.fxml");
         
         
     }
@@ -125,7 +125,7 @@ public class AccueilController implements Initializable {
             Stage st = EcranLogController.getStage();
             st.setScene(scene);        
             st.show();*/
-            a.borderPaneLoad(EcranLogController.getStage(), "/ihm/Ordonnance.fxml", "/ihm/application.css");
+            a.borderPaneLoad(EcranLogController.getStage(), "/ihm/Ordonnance.fxml");
         } else{
             a.showMessage(Alert.AlertType.ERROR, null, p+" n'a pas d'ordonnance a disposition");
         }
@@ -139,7 +139,7 @@ public class AccueilController implements Initializable {
         Stage st = EcranLogController.getStage();
         st.setScene(scene);        
         st.show();*/
-        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/GestionPersonnel.fxml", "/ihm/application.css");
+        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/GestionPersonnel.fxml");
     }
 
     @FXML
@@ -149,7 +149,7 @@ public class AccueilController implements Initializable {
         Stage st = EcranLogController.getStage();
         st.setScene(scene);        
         st.show();*/
-        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/AjoutSymptome.fxml", "/ihm/application.css");
+        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/AjoutSymptome.fxml");
     }
 
     @FXML
@@ -159,7 +159,7 @@ public class AccueilController implements Initializable {
         Stage st = EcranLogController.getStage();
         st.setScene(scene);        
         st.show();*/
-        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/GestionMedicaments.fxml", "/ihm/application.css");
+        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/GestionMedicaments.fxml");
     }
    
 

@@ -84,7 +84,7 @@ public class EcranLogController implements Initializable {
             st.setScene(scene);
             stage = st;
             st.show();*/
-            stage = a.borderPaneLoad(new Stage(), "/ihm/Accueil.fxml", "/ihm/application.css");
+            stage = a.borderPaneLoad(new Stage(), "/ihm/Accueil.fxml");
             Main.getStage().close();
             return;
         }

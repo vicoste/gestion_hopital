@@ -25,15 +25,9 @@ public class Medecin extends Personnel implements Serializable{
     
         
 
-    private ObservableList<RendezVous> listRDV = FXCollections.observableArrayList();//sa liste de rendez-vous
-
-    private final ListProperty<RendezVous> rdvProperty = new SimpleListProperty<>(listRDV);
-
-        public  ObservableList<RendezVous> getListRDV(){return rdvProperty.get();}
-
-        public  void setListRDV(ObservableList<RendezVous> rdv){rdvProperty.set(rdv);}
-
-        public  ListProperty<RendezVous> listRDVProperty(){return rdvProperty;}
+    private ArrayList<RendezVous> listeRdv;
+        public ArrayList<RendezVous> getListeRdv() {return listeRdv;}
+        public void setListeRdv(ArrayList<RendezVous> listeRdv) {this.listeRdv = listeRdv;}
 
     
         
