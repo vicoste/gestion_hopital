@@ -36,12 +36,12 @@ public class ControllerUtils {
     
     
 
-    public Stage gridPaneLoad(Stage initOwner, Stage papa, String chemin,String cssFile, boolean resize)throws IOException{
+    public Stage gridPaneLoad(Stage initOwner, Stage papa, String chemin, boolean resize)throws IOException{
 
                
         GridPane root = (GridPane) FXMLLoader.load(getClass().getResource(chemin));
         Scene scene = new Scene(root);//ATTENTION A LA TAILLE
-        scene.getStylesheets().add(getClass().getResource(cssFile).toExternalForm());
+      
         Stage st = papa;
 
         st.initOwner(initOwner);

@@ -70,8 +70,11 @@ public class GestionPersonnelController implements Initializable {
             a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un RDV. Veuillez recommencer");
         } 
         else {
+            
+                
             if(a.showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
-            Main.getHopital().getListePersonnel().remove(list.getSelectionModel().getSelectedItem());
+            if(!list.getSelectionModel().getSelectedItem().supprimer())
+                a.showMessage(Alert.AlertType.ERROR, null, "le Medecin selectionné a encore des rendezvous. Veuillez recommencer");
         }
         
     }

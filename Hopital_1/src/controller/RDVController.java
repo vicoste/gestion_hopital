@@ -5,10 +5,16 @@
  */
 package controller;
 
+import com.sun.deploy.uitoolkit.impl.fx.ui.FXConsole;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +29,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import launch.ControllerUtils;
 import launch.Main;
+import modele.Medecin;
+import modele.Personnel;
 import modele.RendezVous;
 
 /**
@@ -43,27 +51,25 @@ public class RDVController implements Initializable {
         
     ControllerUtils a = new ControllerUtils();
     
-        
+    private ObservableList<RendezVous> listeRDV = FXCollections.observableArrayList();
+        private ListProperty<RendezVous> listeRdv= new SimpleListProperty<>(listeRDV);
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        list.itemsProperty().bind(Main.getHopital().listeRendezVous());
+        for(Personnel p : Main.getHopital().getListePersonnel()){
+            Medecin m = (Medecin) p;
+            System.out.println(listeRDV);
+            if(m.getListeRdv()!=null) listeRDV.addAll(m.getListeRdv());
+            
+        }
+        list.itemsProperty().bind(listeRdv);
     }    
     
     @FXML
     private void handleButtonAjouter(ActionEvent event) throws IOException{
-        /*GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/ihm/SelectFM.fxml"));
-        Scene scene = new Scene(root);
-        Stage st = new Stage();
-        st.initOwner(EcranLogController.getStage());
-        st.initModality(Modality.WINDOW_MODAL);
-        st.setScene(scene);
-        st.setResizable(false);
-        stage=st;
-        st.show();*/
+
         stage = a.gridPaneLoad(EcranLogController.getStage(), new Stage(), "/ihm/SelectFM.fxml", false);
     }
     

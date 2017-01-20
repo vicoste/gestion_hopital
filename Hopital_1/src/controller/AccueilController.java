@@ -72,7 +72,7 @@ public class AccueilController implements Initializable {
             if(p.isMedecin()){
                 Medecin m = (Medecin) p;
                 list.setVisible(true);
-                
+                list.setItems(FXCollections.observableArrayList(m.getListeRdv()));
                 vueOrdonnance.setVisible(true);                
             }
         }

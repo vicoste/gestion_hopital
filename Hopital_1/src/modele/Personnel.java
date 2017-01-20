@@ -85,5 +85,7 @@ public class Personnel implements Serializable{
     }
 
 
-    
+    public boolean supprimer(){
+        return Main.getHopital().getListePersonnel().remove(this);
+    }
 }

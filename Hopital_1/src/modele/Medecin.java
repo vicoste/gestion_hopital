@@ -25,7 +25,7 @@ public class Medecin extends Personnel implements Serializable{
     
         
 
-    private ArrayList<RendezVous> listeRdv;
+    private ArrayList<RendezVous> listeRdv = new ArrayList<>();
         public ArrayList<RendezVous> getListeRdv() {return listeRdv;}
         public void setListeRdv(ArrayList<RendezVous> listeRdv) {this.listeRdv = listeRdv;}
 
@@ -48,7 +48,14 @@ public class Medecin extends Personnel implements Serializable{
         return "Docteur "+getNom(); 
     }
 
- 
+    @Override
+    public boolean supprimer() {
+        if(listeRdv.isEmpty())return super.supprimer();
+        return false;
+        
+    }
+
+    
     
       
 }
