@@ -7,6 +7,7 @@ package modele;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import launch.Main;
 
 /**
  *
@@ -40,4 +41,15 @@ public class RendezVous implements Serializable{
         return getDate()+" : "+getFiche().getPatient().toString(); //To change body of generated methods, choose Tools | Templates.
     }
     
+    public Boolean supprimer(){
+        for(Personnel e : Main.getHopital().getListePersonnel()){
+            if(e.isMedecin()){
+                Medecin m = (Medecin) e;
+                if(m.getListeRdv().contains(this))
+                    m.getListeRdv().remove(this);
+                    return true;
+            }
+        }
+        return false;
+    }
 }

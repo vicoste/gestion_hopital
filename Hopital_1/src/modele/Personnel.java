@@ -6,6 +6,8 @@
 package modele;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Objects;
 import launch.Main;
 
 /**
@@ -33,7 +35,11 @@ public class Personnel implements Serializable{
     private String mdp;// le mot de passe est choisis par l'administrateur lorsqu'il creer un nouveau personnel de la creation du Personnel
         public String getMdp() {return mdp;}
         public void setMdp(String mdp) {this.mdp = mdp;}
-    
+        
+    /*ArrayList<RendezVous> listeRdv;
+        public ArrayList<RendezVous> getListeRdv() {return listeRdv;}
+        public void setListeRdv(ArrayList<RendezVous> listeRdv) {this.listeRdv = listeRdv;}
+    */
     public Personnel(String nom, String prenom, String mdp) {
         this.nom = nom;
         this.prenom = prenom;        
@@ -77,6 +83,9 @@ public class Personnel implements Serializable{
     public String toString() {
         return getPrenom()+" "+getNom(); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    
+
+
+    public boolean supprimer(){
+        return Main.getHopital().getListePersonnel().remove(this);
+    }
 }

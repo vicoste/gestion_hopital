@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectFMController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SelectFMController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
   </columnConstraints>
@@ -19,7 +20,10 @@
     <RowConstraints maxHeight="145.0" minHeight="47.0" prefHeight="66.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="SELECTIONNEZ UNE FICHE MEDICALEE" GridPane.halignment="CENTER" />
+      <Label text="SELECTIONNER UNE FICHE MEDICALE" GridPane.halignment="CENTER">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
       <ListView fx:id="list" prefHeight="270.0" prefWidth="580.0" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets left="10.0" right="10.0" />
@@ -27,8 +31,8 @@
       </ListView>
       <GridPane GridPane.rowIndex="2">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="67.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="235.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="161.0" minWidth="10.0" prefWidth="86.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="222.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="109.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="171.0" />
         </columnConstraints>
@@ -36,7 +40,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="17.0" prefWidth="40.0" text="Date :">
+            <Label prefHeight="17.0" prefWidth="53.0" text="Date :">
                <GridPane.margin>
                   <Insets left="10.0" />
                </GridPane.margin>
@@ -84,6 +88,5 @@
             </Label>
          </children>
       </GridPane>
-      <Label fx:id="ficheMedicModif" text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
    </children>
 </GridPane>

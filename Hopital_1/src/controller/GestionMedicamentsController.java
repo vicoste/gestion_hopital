@@ -35,7 +35,7 @@ import modele.Symptome;
 /**
  * FXML Controller class
  *
- * @author Merle Laure
+ * @author Francis
  */
 public class GestionMedicamentsController implements Initializable {
 
@@ -101,11 +101,8 @@ public class GestionMedicamentsController implements Initializable {
 
     @FXML
     private void retour(ActionEvent event) throws IOException {
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
-        Scene scene = new Scene(root);
-        Stage st = EcranLogController.getStage();
-        st.setScene(scene);        
-        st.show();
+       
+        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/Accueil.fxml");
     }
 
     @FXML

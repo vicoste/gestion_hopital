@@ -21,6 +21,15 @@ import javafx.collections.ObservableList;
 /**
  *
  * @author vicoste
+ * la classe hopital contient toute les données persistantes qui compose un Hopipal, c'est a dire :
+ *      -un liste d'employé (personnel)
+ *      -une liste de patient (qu'ils soit malade ou non)
+ *      -la liste des symptome repertorié
+ *      -la liste des medicaments repertorié
+ *      -la liste des fiches médicales concernant les patients malades
+ *      
+ *      
+ * 
  */
 public class Hopital {
     
@@ -29,7 +38,7 @@ public class Hopital {
         public  ObservableList<Personnel> getListePersonnel(){return listePersonnel.get();}
         public  void setListePersonnel(ObservableList<Personnel> p){listePersonnel.set(p);}
         public  ListProperty<Personnel> listePersonnel(){return listePersonnel;}
-        
+                
     private final ObservableList<FicheMedicale> listeFiche = FXCollections.observableArrayList();
     private final ListProperty<FicheMedicale> listeFicheMedicale = new SimpleListProperty<>(listeFiche);
         public ObservableList<FicheMedicale> getListeFicheMedicale(){return listeFicheMedicale.get();}
@@ -48,18 +57,12 @@ public class Hopital {
         public void setListeMedicament(ObservableList<Medicament> med){listeMedicament.set(med);}
         public ListProperty<Medicament> listeMedicament(){return listeMedicament;}
         
-    private final ObservableList<RendezVous> listRDV = FXCollections.observableArrayList();
-    private final ListProperty<RendezVous> listeRendezVous = new SimpleListProperty<>(listRDV);
-        public ObservableList<RendezVous> getListeRendezVous(){return listeRendezVous.get();}
-        public void setListeRendezVous(ObservableList<RendezVous> rdv){listeRendezVous.set(rdv);}
-        public ListProperty<RendezVous> listeRendezVous(){return listeRendezVous;}
-        
     private final ObservableList<Patient> listP = FXCollections.observableArrayList();
     private final ListProperty<Patient> listePatient = new SimpleListProperty<>(listP);
         public ObservableList<Patient> getListePatient(){return listePatient.get();}
         public void setlistePatient(ObservableList<Patient> patient){listePatient.set(patient);}
         public ListProperty<Patient> listePatient(){return listePatient;}
-    
+
 
         
         /*
@@ -67,14 +70,14 @@ public class Hopital {
         listes du programme persistantes
         */
     public void serializerListes() {
-   
-        serializerPatient();
-        serializerMedicament();
-        serializerSymptome();
-        serializerFicheMedicale();
-        serializerRendezVous();
-        serializerPersonnel();
         
+        serializer(listP, "src/data/patient.ser");
+        serializer(listMedic,"src/data/medicament.ser" );
+        serializer(listeSymp, "src/data/symptome.ser");
+        serializer(listeFiche, "src/data/ficheMedicale.ser");
+        serializer(listePers, "src/data/personnel.ser");
+        
+
         
     }
     
@@ -84,7 +87,6 @@ public class Hopital {
         deserializerMedicament();
         deserializerSymptome();
         deserializerFicheMedicale();
-        deserializerRendezVous();
         deserializerPersonnel();
         
        }
@@ -94,36 +96,23 @@ public class Hopital {
         
         COMME LES OBSERVABLELIST NE SONT PAS SERIALIZABLE, JE LES TRAITE COMME DES ARRAYLIST
         */
+    
+    private void serializer(ObservableList object, String destination){         
+       
+        try(FileOutputStream fichier = new FileOutputStream(destination)) {                       
+            ObjectOutputStream oos = new ObjectOutputStream(fichier);            
+            oos.writeObject(new ArrayList<>(object));          
         
-    private void serializerPersonnel(){
-   
-        ObjectOutputStream oos = null;
-        try {
-            final FileOutputStream fichier = new FileOutputStream("src/data/personnel.ser");            
-            oos = new ObjectOutputStream(fichier);            
-            oos.writeObject(new ArrayList<>(listePers)); 
-            oos.flush();
-            
         } catch (final IOException e) {
-            e.printStackTrace();
-            
-        } finally {
-            try {
-                if (oos != null) {
-                    oos.flush();
-                    oos.close();
-                }
-                
-            } catch (final IOException ex) {
-                ex.printStackTrace();
-            }
+            e.printStackTrace();           
         }
-     }
+    }
+   
      private void deserializerPersonnel(){
-          ObjectInputStream ois = null;
-         try {
-            final FileInputStream fichier = new FileInputStream("src/data/personnel.ser");
-            ois = new ObjectInputStream(fichier);            
+          
+         try(FileInputStream fichier = new FileInputStream("src/data/personnel.ser")) {
+            
+            ObjectInputStream ois = new ObjectInputStream(fichier);            
             List<Personnel> list = (List<Personnel>) ois.readObject();            
             listePers.addAll(list);
             System.out.println(listePers);                
@@ -134,49 +123,14 @@ public class Hopital {
         } catch (final ClassNotFoundException e) {
             e.printStackTrace();
             
-        } finally {
-            try {
-                if (ois != null) {
-                    ois.close();
-                }
-                
-            } catch (final IOException ex) {
-            ex.printStackTrace();
-            }
         }
      }
-     
-     
-     
-     
-    private void serializerFicheMedicale(){         
-        ObjectOutputStream oos = null;
-        try {
-            final FileOutputStream fichier = new FileOutputStream("src/data/ficheMedicale.ser");            
-            oos = new ObjectOutputStream(fichier);            
-            oos.writeObject(new ArrayList<>(listeFiche)); 
-            oos.flush();
-            
-        } catch (final IOException e) {
-            e.printStackTrace();
-            
-        } finally {
-            try {
-                if (oos != null) {
-                    oos.flush();
-                    oos.close();
-                }
-                
-            } catch (final IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
+
     private void deserializerFicheMedicale(){
-        ObjectInputStream ois = null;
-         try {
-            final FileInputStream fichier = new FileInputStream("src/data/ficheMedicale.ser");
-            ois = new ObjectInputStream(fichier);            
+        
+         try(FileInputStream fichier = new FileInputStream("src/data/ficheMedicale.ser")) {
+            
+            ObjectInputStream ois = new ObjectInputStream(fichier);            
             List<FicheMedicale> list = (List<FicheMedicale>) ois.readObject();            
             listeFiche.addAll(list);
             System.out.println(listeFiche);                
@@ -187,29 +141,9 @@ public class Hopital {
         } catch (final ClassNotFoundException e) {
             e.printStackTrace();
             
-        } finally {
-            try {
-                if (ois != null) {
-                    ois.close();
-                }
-                
-            } catch (final IOException ex) {
-            ex.printStackTrace();
-            }
-        }
+        } 
     }
-     
-     
-    private void serializerMedicament(){         
-       
-        try(FileOutputStream fichier = new FileOutputStream("src/data/medicament.ser")) {                       
-            ObjectOutputStream oos = new ObjectOutputStream(fichier);            
-            oos.writeObject(new ArrayList<>(listMedic));          
-        
-        } catch (final IOException e) {
-            e.printStackTrace();           
-        }
-    }
+    
     private void deserializerMedicament(){
         
          try(FileInputStream fichier = new FileInputStream("src/data/medicament.ser")) {            
@@ -226,87 +160,12 @@ public class Hopital {
         
         }
     }
-     
-     
-    private void serializerRendezVous(){         
-        ObjectOutputStream oos = null;
-        try {
-            final FileOutputStream fichier = new FileOutputStream("src/data/rendezVous.ser");            
-            oos = new ObjectOutputStream(fichier);            
-            oos.writeObject(new ArrayList<>(listRDV)); 
-            oos.flush();
-            
-        } catch (final IOException e) {
-            e.printStackTrace();
-            
-        } finally {
-            try {
-                if (oos != null) {
-                    oos.flush();
-                    oos.close();
-                }
-                
-            } catch (final IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
-    private void deserializerRendezVous(){
-        ObjectInputStream ois = null;
-         try {
-            final FileInputStream fichier = new FileInputStream("src/data/rendezVous.ser");
-            ois = new ObjectInputStream(fichier);            
-            List<RendezVous> list = (List<RendezVous>) ois.readObject();            
-            listRDV.addAll(list);
-            System.out.println(listRDV);                
-        
-        } catch (final java.io.IOException e) {
-            e.printStackTrace();
-            
-        } catch (final ClassNotFoundException e) {
-            e.printStackTrace();
-            
-        } finally {
-            try {
-                if (ois != null) {
-                    ois.close();
-                }
-                
-            } catch (final IOException ex) {
-            ex.printStackTrace();
-            }
-        }
-    }  
-     
-     
-    private void serializerPatient(){         
-        ObjectOutputStream oos = null;
-        try {
-            final FileOutputStream fichier = new FileOutputStream("src/data/patient.ser");            
-            oos = new ObjectOutputStream(fichier);            
-            oos.writeObject(new ArrayList<>(listP)); 
-            oos.flush();
-            
-        } catch (final IOException e) {
-            e.printStackTrace();
-            
-        } finally {
-            try {
-                if (oos != null) {
-                    oos.flush();
-                    oos.close();
-                }
-                
-            } catch (final IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
+      
     private void deserializerPatient(){
-        ObjectInputStream ois = null;
-         try {
-            final FileInputStream fichier = new FileInputStream("src/data/patient.ser");
-            ois = new ObjectInputStream(fichier);            
+       
+         try(FileInputStream fichier = new FileInputStream("src/data/patient.ser")) {
+            
+            ObjectInputStream ois = new ObjectInputStream(fichier);            
             List<Patient> list = (List<Patient>) ois.readObject();            
             listP.addAll(list);
             System.out.println(listP);                
@@ -317,46 +176,14 @@ public class Hopital {
         } catch (final ClassNotFoundException e) {
             e.printStackTrace();
             
-        } finally {
-            try {
-                if (ois != null) {
-                    ois.close();
-                }
-                
-            } catch (final IOException ex) {
-            ex.printStackTrace();
-            }
         }
     }
-         
-    private void serializerSymptome(){         
-        ObjectOutputStream oos = null;
-        try {
-            final FileOutputStream fichier = new FileOutputStream("src/data/symptome.ser");            
-            oos = new ObjectOutputStream(fichier);            
-            oos.writeObject(new ArrayList<>(listeSymp)); 
-            oos.flush();
-            
-        } catch (final IOException e) {
-            e.printStackTrace();
-            
-        } finally {
-            try {
-                if (oos != null) {
-                    oos.flush();
-                    oos.close();
-                }
-                
-            } catch (final IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-    }
+    
     private void deserializerSymptome(){
-        ObjectInputStream ois = null;
-         try {
-            final FileInputStream fichier = new FileInputStream("src/data/symptome.ser");
-            ois = new ObjectInputStream(fichier);            
+        
+         try(FileInputStream fichier = new FileInputStream("src/data/symptome.ser")) {
+            
+            ObjectInputStream ois = new ObjectInputStream(fichier);            
             List<Symptome> list = (List<Symptome>) ois.readObject();            
             listeSymp.addAll(list);
             System.out.println(listeSymp);                
@@ -367,22 +194,7 @@ public class Hopital {
         } catch (final ClassNotFoundException e) {
             e.printStackTrace();
             
-        } finally {
-            try {
-                if (ois != null) {
-                    ois.close();
-                }
-                
-            } catch (final IOException ex) {
-            ex.printStackTrace();
-            }
         }
     }
-     
-    
-    
-     
-    
-    
-    
+ 
 }

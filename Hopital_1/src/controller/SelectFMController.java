@@ -7,12 +7,15 @@ package controller;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Observable;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,6 +31,7 @@ import modele.FicheMedicale;
 import modele.Heure;
 import modele.Medecin;
 import modele.Personnel;
+import modele.RendezVous;
 
 /**
  * FXML Controller class
@@ -40,10 +44,7 @@ public class SelectFMController implements Initializable {
     private ListView<FicheMedicale> list;
     
     @FXML
-    private Label ficheMedicModif;
-    
-    @FXML
-    private ComboBox<Medecin> cb;
+    private ComboBox<Personnel> cb;
     
     @FXML
     private ComboBox<Heure> cbheure;
@@ -51,13 +52,17 @@ public class SelectFMController implements Initializable {
     @FXML
     private DatePicker datePicker;
     
-    private static final ObservableList<Medecin> listeMed=FXCollections.observableArrayList();
-    private static ListProperty<Medecin> listeMedecin = new SimpleListProperty<>(listeMed);
-        public static ObservableList<Medecin> getListeMedecin(){return listeMedecin.get();}
-        public static void setListeMedecin(ObservableList<Medecin> m){listeMedecin.set(m);}
-        public static ListProperty<Medecin> listeMedecin(){return listeMedecin;}
         
     ControllerUtils a = new ControllerUtils();
+    
+
+
+        
+
+    ListProperty<Personnel> listeproperty = new SimpleListProperty<>(Main.getHopital().getListePersonnel().filtered((t) -> {return t.isMedecin();}));
+        public  ObservableList<Personnel> getListePersonnel(){return listeproperty.get();}
+        public  void setListePersonnel(ObservableList<Personnel> p){listeproperty.set(p);}
+        public  ListProperty<Personnel> listePersonnel(){return listeproperty;}
     
         
      /**
@@ -69,18 +74,9 @@ public class SelectFMController implements Initializable {
         ObservableList<Heure> oh = FXCollections.observableArrayList();
         for (Heure h : Heure.values()) oh.add(h);
         
-        ficheMedicModif.setVisible(false);
-        
         list.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
-        
-        for(Personnel e : Main.getHopital().listePersonnel())if(e.isMedecin()) listeMed.add((Medecin)e);
-        
-        cb.itemsProperty().bind(listeMedecin());
-        
-        cbheure.setItems(oh);
-       
-        
-        
+        cbheure.setItems(oh);  
+        cb.itemsProperty().bind(listeproperty);
     } 
     
 
@@ -103,14 +99,37 @@ public class SelectFMController implements Initializable {
                             a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un Medecin.");
                         } 
                         else{
-                          //  Main.setListRDV(new RendezVous(list.getSelectionModel().getSelectedItem(),cb.getValue(),datePicker.getValue()));
+                            RendezVous rdv = new RendezVous(list.getSelectionModel().getSelectedItem(), datePicker.getValue(), cbheure.getValue());
+                            
+                            
+                            System.out.println(rdv);
+                            
+                            Medecin m = (Medecin) cb.getValue();
+                            m.getListeRdv().add(rdv);
+                            
+                            for(Personnel p : Main.getHopital().getListePersonnel()){
+                                Medecin med = (Medecin) p;
+                                
+                                for(RendezVous r : m.getListeRdv()){
+                                    if(!RDVController.getListeRdv().contains(r)) RDVController.getListeRdv().add(r);
+                                }
+                            }
+                            
                             RDVController.getStage().close();
-                        }
+                        }                   
                     }
+                            
+                        
                 }
+                    
             }
-        }    
+                
+        }
+            
     }
+        
+    
+    
 
     @FXML
     private void handleButtonAnnuler(ActionEvent event) {

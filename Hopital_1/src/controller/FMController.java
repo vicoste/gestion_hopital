@@ -59,19 +59,14 @@ public class FMController implements Initializable {
         Stage st = EcranLogController.getStage();
         st.setScene(scene);        
         st.show();
+        
+        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/Accueil.fxml");
     }
     
      @FXML
     private void handleButtonAjouter(ActionEvent event) throws IOException{
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/AddFM.fxml"));
-        Scene scene = new Scene(root, 400, 400);
-        Stage st = new Stage();
-        st.initOwner(EcranLogController.getStage());
-        st.initModality(Modality.WINDOW_MODAL);
-        st.setScene(scene);
-        st.setResizable(false);        
-        st.show();
-        stage = st;
+        
+        stage=a.borderPaneLoad(stage, EcranLogController.getStage(), "/ihm/AddFM.fxml", false);
     }
     
     @FXML
@@ -86,17 +81,7 @@ public class FMController implements Initializable {
         }  
     }
     
-    @FXML
-    private void handleButtonModifier(ActionEvent event) throws IOException{
-        if(list.getSelectionModel().getSelectedItem()==null) {
-            a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner une RDV. Veuillez recommencer");
-        } 
-        else {
-        
-            //ACTION A CODER
-             
-        }
-    }
+
     @FXML
     private void handleButtonLogout(ActionEvent event) throws IOException{
         a.deconnection();

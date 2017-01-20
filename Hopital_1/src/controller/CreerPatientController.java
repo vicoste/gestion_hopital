@@ -120,7 +120,7 @@ public class CreerPatientController implements Initializable {
     private void handleButtonValid(ActionEvent event) {
          
         boolean sexe = false;
-        if(femme.equals(true)) sexe = true;
+        if(femme.isSelected()) sexe = true;
             
         if(nom.getText().equals("")) {
             a.showMessage(Alert.AlertType.ERROR, null, "Veuillez entrer un nom.");

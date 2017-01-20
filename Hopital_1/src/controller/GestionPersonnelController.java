@@ -29,7 +29,7 @@ import modele.Personnel;
 /**
  * FXML Controller class
  *
- * @author Merle Laure
+ * @author Francis
  */
 public class GestionPersonnelController implements Initializable {
 
@@ -55,11 +55,8 @@ public class GestionPersonnelController implements Initializable {
 
     @FXML
     private void retour(ActionEvent event) throws IOException {
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
-        Scene scene = new Scene(root);
-        Stage st = EcranLogController.getStage();
-        st.setScene(scene);        
-        st.show();
+                
+        a.borderPaneLoad(EcranLogController.getStage(),"/ihm/Accueil.fxml");
     }
 
     @FXML
@@ -73,8 +70,11 @@ public class GestionPersonnelController implements Initializable {
             a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un RDV. Veuillez recommencer");
         } 
         else {
+            
+                
             if(a.showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
-            Main.getHopital().getListePersonnel().remove(list.getSelectionModel().getSelectedItem());
+            if(!list.getSelectionModel().getSelectedItem().supprimer())
+                a.showMessage(Alert.AlertType.ERROR, null, "le Medecin selectionné a encore des rendezvous. Veuillez recommencer");
         }
         
     }

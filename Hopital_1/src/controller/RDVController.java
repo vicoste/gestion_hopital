@@ -5,10 +5,16 @@
  */
 package controller;
 
+import com.sun.deploy.uitoolkit.impl.fx.ui.FXConsole;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,7 +29,10 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import launch.ControllerUtils;
 import launch.Main;
+import modele.Medecin;
+import modele.Personnel;
 import modele.RendezVous;
+import modele.Symptome;
 
 /**
  * FXML Controller class
@@ -43,27 +52,33 @@ public class RDVController implements Initializable {
         
     ControllerUtils a = new ControllerUtils();
     
+    private static ObservableList<RendezVous> listeRDV = FXCollections.observableArrayList();
+    private static ListProperty<RendezVous> listeRdv= new SimpleListProperty<>(listeRDV);
+        public static ObservableList<RendezVous> getListeRdv(){return listeRdv.get();}
+        public static void setListeRdv(ObservableList<RendezVous> s){listeRdv.set(s);}
+        public static ListProperty<RendezVous> listeRdv(){return listeRdv;}
         
-    /**
+        
+        
+     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        list.itemsProperty().bind(Main.getHopital().listeRendezVous());
+        for(Personnel p : Main.getHopital().getListePersonnel()){
+            Medecin m = (Medecin) p;
+            System.out.println(listeRDV);
+            for(RendezVous r : m.getListeRdv()){
+                if(!listeRDV.contains(r)) listeRDV.add(r);
+            }
+        }
+        list.itemsProperty().bind(listeRdv);
     }    
     
     @FXML
     private void handleButtonAjouter(ActionEvent event) throws IOException{
-        GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/ihm/SelectFM.fxml"));
-        Scene scene = new Scene(root);
-        Stage st = new Stage();
-        st.initOwner(EcranLogController.getStage());
-        st.initModality(Modality.WINDOW_MODAL);
-        st.setScene(scene);
-        st.setResizable(false);
-        stage=st;
-        st.show();
+
+        stage = a.gridPaneLoad(EcranLogController.getStage(), new Stage(), "/ihm/SelectFM.fxml", false);
     }
     
     @FXML
@@ -73,7 +88,8 @@ public class RDVController implements Initializable {
         } 
         else {
             if(a.showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
-             Main.getHopital().getListeRendezVous().remove(list.getSelectionModel().getSelectedItem());         
+            if(!list.getSelectionModel().getSelectedItem().supprimer())
+                a.showMessage(Alert.AlertType.ERROR, null, "erreur de suppression");
         }
             
             
