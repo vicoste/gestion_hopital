@@ -29,7 +29,7 @@ import modele.Personnel;
 /**
  * FXML Controller class
  *
- * @author Merle Laure
+ * @author Francis
  */
 public class GestionPersonnelController implements Initializable {
 
@@ -55,8 +55,8 @@ public class GestionPersonnelController implements Initializable {
 
     @FXML
     private void retour(ActionEvent event) throws IOException {
-       
-        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/Accueil.fxml");
+                
+        a.borderPaneLoad(EcranLogController.getStage(),"/ihm/Accueil.fxml");
     }
 
     @FXML

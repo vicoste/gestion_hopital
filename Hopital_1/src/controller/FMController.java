@@ -59,12 +59,14 @@ public class FMController implements Initializable {
         Stage st = EcranLogController.getStage();
         st.setScene(scene);        
         st.show();
+        
+        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/Accueil.fxml");
     }
     
      @FXML
     private void handleButtonAjouter(ActionEvent event) throws IOException{
-
-        stage = a.borderPaneLoad(EcranLogController.getStage(), new Stage(),"/ihm/AddFM.fxml",false);
+        
+        stage=a.borderPaneLoad(stage, EcranLogController.getStage(), "/ihm/AddFM.fxml", false);
     }
     
     @FXML

@@ -74,22 +74,9 @@ public class SelectFMController implements Initializable {
         ObservableList<Heure> oh = FXCollections.observableArrayList();
         for (Heure h : Heure.values()) oh.add(h);
         
-        
-        
         list.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
-        
-        cbheure.setItems(oh);
-             
-        
-        
-        
+        cbheure.setItems(oh);  
         cb.itemsProperty().bind(listeproperty);
-        
-        
-        
-       
-        
-        
     } 
     
 
@@ -114,19 +101,10 @@ public class SelectFMController implements Initializable {
                         else{
                             RendezVous rdv = new RendezVous(list.getSelectionModel().getSelectedItem(), datePicker.getValue(), cbheure.getValue());
                             Main.getHopital().getListeRendezVous().add(rdv);
+                            
                             System.out.println(rdv);
+                            
                             Medecin m = (Medecin) cb.getValue();
-                            for(Personnel p : Main.getHopital().getListePersonnel()){
-                                if(m.equals(p)){
-                                    System.out.println(p);
-                                    Medecin med= (Medecin) p ;
-                                    System.out.println(med);
-                                    med.getListeRdv().add(rdv);
-                                    System.out.println(med.getListeRdv());
-                                    
-                                    
-                                }
-                            }
                             m.getListeRdv().add(rdv);
                             
                             RDVController.getStage().close();

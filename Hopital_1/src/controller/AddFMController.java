@@ -40,6 +40,9 @@ import modele.Symptome;
  *
  * @author Virgile
  */
+
+
+
 public class AddFMController implements Initializable {
 
     
@@ -53,6 +56,7 @@ public class AddFMController implements Initializable {
     private ListView<Symptome> listSymp;
     @FXML
     private TextField champRecherche;
+    
     
     private ObservableList<Symptome> ls = FXCollections.observableArrayList();
     private ObservableList<Symptome> listeDansCB = FXCollections.observableArrayList();
@@ -105,19 +109,21 @@ public class AddFMController implements Initializable {
     
 
     @FXML
-    private void handleButtonCreate(ActionEvent event) {
+    private void handleButtonCreate(ActionEvent event) throws IOException {
         FicheMedicale ficheMedicale = new FicheMedicale(taMotif.getText(),cbPatient.getValue(),ls);
         Main.getHopital().getListeFicheMedicale().add(ficheMedicale);
         FMController.getStage().hide();
+       
     }
     
     @FXML
-    private void handleButtonRetour(ActionEvent event) {
+    private void handleButtonRetour(ActionEvent event) throws IOException {
         FMController.getStage().hide();
+        
     }
     
     @FXML
-    private void handleButtonSupp(ActionEvent event) {
+    private void handleButtonSupp(ActionEvent event) throws IOException {
         if(listSymp.getSelectionModel().getSelectedItem()==null) {
             a.showMessage(Alert.AlertType.ERROR, null, "Veuillez selectionner un Symptôme.");
         } 
@@ -126,6 +132,7 @@ public class AddFMController implements Initializable {
             selecSymp.getItems().add(listSymp.getSelectionModel().getSelectedItem());
             ls.remove(listSymp.getSelectionModel().getSelectedIndex()); 
         }
+        
     }
     
     @FXML
@@ -136,15 +143,17 @@ public class AddFMController implements Initializable {
         st.setScene(scene);
         st.setResizable(false);
         
+        
     }
 
       
     @FXML
-    private void handleButtonOKSymp(ActionEvent event){
+    private void handleButtonOKSymp(ActionEvent event) throws IOException{
         ls.add(selecSymp.getSelectionModel().getSelectedItem());
         listeDansCB.remove(selecSymp.getSelectionModel().getSelectedIndex());
         listSymp.setItems(ls);                  
         selecSymp.getSelectionModel().clearSelection();
+        
     }
     
     

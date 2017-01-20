@@ -64,7 +64,7 @@ public class RDVController implements Initializable {
         st.setResizable(false);
         stage=st;
         st.show();*/
-        stage = a.gridPaneLoad(EcranLogController.getStage(), new Stage(), "/ihm/SelectFM.fxml", "/ihm/application.css", false);
+        stage = a.gridPaneLoad(EcranLogController.getStage(), new Stage(), "/ihm/SelectFM.fxml", false);
     }
     
     @FXML

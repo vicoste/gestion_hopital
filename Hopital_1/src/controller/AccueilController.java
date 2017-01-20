@@ -72,39 +72,22 @@ public class AccueilController implements Initializable {
             if(p.isMedecin()){
                 Medecin m = (Medecin) p;
                 list.setVisible(true);
-                vueOrdonnance.setVisible(true);
                 
-               // System.out.println(m.getListRDV());
-                
-                
+                vueOrdonnance.setVisible(true);                
             }
         }
-        
     }    
 
     @FXML
     private void handleButtonFM(ActionEvent event) throws IOException{
-     
-       /*BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/FM.fxml"));
-        Scene scene = new Scene(root);
-        Stage st = EcranLogController.getStage();
-        st.setScene(scene);
-        st.show();*/
-       a.borderPaneLoad(EcranLogController.getStage(), "/ihm/FM.fxml");
-            
+  
+       a.borderPaneLoad(EcranLogController.getStage(), "/ihm/FM.fxml");       
     }
 
     @FXML
     private void handleButtonRDV(ActionEvent event) throws IOException{
-        
-        /*BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/RDV.fxml"));
-        Scene scene = new Scene(root);
-        Stage st = EcranLogController.getStage();
-        st.setScene(scene);        
-        st.show();*/
+
         a.borderPaneLoad(EcranLogController.getStage(), "/ihm/RDV.fxml");
-        
-        
     }
     
     @FXML
@@ -120,11 +103,6 @@ public class AccueilController implements Initializable {
         OrdonnanceController.setFicheMedicale(p);
         
         if(p.getOrdonnance() != null){
-            /*BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Ordonnance.fxml"));
-            Scene scene = new Scene(root);
-            Stage st = EcranLogController.getStage();
-            st.setScene(scene);        
-            st.show();*/
             a.borderPaneLoad(EcranLogController.getStage(), "/ihm/Ordonnance.fxml");
         } else{
             a.showMessage(Alert.AlertType.ERROR, null, p+" n'a pas d'ordonnance a disposition");
@@ -133,36 +111,18 @@ public class AccueilController implements Initializable {
 
     @FXML
     private void Personnel(ActionEvent event) throws IOException {
-        
-        /*BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/GestionPersonnel.fxml"));
-        Scene scene = new Scene(root);
-        Stage st = EcranLogController.getStage();
-        st.setScene(scene);        
-        st.show();*/
         a.borderPaneLoad(EcranLogController.getStage(), "/ihm/GestionPersonnel.fxml");
     }
 
     @FXML
-    private void AjoutSymp(ActionEvent event) throws IOException {/*
-        BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/AjoutSymptome.fxml"));
-        Scene scene = new Scene(root);
-        Stage st = EcranLogController.getStage();
-        st.setScene(scene);        
-        st.show();*/
+    private void AjoutSymp(ActionEvent event) throws IOException {
+       
         a.borderPaneLoad(EcranLogController.getStage(), "/ihm/AjoutSymptome.fxml");
     }
 
     @FXML
     private void AjoutMedic(ActionEvent event) throws IOException {
-        /*BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/GestionMedicaments.fxml"));
-        Scene scene = new Scene(root);
-        Stage st = EcranLogController.getStage();
-        st.setScene(scene);        
-        st.show();*/
+        
         a.borderPaneLoad(EcranLogController.getStage(), "/ihm/GestionMedicaments.fxml");
-    }
-   
-
-    
-    
+    }  
 }

@@ -26,7 +26,7 @@ import modele.Symptome;
 /**
  * FXML Controller class
  *
- * @author Merle Laure
+ * @author Virgile
  */
 public class OrdonnanceController implements Initializable {
 
@@ -75,7 +75,7 @@ public class OrdonnanceController implements Initializable {
             }
          
         
-        listSymptome.itemsProperty().bind(listeSymptome); //smptome sur l'odonnance
+        listSymptome.itemsProperty().bind(listeSymptome); //symptome sur l'odonnance
         listMedic.itemsProperty().bind(listeMedicament);
         
       // Main.getHopital().getListeMedicament().
