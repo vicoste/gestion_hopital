@@ -65,13 +65,7 @@ public class RDVController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        for(Personnel p : Main.getHopital().getListePersonnel()){
-            Medecin m = (Medecin) p;
-            System.out.println(listeRDV);
-            for(RendezVous r : m.getListeRdv()){
-                if(!listeRDV.contains(r)) listeRDV.add(r);
-            }
-        }
+        chargerRDV();
         list.itemsProperty().bind(listeRdv);
     }    
     
@@ -90,6 +84,7 @@ public class RDVController implements Initializable {
             if(a.showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
             if(!list.getSelectionModel().getSelectedItem().supprimer())
                 a.showMessage(Alert.AlertType.ERROR, null, "erreur de suppression");
+            chargerRDV();
         }
             
             
@@ -135,6 +130,16 @@ public class RDVController implements Initializable {
         st.show();
        
         
+    }
+    
+    private void chargerRDV(){
+        listeRDV.clear();
+        for(Personnel p : Main.getHopital().getListePersonnel()){
+            Medecin m = (Medecin) p;
+            for(RendezVous r : m.getListeRdv()){
+                if(!listeRDV.contains(r)) listeRDV.add(r);
+            }
+        }
     }
 }
         

@@ -73,13 +73,9 @@ public class ControllerUtils {
 
     public Stage borderPaneLoad(Stage initOwner, Stage papa, String chemin, boolean resize)throws IOException{
 
-        
         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource(chemin));
         Scene scene = new Scene(root);//ATTENTION A LA TAILLE
-
-
         Stage st = papa;
-
         st.initOwner(initOwner);
         st.initModality(Modality.WINDOW_MODAL);
         st.setScene(scene);
@@ -93,14 +89,10 @@ public class ControllerUtils {
 
     public Stage borderPaneLoad(Stage papa, String chemin) throws IOException{
         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource(chemin));
-        Scene scene = new Scene(root);//ATTENTION A LA TAILLE
-
-        Stage st = papa;
-        st.setScene(scene);
-        st.show();
-        
-        return st;
-
+        Scene scene = new Scene(root);//ATTENTION A LA TAILLE 
+        papa.setScene(scene);
+        papa.show();      
+        return papa;
     }
     
     

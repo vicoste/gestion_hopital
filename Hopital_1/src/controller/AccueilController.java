@@ -25,6 +25,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import launch.Main;
 import modele.FicheMedicale;
@@ -48,9 +49,11 @@ public class AccueilController implements Initializable {
     @FXML
     private Button vueOrdonnance;
     @FXML
-    private ComboBox<FicheMedicale> selectionPatient;
-    @FXML
     private ListView<RendezVous> list;
+    
+    
+    @FXML
+    private GridPane gestionGrid;
     
     ControllerUtils a = new ControllerUtils();
     
@@ -62,13 +65,11 @@ public class AccueilController implements Initializable {
         
         Personnel p = EcranLogController.getPersonnelConnecte();
         
-        selectionPatient.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
-        if(p.getNom()=="admin"){            
-        }else{
+        
+        if(!"admin".equals(p.getNom())){            
+        
             vueOrdonnance.setVisible(false);
-            ajoutPersonnel.setVisible(false);
-            ajoutSymptome.setVisible(false);
-            ajoutMedicament.setVisible(false);
+            gestionGrid.setVisible(false);
             if(p.isMedecin()){
                 Medecin m = (Medecin) p;
                 list.setVisible(true);
@@ -99,13 +100,13 @@ public class AccueilController implements Initializable {
     @FXML
     private void handleButtonOrdonnance(ActionEvent event) throws IOException {
        
-        FicheMedicale p = selectionPatient.getSelectionModel().getSelectedItem();
+        FicheMedicale p = list.getSelectionModel().getSelectedItem().getFiche();
         OrdonnanceController.setFicheMedicale(p);
         
-        if(p.getOrdonnance() != null){
+        if(p != null){
             a.borderPaneLoad(EcranLogController.getStage(), "/ihm/Ordonnance.fxml");
         } else{
-            a.showMessage(Alert.AlertType.ERROR, null, p+" n'a pas d'ordonnance a disposition");
+            a.showMessage(Alert.AlertType.ERROR, null, "veuillez selectionner un RDV");
         }
     }
 

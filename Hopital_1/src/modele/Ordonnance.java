@@ -8,7 +8,14 @@ package modele;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import javafx.beans.binding.MapBinding;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 
 /**
  *
@@ -17,20 +24,26 @@ import javafx.collections.ObservableList;
  */
 public class Ordonnance implements Serializable{
     
-    private Map<ObservableList<Medicament>,String> map = new HashMap<>();
-        public Map<ObservableList<Medicament>, String> getMap() {return map;}
-        public void setMap(Map<ObservableList<Medicament>, String> map) {this.map = map;}
-        
+   
         
     
-   /* private static ObservableList<Medicament> medicaments;
-        public static ObservableList<Medicament> getMedicaments() {return medicaments;}
-        public static void setMedicaments(ObservableList<Medicament> medicaments) { Ordonnance.medicaments = medicaments;}
-*/
-    public Ordonnance(ObservableList<Medicament> l,String s) {
-        map.put(l, s);
-        
+    private ObservableMap<Medicament, String> map = FXCollections.emptyObservableMap();
+
+    public ObservableMap<Medicament, String> getMap() {
+        return map;
     }
+
+    public void setMap(ObservableMap<Medicament, String> map) {
+        this.map = map;
+    }
+    
+    
+
+    public Ordonnance(ObservableMap<Medicament, String> m) {
+        map=m;
+    }
+
+    
     
     
 }

@@ -5,22 +5,38 @@
  */
 package controller;
 
+import com.sun.org.apache.bcel.internal.generic.Instruction;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.beans.property.ListProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldListCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import launch.ControllerUtils;
 import launch.Main;
 import modele.Medicament;
 import modele.FicheMedicale;
+import modele.Ordonnance;
 import modele.Symptome;
 
 /**
@@ -36,6 +52,8 @@ public class OrdonnanceController implements Initializable {
     private ListView<Medicament> listMedic; // medicament qui traite ce symptome
     @FXML
     private ListView<String> listInstructions;//
+    @FXML
+    private Button button;
 
     private ObservableList<Symptome> listeSymp=FXCollections.observableArrayList();
     private ListProperty<Symptome> listeSymptome = new SimpleListProperty<>(listeSymp);
@@ -54,7 +72,7 @@ public class OrdonnanceController implements Initializable {
         public static void setFicheMedicale(FicheMedicale f) {OrdonnanceController.f = f;}
         
     ControllerUtils a = new ControllerUtils();
-    
+
     /**
      * Initializes the controller class.
      */
@@ -74,17 +92,13 @@ public class OrdonnanceController implements Initializable {
                     if(!listeMedic.contains(m))listeMedic.add(m);
             }
          
-        
+         }
         listSymptome.itemsProperty().bind(listeSymptome); //symptome sur l'odonnance
         listMedic.itemsProperty().bind(listeMedicament);
-        
-      // Main.getHopital().getListeMedicament().
-               
-        //    }
-            
-         }
-    }
-        
+
+             
+ 
+    }  
         
 
     @FXML
@@ -103,5 +117,13 @@ public class OrdonnanceController implements Initializable {
     @FXML
     private void ajoutMedic(ActionEvent event) {
     }
+
+    @FXML
+    private void editer(ActionEvent event) {
+
+    }
+   
+    
+    
     
 }
