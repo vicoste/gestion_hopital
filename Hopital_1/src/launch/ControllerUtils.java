@@ -16,7 +16,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import launch.Main;
 
 /**
  *
@@ -41,16 +40,13 @@ public class ControllerUtils {
                
         GridPane root = (GridPane) FXMLLoader.load(getClass().getResource(chemin));
         Scene scene = new Scene(root);//ATTENTION A LA TAILLE
-      
-        Stage st = papa;
-
-        st.initOwner(initOwner);
-        st.initModality(Modality.WINDOW_MODAL);
-        st.setScene(scene);
-        st.setResizable(resize);
-        st.show();
+        papa.initOwner(initOwner);
+        papa.initModality(Modality.WINDOW_MODAL);
+        papa.setScene(scene);
+        papa.setResizable(resize);
+        papa.show();
         
-        return st;
+        return papa;
     }
     
 
@@ -60,12 +56,10 @@ public class ControllerUtils {
         
         GridPane root = (GridPane) FXMLLoader.load(getClass().getResource(chemin));
         Scene scene = new Scene(root);//ATTENTION A LA TAILLE
+        papa.setScene(scene);
+        papa.show();
         
-        Stage st = papa;
-        st.setScene(scene);
-        st.show();
-        
-        return st;
+        return papa;
 
         
     }
@@ -74,15 +68,14 @@ public class ControllerUtils {
     public Stage borderPaneLoad(Stage initOwner, Stage papa, String chemin, boolean resize)throws IOException{
 
         BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource(chemin));
-        Scene scene = new Scene(root);//ATTENTION A LA TAILLE
-        Stage st = papa;
-        st.initOwner(initOwner);
-        st.initModality(Modality.WINDOW_MODAL);
-        st.setScene(scene);
-        st.setResizable(resize);        
-        st.show();
+        Scene scene = new Scene(root);//ATTENTION A LA TAILLE        
+        papa.initOwner(initOwner);
+        papa.initModality(Modality.WINDOW_MODAL);
+        papa.setScene(scene);
+        papa.setResizable(resize);        
+        papa.show();
         
-        return st;
+        return papa;
         
     }
     

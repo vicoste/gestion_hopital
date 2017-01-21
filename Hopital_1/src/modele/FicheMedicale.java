@@ -7,9 +7,11 @@ package modele;
 
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import javafx.collections.ObservableList;
+import launch.Main;
 
 
 /**
@@ -71,78 +73,20 @@ public class FicheMedicale implements Serializable{
     
     
     private void createNumDossier() {
-        
-        String a = dateEntree.toString();
-        String sexe = new String();
-        String num = new String();        
-        String numJour = a.substring(8, 10);  
-        String mois = a.substring(4, 7);
-        
-        switch(mois){
-            case "Jan":
-                mois="01";
-                break;
-                
-            case "Fev":
-                mois="02";
-                break;
-                                
-            case "Mar":
-                mois="03";
-                break; 
-                
-            case "Avr":
-                mois="04";
-                break; 
-                
-            case "May":
-                mois="05";
-                break;  
-                
-            case "Jun":
-                mois="06";
-                break;   
-                
-            case "Jul":
-                mois="07";
-                break;    
-                
-            case "Aug":
-                mois="08";
-                break;    
-                
-            case "Sep":
-                mois="09";
-                break;    
-                
-            case "Oct":
-                mois="10";
-                break;   
-                
-            case "Nov":
-                mois="11";
-                break;  
-                
-            case "Dec":
-                mois="12";
-                break;       
-                
-            default:
-                mois="13";
- 
+        String date = LocalDate.now().toString();
+        String sexe = null;
+        int i=0;
+        if(patient.getSexe()) sexe ="1"; 
+        else sexe = "0";
+        String res = sexe+date+patient.getNom().substring(0, 1)+patient.getPrenom().substring(0,1);
+        for(FicheMedicale f : Main.getHopital().getListeFicheMedicale()){
+            i++;
+            if(res.equals(f.getNumDossier())){
+                res = res+i;
+            }
         }
-        String an = a.substring(24, 28);
+        numDossier=res;
         
-        if(patient.getSexe()){
-            sexe = "1";
-        }
-        else{
-            sexe = "0";
-        }
-        dateEntree.getTime();
-        
-        num= sexe.concat(numJour).concat(mois).concat(an).concat(patient.getNom().substring(0, 1).toUpperCase()).concat(patient.getPrenom().substring(0, 1).toUpperCase());
-        numDossier=num;
     }
 
     @Override

@@ -38,7 +38,7 @@ import modele.RendezVous;
  *
  * @author Virgile
  */
-public class SelectFMController implements Initializable {
+public class CreerRDVController implements Initializable {
     
     @FXML
     private ListView<FicheMedicale> list;

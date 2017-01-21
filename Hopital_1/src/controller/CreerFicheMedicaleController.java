@@ -43,7 +43,7 @@ import modele.Symptome;
 
 
 
-public class AddFMController implements Initializable {
+public class CreerFicheMedicaleController implements Initializable {
 
     
     @FXML
@@ -99,14 +99,6 @@ public class AddFMController implements Initializable {
         cbPatient.itemsProperty().bind(listePatient);
         
     }    
-   
-
-
-    public AddFMController() {
-
-    }
-    
-    
 
     @FXML
     private void handleButtonCreate(ActionEvent event) throws IOException {
