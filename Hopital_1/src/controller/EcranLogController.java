@@ -27,7 +27,6 @@ import launch.Main;
 import modele.FicheMedicale;
 import modele.Personnel;
 
-
 /**
  * FXML Controller class
  *
@@ -49,24 +48,28 @@ public class EcranLogController implements Initializable {
 
     @FXML
     private Label erreurNum;
-    
+
     private static Stage stage;
-        public static Stage getStage() {return stage;}
+
+    public static Stage getStage() {
+        return stage;
+    }
 
     private static Personnel personnelConnecte;
-        public static Personnel getPersonnelConnecte() {return personnelConnecte;}
+
+    public static Personnel getPersonnelConnecte() {
+        return personnelConnecte;
+    }
 
     ControllerUtils a = new ControllerUtils();
-    
-    private final String idt = "";
-    private final String mot = "";
-    
+
+    private final String idt = "admin";
+    private final String mot = "admin";
 
     /**
      * Initializes the controller class.
      *
      */
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -76,7 +79,7 @@ public class EcranLogController implements Initializable {
     public void connexion() throws IOException, Throwable {
         if (userText.getText().equals(idt) & mdp.getText().equals(mot)) {
             personnelConnecte = new Personnel("admin", "", "");
-          
+
             stage = a.borderPaneLoad(new Stage(), "/ihm/Accueil.fxml");
             Main.getStage().close();
             return;
@@ -97,22 +100,22 @@ public class EcranLogController implements Initializable {
 
     @FXML
     public void handleButtonPatient() throws IOException {
+        erreurNum.setVisible(false);
         for (FicheMedicale f : Main.getHopital().getListeFicheMedicale()) {
             if (numDossier.getText().equals(f.getNumDossier())) {
-                
+
                 if (f.getOrdonnance() != null) {
-                 OrdonnanceVuePatientController.setFiche(f);
-                 stage = a.borderPaneLoad(new Stage(), "/ihm/OrdonnanceVuePatient.fxml");
-                 
+                    OrdonnanceVuePatientController.setFiche(f);
+                    stage = a.borderPaneLoad(Main.getStage(), new Stage(), "/ihm/OrdonnanceVuePatient.fxml", true);
+
                 } else {
                     a.showMessage(Alert.AlertType.ERROR, null, f + " n'a pas d'ordonnance a disposition");
                 }
             } else {
                 erreurNum.setVisible(true);
             }
-            
 
         }
-
+        numDossier.setText("");
     }
 }
