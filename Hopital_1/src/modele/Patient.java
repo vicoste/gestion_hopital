@@ -42,6 +42,10 @@ public class Patient implements Serializable{
         this.sexe = sexe;
     }
 
+    public String sexe(){
+        if(sexe)return "Femme";
+        else return "Homme";
+    }
     @Override
     public String toString() {
        if(sexe) return "Mme "+nom;

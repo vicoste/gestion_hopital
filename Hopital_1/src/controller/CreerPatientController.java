@@ -141,7 +141,7 @@ public class CreerPatientController implements Initializable {
                         + "Nom : "+p.getNom()+" \n"
                         + "prenom : "+p.getPrenom()+"\n"
                         + "age : "+p.getAge()+"\n"
-                        + "sexe : "+p.getSexe()+"\n"
+                        + "sexe : "+p.sexe()+"\n"
                         + "numéro sécu : "+p.getNumSecu()).get()==ButtonType.OK){
                             Main.getHopital().getListePatient().add(p);
                             FMController.getStage().close();
