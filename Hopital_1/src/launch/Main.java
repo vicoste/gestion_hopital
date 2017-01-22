@@ -32,6 +32,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) {     //DEMANDER AU PROF COMMENT LANCER UNE SERIALISATION A LA FERMETURE DU PROG
         
         hopital.deserializerListes();
+        
         try {            
             BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/EcranLog.fxml"));
             Scene scene = new Scene(root);

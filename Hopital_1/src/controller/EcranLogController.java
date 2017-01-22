@@ -110,6 +110,7 @@ public class EcranLogController implements Initializable {
             } else {
                 erreurNum.setVisible(true);
             }
+            
 
         }
 

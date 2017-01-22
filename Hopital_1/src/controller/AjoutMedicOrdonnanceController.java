@@ -44,11 +44,13 @@ public class AjoutMedicOrdonnanceController implements Initializable{
         listeMedic.removeAll(OrdonnanceController.getListeMedicament());
         
         list.itemsProperty().bind(listeMedicament);
+        
     }
 
     @FXML
     private void ajout(ActionEvent event) {
         OrdonnanceController.getListeMedicament().add(list.getSelectionModel().getSelectedItem());
         listeMedic.remove(list.getSelectionModel().getSelectedItem());
+        OrdonnanceController.creerListeIntruction();
     }
 }
