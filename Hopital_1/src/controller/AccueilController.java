@@ -8,26 +8,15 @@ package controller;
 import launch.ControllerUtils;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import launch.Main;
 import modele.FicheMedicale;
 import modele.Medecin;
 import modele.Personnel;
@@ -50,11 +39,12 @@ public class AccueilController implements Initializable {
     private Button vueOrdonnance;
     @FXML
     private ListView<RendezVous> list;
-    
-    
     @FXML
     private GridPane gestionGrid;
     
+    private static Personnel p = EcranLogController.getPersonnelConnecte();
+        public static Personnel getPersonnel(){return p;}
+        
     ControllerUtils a = new ControllerUtils();
     
     /**
@@ -63,10 +53,11 @@ public class AccueilController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        Personnel p = EcranLogController.getPersonnelConnecte();
         
         
-        if(!"admin".equals(p.getNom())){            
+        
+        if(p.getNom()=="admin");
+            else{            
         
             vueOrdonnance.setVisible(false);
             gestionGrid.setVisible(false);
@@ -101,12 +92,13 @@ public class AccueilController implements Initializable {
     private void handleButtonOrdonnance(ActionEvent event) throws IOException {
        
         FicheMedicale p = list.getSelectionModel().getSelectedItem().getFiche();
-        OrdonnanceController.setFicheMedicale(p);
+        
         
         if(p != null){
+            OrdonnanceController.setFicheMedicale(p);
             a.borderPaneLoad(EcranLogController.getStage(), "/ihm/Ordonnance.fxml");
         } else{
-            a.showMessage(Alert.AlertType.ERROR, null, "veuillez selectionner un RDV");
+            a.showMessage(Alert.AlertType.ERROR, null, "veuillez selectionner une Ordonnance");
         }
     }
 

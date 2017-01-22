@@ -72,7 +72,7 @@ public class RDVController implements Initializable {
     @FXML
     private void handleButtonAjouter(ActionEvent event) throws IOException{
 
-        stage = a.gridPaneLoad(EcranLogController.getStage(), new Stage(), "/ihm/SelectFM.fxml", false);
+        stage = a.gridPaneLoad(EcranLogController.getStage(), new Stage(), "/ihm/CreerRDV.fxml", false);
     }
     
     @FXML

@@ -5,38 +5,40 @@
  */
 package controller;
 
-import com.sun.org.apache.bcel.internal.generic.Instruction;
+
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Hashtable;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.TextFieldListCell;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import launch.ControllerUtils;
 import launch.Main;
 import modele.Medicament;
 import modele.FicheMedicale;
+import modele.Heure;
+import modele.Medecin;
 import modele.Ordonnance;
+import modele.RendezVous;
 import modele.Symptome;
 
 /**
@@ -61,11 +63,11 @@ public class OrdonnanceController implements Initializable {
         public void setListeSymptome(ObservableList<Symptome> s){listeSymptome.set(s);}
         public ListProperty<Symptome> listeSymptome(){return listeSymptome;}
         
-    private ObservableList<Medicament> listeMedic=FXCollections.observableArrayList();
-    private ListProperty<Medicament> listeMedicament = new SimpleListProperty<>(listeMedic);
-        public ObservableList<Medicament> getListeMedicament(){return listeMedicament.get();}
-        public void setListeMedicament(ObservableList<Medicament> med){listeMedicament.set(med);}
-        public ListProperty<Medicament> listeMedicament(){return listeMedicament;}
+    private static ObservableList<Medicament> listeMedic=FXCollections.observableArrayList();
+    private static ListProperty<Medicament> listeMedicament = new SimpleListProperty<>(listeMedic);
+        public static ObservableList<Medicament> getListeMedicament(){return listeMedicament.get();}
+        public static void setListeMedicament(ObservableList<Medicament> med){listeMedicament.set(med);}
+        public static ListProperty<Medicament> listeMedicament(){return listeMedicament;}
         
     private static FicheMedicale f;
         public static FicheMedicale getFicheMedicale() {return f;}
@@ -95,6 +97,21 @@ public class OrdonnanceController implements Initializable {
          }
         listSymptome.itemsProperty().bind(listeSymptome); //symptome sur l'odonnance
         listMedic.itemsProperty().bind(listeMedicament);
+        
+        listInstructions.setCellFactory((param) -> {
+            ListCell<String> cell =new ListCell<String>(){
+                @Override
+                public void startEdit() {
+                    listInstructions.setOnMouseClicked((event) -> {
+                        if(event.getClickCount()==2){
+                            setGraphic(new TextField());
+                            super.startEdit();
+                        }
+                    });
+                }
+            };
+            return cell; //To change body of generated lambdas, choose Tools | Templates.
+        });
 
              
  
@@ -107,20 +124,50 @@ public class OrdonnanceController implements Initializable {
     }
 
     @FXML
-    private void retour(ActionEvent event) {
+    private void retour(ActionEvent event) throws IOException{
+        a.borderPaneLoad(EcranLogController.getStage(), "/ihm/Accueil.fxml");
     }
 
     @FXML
     private void suppressionMedic(ActionEvent event) {
+        listeMedic.remove(listMedic.getSelectionModel().getSelectedItem());
     }
 
     @FXML
-    private void ajoutMedic(ActionEvent event) {
+    private void ajoutMedic(ActionEvent event)throws IOException{
+       
+        a.borderPaneLoad(EcranLogController.getStage(),new Stage(), "/ihm/ajoutMedicOrdonnance.fxml",false); 
     }
 
     @FXML
     private void editer(ActionEvent event) {
 
+    }
+
+    @FXML
+    private void validerOrdonnance(ActionEvent event) throws IOException{
+        if(a.showMessage(Alert.AlertType.CONFIRMATION,null, "Une fois valider l'ordonnance ne sera plus modifiable.\n Continuer ?").get()==ButtonType.OK){
+            int i=1;
+            String instruc;
+            Dictionary<Medicament,String> m = new Hashtable<>();
+            RendezVous rv=null;
+            
+            for(Medicament medoc : listeMedic){
+                try{instruc = listInstructions.getItems().get(i);}
+                catch(IndexOutOfBoundsException e){instruc ="";}
+                m.put(medoc, instruc);
+                
+                i++;
+            }
+            f.setOrdonnance(new Ordonnance(m));
+            Medecin medecin = (Medecin) AccueilController.getPersonnel();
+            for(RendezVous rdv : medecin.getListeRdv()){
+                if(rdv.getFiche().equals(f)) {rv=rdv;break;}
+            }
+            
+            medecin.getListeRdv().remove(rv);
+            a.borderPaneLoad(EcranLogController.getStage(), "/ihm/Accueil.fxml");
+        }
     }
    
     

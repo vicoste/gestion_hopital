@@ -6,7 +6,9 @@
 package modele;
 
 import java.io.Serializable;
+import java.util.Dictionary;
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 import javafx.beans.binding.MapBinding;
 import javafx.beans.property.ListProperty;
@@ -26,21 +28,21 @@ public class Ordonnance implements Serializable{
     
    
         
+    private Dictionary<Medicament, String> dictionary = new Hashtable<>();
     
-    private ObservableMap<Medicament, String> map = FXCollections.emptyObservableMap();
 
-    public ObservableMap<Medicament, String> getMap() {
-        return map;
+    public Dictionary<Medicament, String> getDictionary() {
+        return dictionary;
     }
 
-    public void setMap(ObservableMap<Medicament, String> map) {
-        this.map = map;
+    public void setDictionary(Dictionary<Medicament, String> dictionary) {
+        this.dictionary = dictionary;
     }
     
     
 
-    public Ordonnance(ObservableMap<Medicament, String> m) {
-        map=m;
+    public Ordonnance(Dictionary<Medicament, String> m) {
+        dictionary=m;
     }
 
     

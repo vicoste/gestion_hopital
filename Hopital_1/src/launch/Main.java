@@ -35,7 +35,6 @@ public class Main extends Application {
         try {            
             BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/EcranLog.fxml"));
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/ihm/application.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
             
