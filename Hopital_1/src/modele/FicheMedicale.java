@@ -80,9 +80,11 @@ public class FicheMedicale implements Serializable{
         else sexe = "0";
         String res = sexe+date+patient.getNom().substring(0, 1)+patient.getPrenom().substring(0,1);
         for(FicheMedicale f : Main.getHopital().getListeFicheMedicale()){
-            i++;
+            
             if(res.equals(f.getNumDossier())){
+                i++;
                 res = res+i;
+                
             }
         }
         numDossier=res;

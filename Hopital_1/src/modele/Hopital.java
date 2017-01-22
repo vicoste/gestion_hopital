@@ -26,7 +26,8 @@ import javafx.collections.ObservableList;
  *      -une liste de patient (qu'ils soit malade ou non)
  *      -la liste des symptome repertorié
  *      -la liste des medicaments repertorié
- *      -la liste des fiches médicales concernant les patients malades
+ *      -la liste des fiches médicales concernant les patients malades (listeFicheTraite)
+ *      -la liste de toutes les fiches Medicales (les archives en gros)
  *      
  *      
  * 
@@ -44,6 +45,12 @@ public class Hopital {
         public ObservableList<FicheMedicale> getListeFicheMedicale(){return listeFicheMedicale.get();}
         public void setListeFicheMedicale(ObservableList<FicheMedicale> rdv){listeFicheMedicale.set(rdv);}
         public ListProperty<FicheMedicale> listeFicheMedicale(){return listeFicheMedicale;} 
+    
+    private final ObservableList<FicheMedicale> listeFicheTraite = FXCollections.observableArrayList();
+    private final ListProperty<FicheMedicale> listeFicheMedicaleTraite = new SimpleListProperty<>(listeFicheTraite);
+        public ObservableList<FicheMedicale> getListeFicheMedicaleTraite(){return listeFicheMedicaleTraite.get();}
+        public void setListeFicheMedicaleTraite(ObservableList<FicheMedicale> rdv){listeFicheMedicaleTraite.set(rdv);}
+        public ListProperty<FicheMedicale> listeFicheMedicaleTraite(){return listeFicheMedicaleTraite;} 
     
     private final ObservableList<Symptome> listeSymp=FXCollections.observableArrayList();
     private final ListProperty<Symptome> listeSymptome = new SimpleListProperty<>(listeSymp);
@@ -89,7 +96,17 @@ public class Hopital {
         deserializerFicheMedicale();
         deserializerPersonnel();
         
+        actualiserFicheTraite();
+        
        }
+    
+    public ListProperty<FicheMedicale> actualiserFicheTraite(){
+        listeFicheMedicaleTraite.clear();
+         listeFicheTraite.addAll(listeFiche.filtered((t) -> {
+           return !t.getEtat(); //To change body of generated lambdas, choose Tools | Templates.
+       }));
+         return listeFicheMedicaleTraite;
+    }
         /*
         LES FONCTIONS CE-DESSOUS SONT TOUTES LES FONCTIONS DE SERIALIZATION ET DESERIALIZATION 
         REGROUPEES RESPECTIVEMENT DANS LES FONCTIONS CI-DESSUS

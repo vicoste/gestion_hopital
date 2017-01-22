@@ -5,12 +5,18 @@
  */
 package controller;
 
+import com.sun.deploy.uitoolkit.impl.fx.ui.FXConsole;
 import launch.ControllerUtils;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,8 +44,7 @@ public class FMController implements Initializable {
     private static Stage stage;
         public static Stage getStage() {return stage;}
         
-    private static ObservableValue<FicheMedicale> listFM;
-    
+        
     ControllerUtils a = new ControllerUtils();
     /**
      * Initializes the controller class.
@@ -47,7 +52,9 @@ public class FMController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        
-        list.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
+
+        
+        list.itemsProperty().bind(Main.getHopital().actualiserFicheTraite());
     }    
 
     
@@ -60,7 +67,7 @@ public class FMController implements Initializable {
      @FXML
     private void handleButtonAjouter(ActionEvent event) throws IOException{
         
-        stage=a.borderPaneLoad(EcranLogController.getStage(),new Stage(), "/ihm/AddFM.fxml", false);
+        stage=a.borderPaneLoad(EcranLogController.getStage(),new Stage(), "/ihm/CreerFicheMedicale.fxml", false);
     }
     
     @FXML
@@ -71,6 +78,7 @@ public class FMController implements Initializable {
         else {
             if (a.showMessage(Alert.AlertType.CONFIRMATION, null, "Etes vous sur de vouloir supprimer ?").get()!=ButtonType.OK)    return;
             Main.getHopital().getListeFicheMedicale().remove(list.getSelectionModel().getSelectedItem());
+            Main.getHopital().actualiserFicheTraite();
    
         }  
     }

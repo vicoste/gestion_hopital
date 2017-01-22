@@ -8,7 +8,6 @@ package controller;
 import launch.ControllerUtils;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -17,19 +16,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import launch.Main;
 import modele.FicheMedicale;
 import modele.Patient;
@@ -83,35 +76,27 @@ public class CreerFicheMedicaleController implements Initializable {
             public void handle(MouseEvent event) {
                 
                 lpat.clear();
-                
                 for(Patient p : listP){
                     if(p.getNom().toLowerCase().contains(champRecherche.getText().toLowerCase())){
                         lpat.add(p);
-                      
                     }
-                }
-                System.out.println(lpat);
-                    
-                    
+                }    
             }
         });
-        
         cbPatient.itemsProperty().bind(listePatient);
-        
     }    
 
     @FXML
     private void handleButtonCreate(ActionEvent event) throws IOException {
         FicheMedicale ficheMedicale = new FicheMedicale(taMotif.getText(),cbPatient.getValue(),ls);
         Main.getHopital().getListeFicheMedicale().add(ficheMedicale);
+        Main.getHopital().actualiserFicheTraite();
         FMController.getStage().hide();
-       
     }
     
     @FXML
     private void handleButtonRetour(ActionEvent event) throws IOException {
         FMController.getStage().hide();
-        
     }
     
     @FXML
@@ -124,29 +109,18 @@ public class CreerFicheMedicaleController implements Initializable {
             selecSymp.getItems().add(listSymp.getSelectionModel().getSelectedItem());
             ls.remove(listSymp.getSelectionModel().getSelectedIndex()); 
         }
-        
     }
     
     @FXML
     private void handleButtonAddPatient(ActionEvent event) throws IOException{
-        GridPane root = (GridPane) FXMLLoader.load(getClass().getResource("/ihm/CreerPatient.fxml"));
-        Scene scene = new Scene(root);
-        Stage st = FMController.getStage();
-        st.setScene(scene);
-        st.setResizable(false);
-        
-        
+        a.gridPaneLoad(FMController.getStage(), "/ihm/CreerPatient.fxml");
     }
-
-      
+    
     @FXML
     private void handleButtonOKSymp(ActionEvent event) throws IOException{
         ls.add(selecSymp.getSelectionModel().getSelectedItem());
         listeDansCB.remove(selecSymp.getSelectionModel().getSelectedIndex());
         listSymp.setItems(ls);                  
         selecSymp.getSelectionModel().clearSelection();
-        
     }
-    
-    
 }

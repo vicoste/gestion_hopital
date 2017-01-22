@@ -42,7 +42,7 @@ public class AccueilController implements Initializable {
     @FXML
     private GridPane gestionGrid;
     
-    private static Personnel p = EcranLogController.getPersonnelConnecte();
+    private static Personnel p = null;
         public static Personnel getPersonnel(){return p;}
         
     ControllerUtils a = new ControllerUtils();
@@ -52,22 +52,18 @@ public class AccueilController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        
-        
-        if(p.getNom()=="admin");
-            else{            
-        
-            vueOrdonnance.setVisible(false);
-            gestionGrid.setVisible(false);
+    
+        p = EcranLogController.getPersonnelConnecte();
+        System.out.println(p);
+        if(p.getNom()!="admin"){
+                gestionGrid.setVisible(false);
             if(p.isMedecin()){
                 Medecin m = (Medecin) p;
                 list.setVisible(true);
                 list.setItems(FXCollections.observableArrayList(m.getListeRdv()));
                 vueOrdonnance.setVisible(true);                
             }
-        }
+        }else gestionGrid.setVisible(true);
     }    
 
     @FXML

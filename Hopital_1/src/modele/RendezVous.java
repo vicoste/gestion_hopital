@@ -38,7 +38,7 @@ public class RendezVous implements Serializable{
 
     @Override
     public String toString() {
-        return getDate()+" : "+getFiche().getPatient().toString(); //To change body of generated methods, choose Tools | Templates.
+        return getDate()+" : "+getFiche().getPatient().toString()+" à "+heure.toString(); //To change body of generated methods, choose Tools | Templates.
     }
     
     public Boolean supprimer(){

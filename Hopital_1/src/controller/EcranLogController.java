@@ -85,14 +85,7 @@ public class EcranLogController implements Initializable {
         for (Personnel p : Main.getHopital().getListePersonnel()) {
             if (userText.getText().equals(p.getIdentifiant()) & mdp.getText().equals(p.getMdp())) {
                 personnelConnecte = p;
-                BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Accueil.fxml"));
-                Scene scene = new Scene(root);
-                Stage st = new Stage();
-                st.initOwner(Main.getPrimaryStage());
-                st.initModality(Modality.WINDOW_MODAL);
-                st.setScene(scene);
-                stage = st;
-                st.show();
+                stage = a.borderPaneLoad(new Stage(), "/ihm/Accueil.fxml");
                 Main.getStage().close();
                 return;
             }
@@ -106,13 +99,11 @@ public class EcranLogController implements Initializable {
     public void handleButtonPatient() throws IOException {
         for (FicheMedicale f : Main.getHopital().getListeFicheMedicale()) {
             if (numDossier.getText().equals(f.getNumDossier())) {
-                OrdonnanceController.setFicheMedicale(f);
+                
                 if (f.getOrdonnance() != null) {
-                    BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/ihm/Ordonnance.fxml"));
-                    Scene scene = new Scene(root);
-                    Stage st = EcranLogController.getStage();
-                    st.setScene(scene);
-                    st.show();
+                 OrdonnanceVuePatientController.setFiche(f);
+                 stage = a.borderPaneLoad(new Stage(), "/ihm/OrdonnanceVuePatient.fxml");
+                 
                 } else {
                     a.showMessage(Alert.AlertType.ERROR, null, f + " n'a pas d'ordonnance a disposition");
                 }

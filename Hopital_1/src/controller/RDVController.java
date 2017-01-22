@@ -135,6 +135,7 @@ public class RDVController implements Initializable {
     private void chargerRDV(){
         listeRDV.clear();
         for(Personnel p : Main.getHopital().getListePersonnel()){
+            if(!p.isMedecin())continue;
             Medecin m = (Medecin) p;
             for(RendezVous r : m.getListeRdv()){
                 if(!listeRDV.contains(r)) listeRDV.add(r);

@@ -7,17 +7,7 @@ package modele;
 
 import java.io.Serializable;
 import java.util.Dictionary;
-import java.util.HashMap;
 import java.util.Hashtable;
-import java.util.Map;
-import javafx.beans.binding.MapBinding;
-import javafx.beans.property.ListProperty;
-import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 
 /**
  *
@@ -45,6 +35,12 @@ public class Ordonnance implements Serializable{
         dictionary=m;
     }
 
+    @Override
+    public String toString() {
+        return dictionary.keys().toString(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     
     
     

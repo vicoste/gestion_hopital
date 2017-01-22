@@ -74,7 +74,7 @@ public class CreerRDVController implements Initializable {
         ObservableList<Heure> oh = FXCollections.observableArrayList();
         for (Heure h : Heure.values()) oh.add(h);
         
-        list.itemsProperty().bind(Main.getHopital().listeFicheMedicale());
+        list.itemsProperty().bind(Main.getHopital().actualiserFicheTraite());
         cbheure.setItems(oh);  
         cb.itemsProperty().bind(listeproperty);
     } 
@@ -101,13 +101,12 @@ public class CreerRDVController implements Initializable {
                         else{
                             RendezVous rdv = new RendezVous(list.getSelectionModel().getSelectedItem(), datePicker.getValue(), cbheure.getValue());
                             
-                            
-                            System.out.println(rdv);
-                            
+                                                     
                             Medecin m = (Medecin) cb.getValue();
                             m.getListeRdv().add(rdv);
                             
                             for(Personnel p : Main.getHopital().getListePersonnel()){
+                                if(!p.isMedecin())continue;
                                 Medecin med = (Medecin) p;
                                 
                                 for(RendezVous r : m.getListeRdv()){

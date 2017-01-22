@@ -136,7 +136,7 @@ public class OrdonnanceController implements Initializable {
     @FXML
     private void ajoutMedic(ActionEvent event)throws IOException{
        
-        a.borderPaneLoad(EcranLogController.getStage(),new Stage(), "/ihm/ajoutMedicOrdonnance.fxml",false); 
+        a.borderPaneLoad(EcranLogController.getStage(),new Stage(), "/ihm/AjoutMedicOrdonnance.fxml",false); 
     }
 
     @FXML
@@ -160,6 +160,7 @@ public class OrdonnanceController implements Initializable {
                 i++;
             }
             f.setOrdonnance(new Ordonnance(m));
+            f.setEtat(Boolean.TRUE);
             Medecin medecin = (Medecin) AccueilController.getPersonnel();
             for(RendezVous rdv : medecin.getListeRdv()){
                 if(rdv.getFiche().equals(f)) {rv=rdv;break;}
