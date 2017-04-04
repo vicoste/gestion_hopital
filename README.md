@@ -1,3 +1,3 @@
 # gestion_hopital
 
-POUR VOUS CONNECTEZ : LOGIN = admin, MDP = admin
+POUR VOUS CONNECTER : LOGIN = admin, MDP = admin
